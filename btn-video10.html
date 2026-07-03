@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видеоматериалы: Стратегии и барьеры</title>
+    <style>
+        /* Идеальное центрирование и жесткий сброс отступов (как в шаблоне) */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background: transparent; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        /* Контейнер для фиксации размеров и исключения дерганий */
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Интерактивная кнопка-картинка */
+        .btn-link { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, opacity 0.3s ease; 
+            cursor: pointer; 
+            overflow: hidden;
+            background: none;
+            border: none;
+            padding: 0;
+            outline: none;
+        }
+        
+        /* Эффект оживления (из вашего оригинального шаблона) */
+        .btn-link:hover { 
+            transform: scale(1.05); 
+            filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); 
+        }
+        
+        .btn-link:active { 
+            transform: scale(0.98); 
+        }
+        
+        /* Картинка pic-video10.png с сохранением пропорций растяжения */
+        .btn-img { 
+            max-width: 95%; 
+            max-height: 95%; 
+            object-fit: contain; 
+            display: block; 
+        }
+
+        /* Скрытое состояние кнопки, когда карточка активна */
+        .btn-link.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        /* Карточка с перечнем ссылок */
+        .video-card {
+            position: absolute;
+            width: 93%;
+            height: 93%;
+            background: rgb(30, 30, 35);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            box-sizing: border-box;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.85);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #ffffff;
+            overflow: hidden; /* Полный запрет прокрутки самой карточки */
+        }
+
+        /* Активное состояние карточки */
+        .video-card.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Заголовок карточки */
+        .card-header {
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 6px;
+            color: #e0e0e0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Сетка/список ссылок (распределяется без скроллов) */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px; /* Компактные отступы */
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        /* Стилизация ссылок в виде кнопок */
+        .video-item {
+            display: block;
+            background: rgba(255, 255, 255, 0.07);
+            color: #4af;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .video-item:hover {
+            background: rgba(68, 170, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Кнопка возврата обратно к картинке */
+        .close-btn {
+            margin-top: 6px;
+            background: #d9534f;
+            color: white;
+            border: none;
+            padding: 5px;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <button class="btn-link" id="btnTrigger" title="Открыть список видео">
+            <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-video10.png" 
+                 class="btn-img" 
+                 alt="Видеоматериалы: Стратегии и барьеры">
+        </button>
+
+        <div class="video-card" id="videoCard">
+            <div class="card-header">Список видео (Лекция 10)</div>
+            
+            <div class="links-container">
+                <a href="https://www.youtube.com/watch?v=H2a2ZAoXoiI" target="_blank" rel="noopener noreferrer" class="video-item">Видео 1 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=88qDlNUZ2OI&t=4226s" target="_blank" rel="noopener noreferrer" class="video-item">Видео 2 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=Zm6wAP2YJcE" target="_blank" rel="noopener noreferrer" class="video-item">Видео 3 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=FZxQJOxILaI" target="_blank" rel="noopener noreferrer" class="video-item">Видео 4 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=MC-iE33-UgM" target="_blank" rel="noopener noreferrer" class="video-item">Видео 5 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=2XWaZq9jClE" target="_blank" rel="noopener noreferrer" class="video-item">Видео 6 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=z-kW9zq30nM&t=1s" target="_blank" rel="noopener noreferrer" class="video-item">Видео 7 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=gxFrtJvy-2Y&t=2s" target="_blank" rel="noopener noreferrer" class="video-item">Видео 8 &middot; Смотреть</a>
+                <a href="https://www.youtube.com/watch?v=8zYz3JEAoUA" target="_blank" rel="noopener noreferrer" class="video-item">Видео 9 &middot; Смотреть</a>
+            </div>
+
+            <button class="close-btn" id="btnClose">Назад к кнопке</button>
+        </div>
+    </div>
+
+    <script>
+        const btnTrigger = document.getElementById('btnTrigger');
+        const videoCard = document.getElementById('videoCard');
+        const btnClose = document.getElementById('btnClose');
+
+        // Открытие карточки при клике на кнопку-картинку
+        btnTrigger.addEventListener('click', () => {
+            btnTrigger.classList.add('hidden');
+            videoCard.classList.add('active');
+        });
+
+        // Закрытие карточки (возврат к картинке)
+        btnClose.addEventListener('click', () => {
+            videoCard.classList.remove('active');
+            btnTrigger.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
