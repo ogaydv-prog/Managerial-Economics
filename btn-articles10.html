@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статьи: Стратегии и барьеры</title>
+    <style>
+        /* Идеальное центрирование и сброс отступов под фрейм */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background: transparent; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        /* Главный контейнер для предотвращения сдвигов и прокруток */
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Кнопка-картинка */
+        .btn-link { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, opacity 0.3s ease; 
+            cursor: pointer; 
+            overflow: hidden;
+            background: none;
+            border: none;
+            padding: 0;
+            outline: none;
+        }
+        
+        /* Эффект оживления из btn-preza10.html */
+        .btn-link:hover { 
+            transform: scale(1.05); 
+            filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); 
+        }
+        
+        .btn-link:active { 
+            transform: scale(0.98); 
+        }
+        
+        /* Картинка с сохранением пропорций и правил растягивания */
+        .btn-img { 
+            max-width: 95%; 
+            max-height: 95%; 
+            object-fit: contain; 
+            display: block; 
+        }
+
+        /* Состояние скрытия кнопки при открытой карточке */
+        .btn-link.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        /* Карточка с перечнем статей */
+        .articles-card {
+            position: absolute;
+            width: 96%;
+            height: 96%;
+            background: #1e1e24;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transform: scale(0.85);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Состояние отображения карточки */
+        .articles-card.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Заголовок карточки */
+        .card-header {
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+            color: #f0f0f0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Блок размещения ссылок без скроллбаров */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        /* Стили ссылок в виде компактных плашек */
+        .article-item {
+            display: block;
+            background: rgba(255, 255, 255, 0.08);
+            color: #3cb0fd;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .article-item:hover {
+            background: rgba(60, 176, 253, 0.25);
+            color: #ffffff;
+        }
+
+        /* Кнопка закрытия/переворота */
+        .back-btn {
+            margin-top: 5px;
+            background: #55555e;
+            color: #ffffff;
+            border: none;
+            padding: 5px;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .back-btn:hover {
+            background: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <button class="btn-link" id="btnArticles" title="Открыть список статей">
+            <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-articles10.png" 
+                 class="btn-img" 
+                 alt="Полезные статьи: Стратегии и барьеры">
+        </button>
+
+        <div class="articles-card" id="articlesCard">
+            <div class="card-header">Рекомендуемые статьи</div>
+            
+            <div class="links-list">
+                <a href="https://alcor.kz/services/cifrovoj-dvojnik-predpriatia.html" target="_blank" rel="noopener noreferrer" class="article-item">1. Цифровой двойник предприятия</a>
+                <a href="https://www.rbc.ru/life/news/69d65e6d9a79476ee6bffa0a?utm_referrer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="noopener noreferrer" class="article-item">2. Новости и аналитика (РБК Life)</a>
+                <a href="
