@@ -3,32 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+        /* Полный и жесткий сброс всех полей браузера */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            background: transparent;
+            overflow: hidden; /* Полностью исключает появление любых полос прокрутки */
+        }
+
+        /* Ссылка-контейнер занимает всю ширину и прижата к верху */
+        .btn-link {
+            display: block;
+            width: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-decoration: none;
+            border: none !important;
+            outline: none !important;
             background: transparent;
         }
-        /* Ссылка занимает 100% пространства фрейма */
-        a {
+
+        /* Изображение намертво прилипает к верхнему краю фрейма */
+        .btn-link img {
             display: block;
             width: 100%;
-            height: 100%;
-            cursor: pointer;
+            height: auto; /* Высота строго следует за пропорциями ширины */
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            vertical-align: top; /* Полностью ликвидирует любой зазор сверху */
+            transition: filter 0.25s ease-in-out; /* Плавное «оживление» */
         }
-        /* Картинка прижата ко всем краям */
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Картинка будет видна целиком без обрезки */
-            border: none;
+
+        /* Чистый эффект подсветки при наведении без изменения размеров и без вылезающих полос */
+        .btn-link:hover img {
+            filter: brightness(1.12) contrast(1.03);
         }
     </style>
 </head>
 <body>
-    <a href="exam-dashbord-pro-f.html" target="_blank">
-        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Экзамен">
+
+    <!-- Ссылка на дашборд экзамена, которая откроется в новой вкладке -->
+    <a href="exam-dashbord-pro-f.html" target="_blank" class="btn-link">
+        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Перейти к экзамену">
     </a>
+
 </body>
 </html>
