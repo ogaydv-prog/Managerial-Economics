@@ -2,51 +2,54 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Полный и жесткий сброс всех полей браузера */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100%;
-            background: transparent;
-            overflow: hidden; /* Полностью исключает появление любых полос прокрутки */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background: transparent; 
+            overflow: hidden; 
         }
-
-        /* Ссылка-контейнер занимает всю ширину и прижата к верху */
-        .btn-link {
-            display: block;
-            width: 100%;
-            margin: 0 !important;
-            padding: 0 !important;
+        .btn-link { 
+            display: block; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease; 
+            cursor: pointer; 
+            width: 100%; 
+            height: 100%;
             text-decoration: none;
-            border: none !important;
-            outline: none !important;
-            background: transparent;
         }
-
-        /* Изображение намертво прилипает к верхнему краю фрейма */
-        .btn-link img {
-            display: block;
-            width: 100%;
-            height: auto; /* Высота строго следует за пропорциями ширины */
-            border: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            vertical-align: top; /* Полностью ликвидирует любой зазор сверху */
-            transition: filter 0.25s ease-in-out; /* Плавное «оживление» */
+        /* Эффект оживления: увеличение, повышение яркости и мягкое бевое свечение вокруг */
+        .btn-link:hover { 
+            transform: scale(1.05); 
+            filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)); 
         }
-
-        /* Чистый эффект подсветки при наведении без изменения размеров и без вылезающих полос */
-        .btn-link:hover img {
-            filter: brightness(1.12) contrast(1.03);
+        /* Эффект при клике (сжатие) */
+        .btn-link:active { 
+            transform: scale(0.98); 
+        }
+        .btn-img { 
+            display: block; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; /* Сохраняет пропорции вашей картинки */
         }
     </style>
 </head>
 <body>
 
-    <!-- Ссылка на дашборд экзамена, которая откроется в новой вкладке -->
-    <a href="exam-dashbord-pro-f.html" target="_blank" class="btn-link">
-        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Перейти к экзамену">
+    <!-- Ссылка на дашборд экзамена -->
+    <a href="exam-dashbord-pro-f.html" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="btn-link">
+        <!-- Картинка экзамена из вашего репозитория -->
+        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" 
+             class="btn-img" 
+             alt="Финальный экзамен">
     </a>
 
 </body>
