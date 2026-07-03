@@ -182,4 +182,36 @@
             <div class="links-list">
                 <a href="https://alcor.kz/services/cifrovoj-dvojnik-predpriatia.html" target="_blank" rel="noopener noreferrer" class="article-item">1. Цифровой двойник предприятия</a>
                 <a href="https://www.rbc.ru/life/news/69d65e6d9a79476ee6bffa0a?utm_referrer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="noopener noreferrer" class="article-item">2. Новости и аналитика (РБК Life)</a>
-                <a href="
+                <a href="https://www.lufthansa.com/kz/ru/discover-lufthansa/flightreservation-priceguarantee" target="_blank" rel="noopener noreferrer" class="article-item">3. Гарантия цены (Lufthansa)</a>
+                <a href="https://ru.wikipedia.org/wiki/%D0%90%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD_%D0%92%D0%B8%D0%BA%D1%80%D0%B8" target="_blank" rel="noopener noreferrer" class="article-item">4. Аукцион Викри (Википедия)</a>
+                <a href="https://ertenmedia.kz/ru/skrytye-pereplaty-banki-kazahstan-novye-pravila/" target="_blank" rel="noopener noreferrer" class="article-item">5. Скрытые переплаты банков РK</a>
+            </div>
+
+            <button class="back-btn" id="btnBack">Вернуться к кнопке</button>
+        </div>
+    </div>
+
+    <script>
+        const btnArticles = document.getElementById('btnArticles');
+        const articlesCard = document.getElementById('articlesCard');
+        const btnBack = document.getElementById('btnBack');
+
+        // Переворот на карточку при нажатии на кнопку-картинку
+        btnArticles.addEventListener('click', () => {
+            btnArticles.classList.add('hidden');
+            articlesCard.classList.add('active');
+        });
+
+        // Переворот обратно в картинку при нажатии на саму карточку (по фону) или на кнопку Назад
+        const closeCard = (e) => {
+            // Закрываем только если клик пришелся на сам контейнер карточки или кнопку Назад (чтобы не закрывать при переходе по статьям)
+            if (e.target === articlesCard || e.target === btnBack) {
+                articlesCard.classList.remove('active');
+                btnArticles.classList.remove('hidden');
+            }
+        };
+
+        articlesCard.addEventListener('click', closeCard);
+    </script>
+</body>
+</html>
