@@ -2,52 +2,33 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Полный и бескомпромиссный сброс всех полей */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100%;
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
             background: transparent;
-            overflow: hidden; /* Полностью предотвращает появление любых полос прокрутки */
         }
-
-        #examBtn {
+        /* Ссылка занимает 100% пространства фрейма */
+        a {
             display: block;
             width: 100%;
-            border: none !important;
-            background: transparent !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            outline: none;
+            height: 100%;
             cursor: pointer;
         }
-
-        #examBtn img {
+        /* Картинка прижата ко всем краям */
+        img {
             display: block;
             width: 100%;
-            height: auto; /* Идеально сохраняет пропорции картинки, не допуская сжатия или размытия */
-            border: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            vertical-align: top; /* Намертво ликвидирует любой зазор сверху */
-            transition: transform 0.25s ease, filter 0.25s ease;
-        }
-
-        /* Безопасное и чистое «оживление» без теней: картинка просто загорается и чуть увеличивается */
-        #examBtn:hover img {
-            transform: scale(1.01);
-            filter: brightness(1.12) contrast(1.02);
+            height: 100%;
+            object-fit: contain; /* Картинка будет видна целиком без обрезки */
+            border: none;
         }
     </style>
 </head>
 <body>
-
-    <button id="examBtn" onclick="window.open('exam-dashbord-pro-f.html', '_blank')">
+    <a href="exam-dashbord-pro-f.html" target="_blank">
         <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Экзамен">
-    </button>
-
+    </a>
 </body>
-</html>
 </html>
