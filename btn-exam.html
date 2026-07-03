@@ -4,35 +4,45 @@
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Анимация пульсации без лишних отступов */
+        /* Полный сброс всего, что создает отступы */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         @keyframes pulse-glow {
             0%, 100% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4)); }
             50% { filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.85)); }
         }
         .glow-hover:hover { animation: pulse-glow 2.5s infinite; }
         
-        /* Убираем любые возможные отступы у самой кнопки */
-        button { display: block; width: 100%; margin: 0 !important; padding: 0 !important; line-height: 0; }
+        /* Жесткая фиксация высоты и отсутствие линий */
+        button { 
+            display: block; 
+            width: 100%; 
+            line-height: 0; 
+            border: none !important;
+            /* Измени этот отступ (напр. 4px или 6px), чтобы «сжать» кнопку по бокам */
+            margin-left: 4px; 
+            margin-right: 4px;
+            width: calc(100% - 8px);
+        }
     </style>
 </head>
-<body class="p-0 m-0 bg-transparent overflow-hidden w-full h-full">
+<body class="p-0 m-0 bg-transparent overflow-hidden">
 
     <button id="examBtn" 
-            class="glow-hover group relative block w-full border-0 p-0 m-0 bg-transparent outline-none cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-[1.01] hover:brightness-105"
+            class="glow-hover group relative block border-0 p-0 m-0 bg-transparent outline-none cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-[1.01] hover:brightness-105"
             onclick="openExam()">
         
+        <!-- vertical-align: top убирает микро-отступ снизу у изображений -->
         <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" 
              alt="Экзамен" 
-             class="w-full h-auto block border-0 m-0 p-0">
+             style="display: block; vertical-align: top;"
+             class="w-full h-auto border-0 m-0 p-0">
         
     </button>
 
     <script>
         const examDashboardUrl = "exam-dashbord-pro-f.html";
-
-        function openExam() {
-            window.open(examDashboardUrl, '_blank');
-        }
+        function openExam() { window.open(examDashboardUrl, '_blank'); }
     </script>
 </body>
 </html>
