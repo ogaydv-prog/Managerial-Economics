@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center p-10">
+
+    <button id="examBtn" 
+            class="group relative flex items-center justify-center transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl rounded-2xl p-2 bg-white border-2 border-indigo-200 hover:border-indigo-500 overflow-hidden"
+            onclick="handleSingleClick()" 
+            ondblclick="handleDoubleClick()">
+        
+        <!-- Изображение -->
+        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam.png" 
+             alt="Экзамен" 
+             class="w-32 h-32 object-cover transition-opacity duration-300 group-hover:opacity-80">
+        
+        <!-- Эффект подсветки -->
+        <div class="absolute inset-0 bg-indigo-500 opacity-0 group-hover:opacity-10 pointer-events-none transition-opacity duration-300"></div>
+    </button>
+
+    <script>
+        let clickTimeout;
+        const googleDocUrl = "https://docs.google.com/document/d/1WAIjQuWaSqpabaCf87hAym9kEq6j46cfjq-mYOhK-3Q/edit?usp=sharing";
+        const examDashboardUrl = "exam-dashbord-pro-f.html";
+
+        function handleSingleClick() {
+            // Задержка, чтобы отличить одинарный клик от двойного
+            clickTimeout = setTimeout(() => {
+                window.open(googleDocUrl, '_blank');
+            }, 250);
+        }
+
+        function handleDoubleClick() {
+            clearTimeout(clickTimeout);
+            window.location.href = examDashboardUrl;
+        }
+    </script>
+</body>
+</html>
