@@ -4,49 +4,36 @@
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --mt: 0px;   /* Отступ сверху: чем меньше, тем ближе к верху */
-            --mb: 0px;   /* Отступ снизу */
-            --ml: 10px;  /* Отступ слева: добавь значение, чтобы сделать свободнее */
-            --mr: 10px;  /* Отступ справа */
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Полный обнуляющий сброс */
+        * { margin: 0 !important; padding: 0 !important; box-sizing: border-box !important; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
         
-        .container-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        #examBtn {
+            display: block;
             width: 100%;
-            height: 100vh;
-            padding-top: var(--mt);
-            padding-bottom: var(--mb);
-            padding-left: var(--ml);
-            padding-right: var(--mr);
+            height: 100%;
+            cursor: pointer;
+            border: none !important;
+            background: transparent !important;
+            transition: transform 0.2s;
         }
-
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4)); }
-            50% { filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.85)); }
+        
+        #examBtn:hover { transform: scale(1.005); filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5)); }
+        
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Картинка заполнит ширину, сохраняя пропорции */
+            vertical-align: top; /* Убирает отступ снизу */
         }
-        .glow-hover:hover { animation: pulse-glow 2.5s infinite; }
     </style>
 </head>
-<body class="p-0 m-0 bg-transparent overflow-hidden">
+<body>
 
-    <div class="container-box">
-        <button id="examBtn" 
-                class="glow-hover group relative block w-full border-0 p-0 m-0 bg-transparent outline-none cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-[1.01] hover:brightness-105"
-                onclick="openExam()">
-            
-            <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" 
-                 alt="Экзамен" 
-                 class="w-full h-auto block border-0">
-        </button>
-    </div>
+    <button id="examBtn" onclick="window.open('exam-dashbord-pro-f.html', '_blank')">
+        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Экзамен">
+    </button>
 
-    <script>
-        const examDashboardUrl = "exam-dashbord-pro-f.html";
-        function openExam() { window.open(examDashboardUrl, '_blank'); }
-    </script>
 </body>
 </html>
