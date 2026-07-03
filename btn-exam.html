@@ -3,59 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        /* Полный сброс всех отступов и полей браузера */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            overflow: hidden; /* Полностью исключает появление полос прокрутки */
+        /* Обнуляем абсолютно все отступы и скрываем скроллы */
+        * { 
+            margin: 0 !important; 
+            padding: 0 !important; 
+            box-sizing: border-box !important; 
         }
-
-        /* Контейнер жестко прижимает контент к верхнему краю */
-        .wrapper {
-            display: block;
-            width: 100%;
-            margin: 0 !important;
-            padding: 0 !important;
+        
+        html, body { 
+            width: 100%; 
+            height: 100%; 
+            background: transparent; 
+            overflow: hidden; 
         }
-
+        
         #examBtn {
             display: block;
             width: 100%;
+            height: 100%;
             border: none !important;
             background: transparent !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            outline: none;
             cursor: pointer;
+            outline: none;
+            
+            /* Намертво прижимаем картинку к верхнему краю (top) без искажения пропорций */
+            background-image: url('https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png');
+            background-size: contain; /* Картинка сжимается/расширяется чисто по ширине ячейки */
+            background-position: top center; /* Намертво держит верх без зазоров */
+            background-repeat: no-repeat;
+            
+            transition: filter 0.2s ease-in-out;
         }
-
-        #examBtn img {
-            display: block;
-            width: 100%;
-            height: auto; /* Высота подстраивается автоматически, сохраняя пропорции картинки */
-            border: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            vertical-align: top; /* Картинка намертво прилипает к верхнему краю фрейма */
-            transition: filter 0.2s ease;
-        }
-
-        /* Аккуратный эффект подсветки при наведении без изменения геометрии */
-        #examBtn:hover img {
-            filter: brightness(1.1);
+        
+        /* Равномерная и аккуратная подсветка всей картинки при наведении */
+        #examBtn:hover { 
+            filter: brightness(1.12) drop-shadow(0 0 12px rgba(99, 102, 241, 0.6)); 
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <button id="examBtn" onclick="window.open('exam-dashbord-pro-f.html', '_blank')">
-            <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Экзамен">
-        </button>
-    </div>
+    <button id="examBtn" onclick="window.open('exam-dashbord-pro-f.html', '_blank')"></button>
 
 </body>
 </html>
