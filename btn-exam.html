@@ -2,48 +2,31 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Сбрасываем всё, чтобы ничего не обрезало */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; }
+        body { background: transparent; display: flex; justify-content: center; align-items: flex-start; }
         
-        body, html {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: transparent;
-        }
-
         #examBtn {
-            width: 100%;
-            height: 100%;
-            padding: 0;
+            display: block;
             border: none;
             background: none;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            outline: none;
-            /* Убрали overflow: hidden, чтобы ничего не подрезалось */
+            padding: 0;
+            margin: 0;
+            /* Кнопка будет ровно такого размера, какая картинка */
+            width: auto; 
+            height: auto;
         }
-
-        #examBtn img {
-            width: 100%;
-            height: 100%;
-            /* object-fit: contain гарантирует, что вся картинка 
-               влезет в рамку без обрезки сторон */
-            object-fit: contain;
+        
+        img {
             display: block;
-            transition: transform 0.2s ease;
+            /* Картинка не будет сжиматься */
+            max-width: 100%;
+            height: auto;
+            border: none;
         }
 
-        /* Только простое увеличение без всяких теней и полосок */
-        #examBtn:hover img {
-            transform: scale(1.02);
-        }
+        #examBtn:hover { filter: brightness(1.1); }
     </style>
 </head>
 <body>
@@ -53,4 +36,5 @@
     </button>
 
 </body>
+</html>
 </html>
