@@ -2,35 +2,47 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        * { margin: 0 !important; padding: 0 !important; box-sizing: border-box !important; }
-        html, body { width: 100%; height: 100%; overflow: hidden; }
+        /* Сбрасываем всё, чтобы ничего не обрезало */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        body, html {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+        }
+
         #examBtn {
-            display: block;
             width: 100%;
             height: 100%;
+            padding: 0;
+            border: none;
+            background: none;
             cursor: pointer;
-            border: none !important;
-            background: transparent !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            line-height: 0;
-            overflow: hidden; /* Гарантирует, что ничего не вылезет */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            /* Убрали overflow: hidden, чтобы ничего не подрезалось */
         }
-        
-        /* Вместо внешней тени — только внутреннее свечение и яркость */
-        #examBtn:hover { 
-            filter: brightness(1.15); 
-            box-shadow: inset 0 0 0 4px rgba(99, 102, 241, 0.6); 
-        }
-        
-        img {
-            display: block;
+
+        #examBtn img {
             width: 100%;
             height: 100%;
-            object-fit: fill; 
-            vertical-align: top;
+            /* object-fit: contain гарантирует, что вся картинка 
+               влезет в рамку без обрезки сторон */
+            object-fit: contain;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        /* Только простое увеличение без всяких теней и полосок */
+        #examBtn:hover img {
+            transform: scale(1.02);
         }
     </style>
 </head>
