@@ -3,38 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        * { margin: 0; padding: 0; }
-        body { background: transparent; display: flex; justify-content: center; align-items: flex-start; }
-        
-        #examBtn {
-            display: block;
-            border: none;
-            background: none;
-            cursor: pointer;
-            padding: 0;
-            margin: 0;
-            /* Кнопка будет ровно такого размера, какая картинка */
-            width: auto; 
-            height: auto;
-        }
-        
-        img {
-            display: block;
-            /* Картинка не будет сжиматься */
-            max-width: 100%;
-            height: auto;
-            border: none;
+        /* Полный сброс всех отступов и полей браузера */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            overflow: hidden; /* Полностью исключает появление полос прокрутки */
         }
 
-        #examBtn:hover { filter: brightness(1.1); }
+        /* Контейнер жестко прижимает контент к верхнему краю */
+        .wrapper {
+            display: block;
+            width: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        #examBtn {
+            display: block;
+            width: 100%;
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #examBtn img {
+            display: block;
+            width: 100%;
+            height: auto; /* Высота подстраивается автоматически, сохраняя пропорции картинки */
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            vertical-align: top; /* Картинка намертво прилипает к верхнему краю фрейма */
+            transition: filter 0.2s ease;
+        }
+
+        /* Аккуратный эффект подсветки при наведении без изменения геометрии */
+        #examBtn:hover img {
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body>
 
-    <button id="examBtn" onclick="window.open('exam-dashbord-pro-f.html', '_blank')">
-        <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Экзамен">
-    </button>
+    <div class="wrapper">
+        <button id="examBtn" onclick="window.open('exam-dashbord-pro-f.html', '_blank')">
+            <img src="https://raw.githubusercontent.com/ogaydv-prog/Simulator-NPV/main/pic-exam-final.png" alt="Экзамен">
+        </button>
+    </div>
 
 </body>
-</html>
 </html>
