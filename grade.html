@@ -623,22 +623,47 @@
         }
 
         // Load database from local storage
-        function loadDatabase() {
-            const data = localStorage.getItem('almau_gradebook_v3_students');
-            if (data) {
-                try {
-                    students = JSON.parse(data);
-                    students.forEach(ensureAttendanceHours);
-                } catch(e) {
-                    students = [...initialGroupStudents];
-                    students.forEach(ensureAttendanceHours);
-                }
-            } else {
-                students = [...initialGroupStudents];
-                students.forEach(ensureAttendanceHours);
-                saveDatabase();
-            }
+       async function loadDatabase() {
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRFbItP_QABM9I_9KdttwkJ2XV4n5xSR1g9gm6QT9QqTy6RMvQLVuDTr1Hc7y44A/pub?gid=1382660235&single=true&output=csv";
+
+    try {
+        const response = await fetch(csvUrl);
+        const csvText = await response.text();
+        
+        // Разбиваем текст на строки
+        const rows = csvText.split('\n');
+        const newStudents = [];
+
+        // Пропускаем первую строку (заголовки), начинаем с 1
+        for (let i = 1; i < rows.length; i++) {
+            const columns = rows[i].split(',');
+            // Если строка пустая, пропускаем
+            if (columns.length < 5) continue;
+
+            // Сопоставляем данные из твоей таблицы с полями в коде
+            // Колонки: 0-ФИО, 1-Посещ, 2-Актив, 3-Экзамен, 4-Итог, 5-Грейд
+            const student = {
+                id: 'st-' + i,
+                name: columns[0].trim(),
+                attendance: parseInt(columns[1]) || 0,
+                activity: parseInt(columns[2]) || 0,
+                exam: parseInt(columns[3]) || 0
+            };
+            
+            ensureAttendanceHours(student); // Оставляем твою функцию для часов
+            newStudents.push(student);
         }
+
+        students = newStudents;
+        updateDashboardData();
+        console.log("Данные успешно загружены из Google Таблицы!");
+
+    } catch (error) {
+        console.error("Ошибка загрузки данных из таблицы:", error);
+        // Если таблица не загрузилась, используем старые данные или пустой список
+        loadDatabaseFallback();
+    }
+}
 
         // Save state to local storage
         function saveDatabase() {
