@@ -67,7 +67,7 @@
             <div class="flex items-center space-x-3">
                 <div id="mode-badge" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center space-x-1.5">
                     <span class="h-2 w-2 bg-indigo-400 rounded-full animate-pulse"></span>
-                    <span>Режим Студента</span>
+                    <span>Режим Слушателя</span>
                 </div>
                 
                 <button id="auth-action-btn" onclick="openAuthModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all border border-slate-700 hover:border-slate-600 flex items-center space-x-2">
@@ -100,7 +100,7 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Ф.И.О. Слушателя</label>
                         <div class="relative">
                             <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-500"></i>
-                            <input type="text" id="student-search-input" onkeydown="handleSearchKeyDown(event)" placeholder="Например: Ажибекова Асель" 
+                            <input type="text" id="student-search-input" onkeydown="handleSearchKeyDown(event)" placeholder="" 
                                 class="w-full pl-11 pr-24 py-3 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
                             <button onclick="searchStudentGrade()" class="absolute right-2 top-2 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition-colors shadow-sm">
                                 Найти
