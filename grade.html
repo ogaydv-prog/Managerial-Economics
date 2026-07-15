@@ -565,17 +565,17 @@
 
     <script>
         // Official cleaned student list for the specified MBA group
-        const initialGroupStudents = [
-            { id: 'st-1', name: 'Ажибекова Асель Саметкуловна', attendance: 95, activity: 90, exam: 85 },
-            { id: 'st-2', name: 'Харитонов Дмитрий Викторович', attendance: 85, activity: 80, exam: 78 },
-            { id: 'st-3', name: 'Крисанова Оксана Владимировна', attendance: 90, activity: 88, exam: 92 },
-            { id: 'st-4', name: 'Зарубин Александр Александрович', attendance: 92, activity: 95, exam: 89 },
-            { id: 'st-5', name: 'Рахимжанов Даулет Болатович', attendance: 80, activity: 75, exam: 83 },
-            { id: 'st-6', name: 'Шигенова Дина Александровна', attendance: 100, activity: 95, exam: 96 },
-            { id: 'st-7', name: 'Жигарь Александр Григорьевич', attendance: 85, activity: 85, exam: 80 },
-            { id: 'st-8', name: 'Жаксылыкпай Екатерина Евгеньевна', attendance: 90, activity: 90, exam: 88 },
-            { id: 'st-9', name: 'Жанпейсова Лиза Омирсериковна', attendance: 95, activity: 92, exam: 91 },
-            { id: 'st-10', name: 'Ирисбаев Тулкинжон', attendance: 85, activity: 80, exam: 85 }
+       const initialGroupStudents = [
+            { id: 'st-1', name: 'Ажибекова Асель Саметкуловна', attendance: 90, activity: 100, exam: 90 },
+            { id: 'st-2', name: 'Харитонов Дмитрий Викторович', attendance: 95, activity: 85, exam: 90 },
+            { id: 'st-3', name: 'Крисанова Оксана Владимировна', attendance: 80, activity: 90, exam: 90 },
+            { id: 'st-4', name: 'Зарубин Александр Александрович', attendance: 60, activity: 75, exam: 85 },
+            { id: 'st-5', name: 'Рахимжанов Даулет Болатович', attendance: 100, activity: 90, exam: 90 },
+            { id: 'st-6', name: 'Шигенова Дина Александровна', attendance: 70, activity: 80, exam: 80 },
+            { id: 'st-7', name: 'Жигарь Александр Григорьевич', attendance: 100, activity: 90, exam: 90 },
+            { id: 'st-8', name: 'Жаксылыкпай Екатерина Евгеньевна', attendance: 60, activity: 75, exam: 85 },
+            { id: 'st-9', name: 'Жанпейсова Лиза Омирсериковна', attendance: 60, activity: 50, exam: 70 },
+            { id: 'st-10', name: 'Ирисбаев Тулкинжон', attendance: 80, activity: 90, exam: 90 }
         ];
 
         // Specific calendar dates configured by user (10 dates total)
@@ -623,47 +623,12 @@
         }
 
         // Load database from local storage
-       async function loadDatabase() {
-    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRFbItP_QABM9I_9KdttwkJ2XV4n5xSR1g9gm6QT9QqTy6RMvQLVuDTr1Hc7y44A/pub?gid=1382660235&single=true&output=csv";
-
-    try {
-        const response = await fetch(csvUrl);
-        const csvText = await response.text();
-        
-        // Разбиваем текст на строки
-        const rows = csvText.split('\n');
-        const newStudents = [];
-
-        // Пропускаем первую строку (заголовки), начинаем с 1
-        for (let i = 1; i < rows.length; i++) {
-            const columns = rows[i].split(',');
-            // Если строка пустая, пропускаем
-            if (columns.length < 5) continue;
-
-            // Сопоставляем данные из твоей таблицы с полями в коде
-            // Колонки: 0-ФИО, 1-Посещ, 2-Актив, 3-Экзамен, 4-Итог, 5-Грейд
-            const student = {
-                id: 'st-' + i,
-                name: columns[0].trim(),
-                attendance: parseInt(columns[1]) || 0,
-                activity: parseInt(columns[2]) || 0,
-                exam: parseInt(columns[3]) || 0
-            };
-            
-            ensureAttendanceHours(student); // Оставляем твою функцию для часов
-            newStudents.push(student);
+       function loadDatabase() {
+            students = initialGroupStudents;
+            students.forEach(student => ensureAttendanceHours(student));
+            updateDashboardData();
+            console.log("Данные загружены напрямую из кода.");
         }
-
-        students = newStudents;
-        updateDashboardData();
-        console.log("Данные успешно загружены из Google Таблицы!");
-
-    } catch (error) {
-        console.error("Ошибка загрузки данных из таблицы:", error);
-        // Если таблица не загрузилась, используем старые данные или пустой список
-        loadDatabaseFallback();
-    }
-}
 
         // Save state to local storage
         function saveDatabase() {
@@ -682,11 +647,11 @@
         function getLetterGrade(score) {
             if (score >= 95) return { letter: 'A', class: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' };
             if (score >= 90) return { letter: 'A-', class: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' };
-            if (score >= 85) return { letter: 'B+', class: 'bg-blue-500/10 text-blue-400 border-blue-500/30' };
-            if (score >= 80) return { letter: 'B', class: 'bg-blue-500/10 text-blue-300 border-blue-500/20' };
-            if (score >= 75) return { letter: 'B-', class: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30' };
-            if (score >= 70) return { letter: 'C+', class: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20' };
-            if (score >= 65) return { letter: 'C', class: 'bg-amber-500/10 text-amber-400 border-amber-500/30' };
+            if (score >= 84) return { letter: 'B+', class: 'bg-blue-500/10 text-blue-400 border-blue-500/30' };
+            if (score >= 79) return { letter: 'B', class: 'bg-blue-500/10 text-blue-300 border-blue-500/20' };
+            if (score >= 74) return { letter: 'B-', class: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30' };
+            if (score >= 69) return { letter: 'C+', class: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20' };
+            if (score >= 64) return { letter: 'C', class: 'bg-amber-500/10 text-amber-400 border-amber-500/30' };
             if (score >= 60) return { letter: 'C-', class: 'bg-amber-500/10 text-amber-300 border-amber-500/20' };
             if (score >= 55) return { letter: 'D+', class: 'bg-orange-500/10 text-orange-400 border-orange-500/30' };
             if (score >= 50) return { letter: 'D', class: 'bg-orange-500/10 text-orange-300 border-orange-500/20' };
