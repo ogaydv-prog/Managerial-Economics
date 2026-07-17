@@ -1095,7 +1095,8 @@
             let cm = modelState.price - modelState.avc;
             let bep_q = cm > 0 ? Math.ceil(tfc / cm) : 0;
             let bep_m = bep_q * modelState.price;
-            let dol = eat !== 0 ? (ebitda / (ebitda - tfc)) : 0;
+            let marginalIncome = tr - tvc; // Считаем общий маржинальный доход
+            let dol = ebitda !== 0 ? (marginalIncome / ebitda) : 0; // Правильная формула
 
             document.getElementById('t2_val_cm').innerText = formatCurrency(cm);
             document.getElementById('t2_val_bep_q').innerText = bep_q > 0 ? `${bep_q} шт` : 'Ошибка (P <= AVC)';
@@ -1547,45 +1548,51 @@
         }
 
         function renderEquilibriumChart() {
-            safeDestroyChart('equilibrium');
+    safeDestroyChart('equilibrium');
 
-            let labelsQ = [];
-            let mc = [];
-            let mr = [];
-            let d = [];
+    let labelsQ = [];
+    let mc = [];
+    let mr = [];
+    let d = [];
 
-            let steps = 10;
-            for(let i=0; i<=steps; i++) {
-                let q_val = (modelState.q * 2) * (i / steps);
-                labelsQ.push(Math.round(q_val));
-                
-                d.push(modelState.price * 1.5 - 1.2 * q_val);
-                mr.push(modelState.price * 1.5 - 2.4 * q_val);
-                mc.push(modelState.avc + 0.3 * q_val);
+    // Динамический расчет наклонов на основе эластичности и базовых данных
+    let b = (modelState.price / modelState.q) / modelState.ed; 
+    let a = modelState.price + b * modelState.q;
+    let mc_slope = 0.5 * (modelState.price - modelState.avc) / modelState.q; 
+
+    let steps = 10;
+    for(let i=0; i<=steps; i++) {
+        let q_val = (modelState.q * 2) * (i / steps);
+        labelsQ.push(Math.round(q_val));
+        
+        // Используем реальные функции вместо жестких коэффициентов
+        d.push(Math.max(0, a - b * q_val));
+        mr.push(Math.max(0, a - 2 * b * q_val));
+        mc.push(modelState.avc + mc_slope * q_val);
+    }
+
+    const ctx = document.getElementById('chartMarketEquilibrium').getContext('2d');
+    globalCharts.equilibrium = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labelsQ,
+            datasets: [
+                { label: 'Спрос (D)', data: d, borderColor: '#3b82f6', borderWidth: 2, fill: false },
+                { label: 'MR', data: mr, borderColor: '#a855f7', borderDash: [4, 4], borderWidth: 2, fill: false },
+                { label: 'MC', data: mc, borderColor: '#ef4444', borderWidth: 2, fill: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#94a3b8', boxWidth: 10 } } },
+            scales: {
+                y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
             }
-
-            const ctx = document.getElementById('chartMarketEquilibrium').getContext('2d');
-            globalCharts.equilibrium = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labelsQ,
-                    datasets: [
-                        { label: 'Спрос (D)', data: d, borderColor: '#3b82f6', borderWidth: 2, fill: false },
-                        { label: 'MR', data: mr, borderColor: '#a855f7', borderDash: [4, 4], borderWidth: 2, fill: false },
-                        { label: 'MC', data: mc, borderColor: '#ef4444', borderWidth: 2, fill: false }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8', boxWidth: 10 } } },
-                    scales: {
-                        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-                }
-            });
         }
+    });
+}
 
         // Поддержка безопасной кодировки кириллицы (UTF-8 в Base64 без вылетов)
         function safeBtoA(str) {
