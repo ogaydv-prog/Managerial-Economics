@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         * {
@@ -37,7 +35,7 @@
             position: absolute;
             top: 20px;
             left: 30px;
-            height: 65px;
+            height: 60px;
             width: auto;
             object-fit: contain;
         }
@@ -49,7 +47,7 @@
         }
 
         h1 {
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 900;
             color: #001e50;
             margin-bottom: 6px;
@@ -67,28 +65,23 @@
             font-weight: 500;
         }
 
-        /* Контейнер сетки: ровно и адаптивно */
+        /* Адаптивная сетка карточек */
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-            max-width: 1450px;
-            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
-            justify-items: center;
+            max-width: 1400px;
+            width: 100%;
+            justify-content: center;
             align-items: center;
             padding-bottom: 40px;
         }
 
-        /* На больших экранах жестко фиксируем по 7 карточек в ряд для 14 элементов */
-        @media (min-width: 1400px) {
-            .grid-container {
-                grid-template-columns: repeat(7, 1fr);
-            }
-        }
-
-        /* Карточка с идеально одинаковыми размерами */
+        /* Карточка строго под размер вертикальной графики */
         .card {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
             background: #ffffff;
             border: 2px solid #e2e8f0;
@@ -96,20 +89,22 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 185px;
-            height: 245px;
+            width: 180px;
+            height: 240px;
             position: relative;
+            padding: 4px;
         }
 
         .card img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
             display: block;
+            border-radius: 12px;
             transition: transform 0.3s ease;
         }
 
-        /* Анимация и эффект при наведении */
+        /* Анимация при наведении */
         .card:hover {
             transform: translateY(-8px) scale(1.03);
             border-color: #001e50;
@@ -118,11 +113,6 @@
 
         .card:hover img {
             transform: scale(1.02);
-        }
-
-        /* Класс заглушки (пока нет ссылки) */
-        .card.placeholder {
-            cursor: pointer;
         }
 
         footer {
@@ -138,8 +128,10 @@
 </head>
 <body>
 
-    <!-- Логотип Graduate School of Business (GSB) -->
-    <img src="pictures/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+    <!-- Логотип GSB -->
+    <img src="pictures/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='Pictures/pic-gsb-logo.png';" 
+         alt="AlmaU GSB Logo" class="top-left-logo">
 
     <header>
         <h1>УПРАВЛЕНЧЕСКАЯ ЭКОНОМИКА</h1>
@@ -150,74 +142,74 @@
     </header>
 
     <main class="grid-container">
-        <!-- 1. Аннотация курса -->
-        <a href="#annotation" class="card placeholder" title="Аннотация курса">
-            <img src="pictures/pic-annotation.png" alt="Аннотация">
+        <!-- 1. Аннотация -->
+        <a href="#annotation" class="card" title="Аннотация курса">
+            <img src="pictures/pic-annotation.png" onerror="this.onerror=null; this.src='Pictures/pic-annotation.png';" alt="Аннотация">
         </a>
 
         <!-- 2. Тема 1 -->
-        <a href="#topic1" class="card placeholder" title="Тема 1">
-            <img src="pictures/pic-topic1.png" alt="Тема 1">
+        <a href="#topic1" class="card" title="Тема 1">
+            <img src="pictures/pic-topic1.png" onerror="this.onerror=null; this.src='Pictures/pic-topic1.png';" alt="Тема 1">
         </a>
 
         <!-- 3. Тема 2 -->
-        <a href="#topic2" class="card placeholder" title="Тема 2">
-            <img src="pictures/pic-topic2.png" alt="Тема 2">
+        <a href="#topic2" class="card" title="Тема 2">
+            <img src="pictures/pic-topic2.png" onerror="this.onerror=null; this.src='Pictures/pic-topic2.png';" alt="Тема 2">
         </a>
 
         <!-- 4. Тема 3 -->
-        <a href="#topic3" class="card placeholder" title="Тема 3">
-            <img src="pictures/pic-topic3.png" alt="Тема 3">
+        <a href="#topic3" class="card" title="Тема 3">
+            <img src="pictures/pic-topic3.png" onerror="this.onerror=null; this.src='Pictures/pic-topic3.png';" alt="Тема 3">
         </a>
 
         <!-- 5. Тема 4 -->
-        <a href="#topic4" class="card placeholder" title="Тема 4">
-            <img src="pictures/pic-topic4.png" alt="Тема 4">
+        <a href="#topic4" class="card" title="Тема 4">
+            <img src="pictures/pic-topic4.png" onerror="this.onerror=null; this.src='Pictures/pic-topic4.png';" alt="Тема 4">
         </a>
 
         <!-- 6. Тема 5 -->
-        <a href="#topic5" class="card placeholder" title="Тема 5">
-            <img src="pictures/pic-topic5.png" alt="Тема 5">
+        <a href="#topic5" class="card" title="Тема 5">
+            <img src="pictures/pic-topic5.png" onerror="this.onerror=null; this.src='Pictures/pic-topic5.png';" alt="Тема 5">
         </a>
 
         <!-- 7. Тема 6 -->
-        <a href="#topic6" class="card placeholder" title="Тема 6">
-            <img src="pictures/pic-topic6.png" alt="Тема 6">
+        <a href="#topic6" class="card" title="Тема 6">
+            <img src="pictures/pic-topic6.png" onerror="this.onerror=null; this.src='Pictures/pic-topic6.png';" alt="Тема 6">
         </a>
 
         <!-- 8. Тема 7 -->
-        <a href="#topic7" class="card placeholder" title="Тема 7">
-            <img src="pictures/pic-topic7.png" alt="Тема 7">
+        <a href="#topic7" class="card" title="Тема 7">
+            <img src="pictures/pic-topic7.png" onerror="this.onerror=null; this.src='Pictures/pic-topic7.png';" alt="Тема 7">
         </a>
 
         <!-- 9. Тема 8 -->
-        <a href="#topic8" class="card placeholder" title="Тема 8">
-            <img src="pictures/pic-topic8.png" alt="Тема 8">
+        <a href="#topic8" class="card" title="Тема 8">
+            <img src="pictures/pic-topic8.png" onerror="this.onerror=null; this.src='Pictures/pic-topic8.png';" alt="Тема 8">
         </a>
 
         <!-- 10. Тема 9 -->
-        <a href="#topic9" class="card placeholder" title="Тема 9">
-            <img src="pictures/pic-topic9.png" alt="Тема 9">
+        <a href="#topic9" class="card" title="Тема 9">
+            <img src="pictures/pic-topic9.png" onerror="this.onerror=null; this.src='Pictures/pic-topic9.png';" alt="Тема 9">
         </a>
 
         <!-- 11. Тема 10 -->
-        <a href="#topic10" class="card placeholder" title="Тема 10">
-            <img src="pictures/pic-topic10.png" alt="Тема 10">
+        <a href="#topic10" class="card" title="Тема 10">
+            <img src="pictures/pic-topic10.png" onerror="this.onerror=null; this.src='Pictures/pic-topic10.png';" alt="Тема 10">
         </a>
 
         <!-- 12. Тема 11 -->
-        <a href="#topic11" class="card placeholder" title="Тема 11">
-            <img src="pictures/pic-topic11.png" alt="Тема 11">
+        <a href="#topic11" class="card" title="Тема 11">
+            <img src="pictures/pic-topic11.png" onerror="this.onerror=null; this.src='Pictures/pic-topic11.png';" alt="Тема 11">
         </a>
 
-        <!-- 13. Итоговый контроль / Экзамен -->
-        <a href="#exam" class="card placeholder" title="Итоговый контроль">
-            <img src="pictures/pic-exam.png" alt="Экзамен">
+        <!-- 13. Итоговый контроль -->
+        <a href="#exam" class="card" title="Итоговый контроль">
+            <img src="pictures/pic-exam.png" onerror="this.onerror=null; this.src='Pictures/pic-exam.png';" alt="Экзамен">
         </a>
 
-        <!-- 14. Критерии оценивания -->
-        <a href="#grade" class="card placeholder" title="Система оценивания">
-            <img src="pictures/pic-grade.png" alt="Оценки">
+        <!-- 14. Оценки -->
+        <a href="#grade" class="card" title="Система оценивания">
+            <img src="pictures/pic-grade.png" onerror="this.onerror=null; this.src='Pictures/pic-grade.png';" alt="Оценки">
         </a>
     </main>
 
