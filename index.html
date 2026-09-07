@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управленческая экономика | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 25px;
+            position: relative;
+        }
+
+        /* Логотип GSB в верхнем левом углу */
+        .top-left-logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 900;
+            color: #001e50;
+            margin-bottom: 6px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #64748b;
+            max-width: 800px;
+            line-height: 1.5;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        /* Контейнер сетки: ровно и адаптивно */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+            max-width: 1450px;
+            width: 100%;
+            gap: 20px;
+            justify-items: center;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+
+        /* На больших экранах жестко фиксируем по 7 карточек в ряд для 14 элементов */
+        @media (min-width: 1400px) {
+            .grid-container {
+                grid-template-columns: repeat(7, 1fr);
+            }
+        }
+
+        /* Карточка с идеально одинаковыми размерами */
+        .card {
+            display: block;
+            text-decoration: none;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 185px;
+            height: 245px;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Анимация и эффект при наведении */
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: #001e50;
+            box-shadow: 0 16px 30px rgba(0, 30, 80, 0.18);
+        }
+
+        .card:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Класс заглушки (пока нет ссылки) */
+        .card.placeholder {
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 14px;
+            color: #718096;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Логотип Graduate School of Business (GSB) -->
+    <img src="pictures/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+
+    <header>
+        <h1>УПРАВЛЕНЧЕСКАЯ ЭКОНОМИКА</h1>
+        <div class="subtitle">
+            <p>Интерактивный образовательный портал для программ MBA <span style="color: #cbd5e1; margin: 0 6px;">|</span> Высшая Школа Бизнеса</p>
+            <p style="color: #94a3b8; font-size: 14px; margin-top: 4px;">AlmaU 2026</p>
+        </div>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Аннотация курса -->
+        <a href="#annotation" class="card placeholder" title="Аннотация курса">
+            <img src="pictures/pic-annotation.png" alt="Аннотация">
+        </a>
+
+        <!-- 2. Тема 1 -->
+        <a href="#topic1" class="card placeholder" title="Тема 1">
+            <img src="pictures/pic-topic1.png" alt="Тема 1">
+        </a>
+
+        <!-- 3. Тема 2 -->
+        <a href="#topic2" class="card placeholder" title="Тема 2">
+            <img src="pictures/pic-topic2.png" alt="Тема 2">
+        </a>
+
+        <!-- 4. Тема 3 -->
+        <a href="#topic3" class="card placeholder" title="Тема 3">
+            <img src="pictures/pic-topic3.png" alt="Тема 3">
+        </a>
+
+        <!-- 5. Тема 4 -->
+        <a href="#topic4" class="card placeholder" title="Тема 4">
+            <img src="pictures/pic-topic4.png" alt="Тема 4">
+        </a>
+
+        <!-- 6. Тема 5 -->
+        <a href="#topic5" class="card placeholder" title="Тема 5">
+            <img src="pictures/pic-topic5.png" alt="Тема 5">
+        </a>
+
+        <!-- 7. Тема 6 -->
+        <a href="#topic6" class="card placeholder" title="Тема 6">
+            <img src="pictures/pic-topic6.png" alt="Тема 6">
+        </a>
+
+        <!-- 8. Тема 7 -->
+        <a href="#topic7" class="card placeholder" title="Тема 7">
+            <img src="pictures/pic-topic7.png" alt="Тема 7">
+        </a>
+
+        <!-- 9. Тема 8 -->
+        <a href="#topic8" class="card placeholder" title="Тема 8">
+            <img src="pictures/pic-topic8.png" alt="Тема 8">
+        </a>
+
+        <!-- 10. Тема 9 -->
+        <a href="#topic9" class="card placeholder" title="Тема 9">
+            <img src="pictures/pic-topic9.png" alt="Тема 9">
+        </a>
+
+        <!-- 11. Тема 10 -->
+        <a href="#topic10" class="card placeholder" title="Тема 10">
+            <img src="pictures/pic-topic10.png" alt="Тема 10">
+        </a>
+
+        <!-- 12. Тема 11 -->
+        <a href="#topic11" class="card placeholder" title="Тема 11">
+            <img src="pictures/pic-topic11.png" alt="Тема 11">
+        </a>
+
+        <!-- 13. Итоговый контроль / Экзамен -->
+        <a href="#exam" class="card placeholder" title="Итоговый контроль">
+            <img src="pictures/pic-exam.png" alt="Экзамен">
+        </a>
+
+        <!-- 14. Критерии оценивания -->
+        <a href="#grade" class="card placeholder" title="Система оценивания">
+            <img src="pictures/pic-grade.png" alt="Оценки">
+        </a>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
