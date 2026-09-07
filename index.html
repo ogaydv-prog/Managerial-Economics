@@ -33,7 +33,7 @@
         /* Логотип GSB в верхнем левом углу */
         .top-left-logo {
             position: absolute;
-            top: 20px;
+            top: 25px;
             left: 30px;
             height: 60px;
             width: auto;
@@ -46,16 +46,16 @@
             margin-bottom: 35px;
         }
 
-        /* Заголовок с увеличенным размером и максимальной жирностью */
+        /* Крупный, глубокий темно-синий заголовок */
         h1 {
-            font-size: 38px;         /* Размер шрифта 38px */
-            font-weight: 900;        /* Максимальная жирность */
-            line-height: 1.2;
-            color: #001e50;
+            font-size: 38px !important;         /* РАЗМЕР ШРИФТА */
+            font-weight: 900 !important;        /* МАКСИМАЛЬНАЯ ЖИРНОСТЬ */
+            color: #001e50 !important;          /* НАСЫЩЕННЫЙ ТЕМНО-СИНИЙ ЦВЕТ ALMAU */
             margin-bottom: 8px;
             margin-top: 10px;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
+            text-transform: uppercase !important;
+            line-height: 1.2;
         }
 
         .subtitle {
@@ -79,43 +79,38 @@
             padding-bottom: 40px;
         }
 
-        /* Квадратная карточка с внутренним отступом */
+        /* Карточка строго обтягивает контур картинки без отступов */
         .card {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
             text-decoration: none;
-            background: #ffffff;
-            border: 2px solid #e2e8f0;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 200px;
-            height: 200px;
+            background: transparent;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 195px;  /* Точная ширина карточки */
+            height: 255px; /* Точная высота карточки */
             position: relative;
-            padding: 10px; /* Внутренний отступ, чтобы картинка не липла к рамке */
         }
 
-        /* Картинка вписывается полностью БЕЗ ОБРЕЗАНИЯ КРАЕВ */
+        /* Рамка и скругление сидят прямо на самой картинке */
         .card img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Картинка полностью помещается без обрезки */
+            object-fit: fill; /* Заполняет всю площадь карточки ровно по контуру */
             display: block;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
-        /* Подсветка темно-синей рамкой AlmaU и приподнимание при наведении */
+        /* Подсветка темно-синей рамкой AlmaU и поднятие при наведении */
         .card:hover {
-            transform: translateY(-8px) scale(1.04);
-            border-color: #001e50;
-            box-shadow: 0 16px 32px rgba(0, 30, 80, 0.20);
+            transform: translateY(-8px) scale(1.03);
         }
 
         .card:hover img {
-            transform: scale(1.02);
+            border-color: #001e50;
+            box-shadow: 0 16px 32px rgba(0, 30, 80, 0.22);
         }
 
         footer {
