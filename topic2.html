@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 2: Рыночные силы спроса и предложения | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 25px;
+            position: relative;
+        }
+
+        /* Логотип GSB */
+        .top-left-logo {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            text-decoration: none;
+            background-color: #001e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15);
+        }
+
+        .back-button:hover {
+            background-color: #003380;
+            transform: translateY(-2px);
+        }
+
+        header {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 36px !important;
+            font-weight: 900 !important;
+            color: #001e50 !important;
+            margin-bottom: 6px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase !important;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #64748b;
+            max-width: 800px;
+            line-height: 1.5;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        /* Сетка для 7 карточек */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 18px;
+            max-width: 1500px;
+            width: 100%;
+            justify-items: center;
+            align-items: start;
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 1250px) {
+            .grid-container { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 750px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .card {
+            display: inline-block;
+            text-decoration: none;
+            background: transparent;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 200px;
+            height: auto;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+
+        .card:hover img {
+            border-color: #001e50;
+            box-shadow: 0 16px 32px rgba(0, 30, 80, 0.22);
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 14px;
+            color: #718096;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Логотип GSB -->
+    <img src="pictures/main/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+
+    <!-- Кнопка возврата -->
+    <a href="index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 2: РЫНОЧНЫЕ СИЛЫ СПРОСА И ПРЕДЛОЖЕНИЯ</h1>
+        <p class="subtitle">Управленческая экономика: механизм рыночного равновесия и эластичность</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Конспект лекции 2 -->
+        <a href="https://docs.google.com/document/d/1YG2QIFIDYd3XtuHhS3AsP_a7OFvfHn08/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции 2">
+            <img src="pictures/main/pic-lecture2.png" alt="Лекция 2">
+        </a>
+
+        <!-- 2. Презентация 2 -->
+        <a href="https://docs.google.com/presentation/d/1-2vzCqDckBRuLeQu-UzxMeL_di_PC7Zc/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 2">
+            <img src="pictures/main/pic-preza2-me.png" alt="Презентация 2">
+        </a>
+
+        <!-- 3. Симулятор: Модель Маршалла -->
+        <a href="simulators/sim-deman-supply-analysis-marshall.html" class="card" title="Симулятор: Модель спроса и предложения Маршалла">
+            <img src="pictures/main/pic-sim-demand-supply-me.png" alt="Модель Маршалла">
+        </a>
+
+        <!-- 4. Кейс: Рынок кофе в Астане -->
+        <a href="simulators/task-coffee-astana.html" class="card" title="Кейс-задача: Рынок кофейных сетей в Астане">
+            <img src="pictures/main/pic-case2-me.png" alt="Кейс Кофе Астана">
+        </a>
+
+        <!-- 5. Практическое задание: Анализ спроса и предложения -->
+        <a href="simulators/task-demand-supply-analysis-ru-en-style-1.html" class="card" title="Практикум: Спрос и предложение">
+            <img src="pictures/main/pic-task2-me.png" alt="Практическое задание 2">
+        </a>
+
+        <!-- 6. Аналитические статьи -->
+        <a href="article2.html" class="card" title="Аналитика: Динамика цен на рынках">
+            <img src="pictures/main/pic-article2-me.png" alt="Статьи по теме 2">
+        </a>
+
+        <!-- 7. Видеоматериалы -->
+        <a href="video2.html" class="card" title="Видеоматериалы: Моделирование спроса">
+            <img src="pictures/main/pic-video2-me.png" alt="Видео 2">
+        </a>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
