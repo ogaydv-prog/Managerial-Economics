@@ -30,7 +30,7 @@
             position: relative;
         }
 
-        /* Логотип GSB в верхнем левом углу */
+        /* Логотип GSB */
         .top-left-logo {
             position: absolute;
             top: 25px;
@@ -40,7 +40,7 @@
             object-fit: contain;
         }
 
-        /* Кнопка "Назад к курсу" */
+        /* Кнопка "Назад" */
         .back-button {
             position: absolute;
             top: 30px;
@@ -59,7 +59,6 @@
         .back-button:hover {
             background-color: #003380;
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 30, 80, 0.25);
         }
 
         header {
@@ -69,10 +68,10 @@
         }
 
         h1 {
-            font-size: 34px !important;
+            font-size: 36px !important;
             font-weight: 900 !important;
             color: #001e50 !important;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             margin-top: 10px;
             letter-spacing: 0.5px;
             text-transform: uppercase !important;
@@ -80,35 +79,42 @@
         }
 
         .subtitle {
-            font-size: 15px;
+            font-size: 16px;
             color: #64748b;
             max-width: 800px;
             line-height: 1.5;
             margin: 0 auto;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* Сетка карточек темы */
+        /* Сетка строго 5 в ряд (5 x 2 = 10 карточек) */
         .grid-container {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
-            max-width: 1450px;
+            max-width: 1250px;
             width: 100%;
-            justify-content: center;
+            justify-items: center;
             align-items: center;
             padding-bottom: 40px;
         }
 
-        /* Карточка точного размера под картинки */
+        @media (max-width: 1100px) {
+            .grid-container { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 700px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Исходные пропорции и облегающая рамка */
         .card {
             display: inline-block;
             text-decoration: none;
             background: transparent;
             border-radius: 16px;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 210px;
-            height: 240px;
+            width: 210px;  /* Исходный пропорциональный размер */
+            height: 240px; 
             position: relative;
         }
 
@@ -153,10 +159,7 @@
 
     <header>
         <h1>ТЕМА 1: ФУНДАМЕНТАЛЬНЫЕ ПРИНЦИПЫ</h1>
-        <div class="subtitle">
-            <p>Управленческая экономика <span style="color: #cbd5e1; margin: 0 6px;">|</span> Лекции, презентации, аналитика и интерактивные симуляторы</p>
-            <p style="color: #94a3b8; font-size: 14px; margin-top: 4px;">Высшая Школа Бизнеса AlmaU 2026</p>
-        </div>
+        <p class="subtitle">Фундаментальные принципы управленческой экономики</p>
     </header>
 
     <main class="grid-container">
@@ -180,13 +183,13 @@
             <img src="pictures/main/pic-sim-ppf-me.png" alt="Симулятор КПВ">
         </a>
 
-        <!-- 5. Симулятор: Бухгалтерская и экономическая прибыль -->
+        <!-- 5. Симулятор: Издержки и прибыль -->
         <a href="simulators/sim-ec-ac-costs-me.html" class="card" title="Симулятор: Издержки и прибыль">
             <img src="pictures/main/pic-sim-ac-ec-profit-me.png" alt="Издержки и прибыль">
         </a>
 
         <!-- 6. Симулятор: Предельный анализ -->
-        <a href="simulators/sim-marginal-analysis-me.html" class="card" title="Симулятор: Предельный анализ (Marginal Analysis)">
+        <a href="simulators/sim-marginal-analysis-me.html" class="card" title="Симулятор: Предельный анализ">
             <img src="pictures/main/pic-sim-marginal-analysis-me.png" alt="Предельный анализ">
         </a>
 
