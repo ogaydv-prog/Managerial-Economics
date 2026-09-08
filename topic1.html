@@ -148,18 +148,19 @@
             text-align: center;
             line-height: 1.6;
         }
-        /* Специальная точная подгонка только для картинки Presentation */
-.card-presentation {
-    width: 225px !important;
-    height: 265px !important;
-    overflow: hidden;
-}
+      /* Замените предыдущий код .card-presentation на этот: */
+        .card-presentation {
+            max-height: 265px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
 
-.card-presentation img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* Обрезает излишки сверху и снизу, приводя размер точно к стандарту */
-}
+        .card-presentation img {
+            max-height: 265px !important;
+            width: 100% !important;
+            object-fit: contain !important; /* Сохраняет всё изображение полностью, не срезая его */
+        }
     </style>
 </head>
 <body>
