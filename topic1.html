@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 1: Фундаментальные принципы | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 25px;
+            position: relative;
+        }
+
+        /* Логотип GSB в верхнем левом углу */
+        .top-left-logo {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Кнопка "Назад к курсу" */
+        .back-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            text-decoration: none;
+            background-color: #001e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15);
+        }
+
+        .back-button:hover {
+            background-color: #003380;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 30, 80, 0.25);
+        }
+
+        header {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 34px !important;
+            font-weight: 900 !important;
+            color: #001e50 !important;
+            margin-bottom: 8px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase !important;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #64748b;
+            max-width: 800px;
+            line-height: 1.5;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        /* Сетка карточек темы */
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1450px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+
+        /* Карточка точного размера под картинки */
+        .card {
+            display: inline-block;
+            text-decoration: none;
+            background: transparent;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 210px;
+            height: 240px;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+
+        .card:hover img {
+            border-color: #001e50;
+            box-shadow: 0 16px 32px rgba(0, 30, 80, 0.22);
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 14px;
+            color: #718096;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Логотип GSB -->
+    <img src="pictures/main/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+
+    <!-- Кнопка возврата на главный дашборд -->
+    <a href="index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 1: ФУНДАМЕНТАЛЬНЫЕ ПРИНЦИПЫ</h1>
+        <div class="subtitle">
+            <p>Управленческая экономика <span style="color: #cbd5e1; margin: 0 6px;">|</span> Лекции, презентации, аналитика и интерактивные симуляторы</p>
+            <p style="color: #94a3b8; font-size: 14px; margin-top: 4px;">Высшая Школа Бизнеса AlmaU 2026</p>
+        </div>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Конспект лекции -->
+        <a href="https://docs.google.com/document/d/1W7w26cQlalbXu6Nd3oSX92jafS7Jt2SG/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции 1">
+            <img src="pictures/main/pic-lecure1-me.png" alt="Лекция 1">
+        </a>
+
+        <!-- 2. Презентация -->
+        <a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card" title="Презентация к лекции 1">
+            <img src="pictures/main/pic-preza1-me.png" alt="Презентация 1">
+        </a>
+
+        <!-- 3. Симулятор: Модель кругооборота -->
+        <a href="simulators/sim-model-circular-flow-me.html" class="card" title="Симулятор: Модель кругооборота">
+            <img src="pictures/main/pic-sim-circular-me.png" alt="Модель кругооборота">
+        </a>
+
+        <!-- 4. Симулятор: КПВ (PPF) -->
+        <a href="simulators/sim-ppf.html" class="card" title="Симулятор: Кривая производственных возможностей">
+            <img src="pictures/main/pic-sim-ppf-me.png" alt="Симулятор КПВ">
+        </a>
+
+        <!-- 5. Симулятор: Бухгалтерская и экономическая прибыль -->
+        <a href="simulators/sim-ec-ac-costs-me.html" class="card" title="Симулятор: Издержки и прибыль">
+            <img src="pictures/main/pic-sim-ac-ec-profit-me.png" alt="Издержки и прибыль">
+        </a>
+
+        <!-- 6. Симулятор: Предельный анализ -->
+        <a href="simulators/sim-marginal-analysis-me.html" class="card" title="Симулятор: Предельный анализ (Marginal Analysis)">
+            <img src="pictures/main/pic-sim-marginal-analysis-me.png" alt="Предельный анализ">
+        </a>
+
+        <!-- 7. Симулятор: Оценка бизнеса (NPV Дамодарана) -->
+        <a href="simulators/sim-npv-aswath-me.html" class="card" title="Симулятор: Модель NPV (Асват Дамодаран)">
+            <img src="pictures/main/pic-sim-npv-me.png" alt="Оценка бизнеса NPV">
+        </a>
+
+        <!-- 8. Аналитические статьи -->
+        <a href="article1.html" class="card" title="Дайджест статей по управленческой экономике">
+            <img src="pictures/main/pic-article1-me.png" alt="Статьи и бизнес-аналитика">
+        </a>
+
+        <!-- 9. Видеоматериалы -->
+        <a href="video1.html" class="card" title="Видеолекции и разбор кейсов">
+            <img src="pictures/main/pic-video1-me.png" alt="Видеоматериалы">
+        </a>
+
+        <!-- 10. Кейс-задача: Оценка инвестиций МСБ -->
+        <a href="simulators/sim-msb-npv-me.html" class="card" title="Кейс-симулятор: Инвестиционные решения МСБ">
+            <img src="pictures/main/pic-task1-me.png" alt="Кейс-задача МСБ">
+        </a>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
