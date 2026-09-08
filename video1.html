@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видеоматериалы | Тема 1 MBA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .video-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
+        .video-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 30, 80, 0.12); border-color: #001e50; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-6">
+    <div class="max-w-4xl w-full flex justify-between items-center mb-8">
+        <a href="topic1.html" class="bg-[#001e50] text-white px-5 py-2.5 rounded-xl font-bold hover:bg-[#003380] transition">← Назад к Теме 1</a>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">MBA Видеотека</span>
+    </div>
+
+    <header class="text-center mb-10 max-w-2xl">
+        <h1 class="text-3xl font-black text-[#001e50] uppercase tracking-wide mb-2">Видеолекции & Кейсы</h1>
+        <p class="text-slate-500 font-medium">Фундаментальные принципы экономики и принятия управленческих решений</p>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full mb-12">
+        <!-- 1. LSE (London School of Economics) -->
+        <div class="video-card flex flex-col">
+            <div class="aspect-video w-full">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/3ez10ADR_gM" title="LSE Lecture" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 flex flex-col justify-between flex-grow">
+                <div>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-md mb-2 inline-block">LSE Professor (10 мин)</span>
+                    <h2 class="font-bold text-base text-slate-800 mb-2">Фундаментальные принципы экономической теории и бизнес-стратегии</h2>
+                    <p class="text-slate-500 text-xs">Академический разбор Лондонской школы экономики об альтернтивных издержках и мотиве прибыли.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Принципы экономики (Анимация/Русский) -->
+        <div class="video-card flex flex-col">
+            <div class="aspect-video w-full">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/PHe0bXAIuk0" title="10 Принципов Экономики" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 flex flex-col justify-between flex-grow">
+                <div>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-md mb-2 inline-block">Мэнкью (На русском)</span>
+                    <h2 class="font-bold text-base text-slate-800 mb-2">10 фундаментальных принципов экономики за 8 минут</h2>
+                    <p class="text-slate-500 text-xs">Наглядный экспресс-разбор того, как менеджеры и потребители принимают решения на рынках.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Предельный анализ (Marginal Analysis) -->
+        <div class="video-card flex flex-col">
+            <div class="aspect-video w-full">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/riacgEAnL0s" title="Предельный анализ" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 flex flex-col justify-between flex-grow">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md mb-2 inline-block">MBA Практикум</span>
+                    <h2 class="font-bold text-base text-slate-800 mb-2">Предельный анализ: Как принимать решения на основе MB и MC</h2>
+                    <p class="text-slate-500 text-xs">Короткое объяснение правила сопоставления предельных выгод и предельных издержек.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto text-xs text-slate-400 text-center">
+        © Almaty Management University | Высшая Школа Бизнеса (GSB) 2026
+    </footer>
+</body>
+</html>
