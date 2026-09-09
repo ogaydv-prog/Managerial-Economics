@@ -154,10 +154,16 @@
     height: 265px !important;
 }
 
-.card-presentation img {
+/* Идеальная одинаковая рамка для всех карточек и точная заправка картинки */
+.card {
+    width: 225px !important;
+    height: 265px !important;
+}
+
+.card img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: fill !important; /* Растягивает картинку точно по синей рамке, заполняя её полностью */
+    object-fit: fill !important;
 }
     </style>
 </head>
@@ -181,7 +187,8 @@
         </a>
 
         <!-- 2. Презентация -->
-<a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card card-presentation" title="Презентация к лекции 1">
+<!-- 2. Презентация -->
+<a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card" title="Презентация к лекции 1">
     <img src="pictures/main/pic-preza-1.png" alt="Презентация 1">
 </a>
 
