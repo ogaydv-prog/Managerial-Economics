@@ -106,37 +106,28 @@
             .grid-container { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Карточка с естественными пропорциями оригинальных изображений */
+        /* ==========================================================================
+           ЕДИНСТВЕННАЯ ТОЧКА УПРАВЛЕНИЯ РАЗМЕРАМИ КАРТОЧЕК И РАМОК
+           ========================================================================== */
         .card {
             display: inline-block;
             text-decoration: none;
             background: transparent;
             border-radius: 16px;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 225px; /* Комфортная естественная ширина */
-            height: auto;  /* Высота высчитывается автоматически из картинки */
+            
+            /* ВОТ ЗДЕСЬ МЕНЯЮТСЯ РАЗМЕРЫ ВСЕХ КАРТОЧЕК И РАМОК СРАЗУ: */
+            width: 200px !important;   /* ШИРИНА карточек и рамок */
+            height: 290px !important;  /* ВЫСОТА карточек и рамок (вытягивает все блоки) */
+            
             position: relative;
         }
 
-        /* Сохранение исходных пропорций файла без сплющивания */
-      /* Единый стандарт для ВСЕХ карточек: 
-           унифицированная ширина 215px и естественная высота по содержимому (height: auto) */
-        .card {
-            display: inline-block;
-            text-decoration: none;
-            background: transparent;
-            border-radius: 16px;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 215px !important; /* Унифицированная ширина для всех карточек */
-            height: auto !important;  /* Рамка идеально обтекает картинку по высоте */
-            position: relative;
-        }
-
-        /* Картинки сохраняют свои оригинальные пропорции, а рамка следует за ними */
+        /* Картинка автоматически подстраивается под рамку */
         .card img {
             width: 100% !important;
-            height: auto !important;
-            object-fit: contain !important; /* Рисунок вписан идеально без искажений */
+            height: 100% !important;
+            object-fit: fill !important; /* Растягивает рисунок во всю ширину и высоту новой рамки */
             display: block;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
@@ -161,31 +152,6 @@
             padding-bottom: 20px;
             text-align: center;
             line-height: 1.6;
-        }
-  /* 1. Глобальный размер ВСЕХ карточек (меняйте цифры тут, если нужно изменить всю сетку) */
-        .card {
-            width: 225px !important;
-            height: 265px !important;
-            display: inline-block;
-            position: relative;
-        }
-
-        /* Стандартные картинки для всех карточек */
-        .card img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: fill !important;
-        }
-
-        /* 2. РЕГУЛИРОВКА РИСУНКА ВНУТРИ АРИСТОТЕЛЯ (без изменения внешней рамки): */
-        .card-presentation img {
-            /* Отступы сжимают рисунок ВНУТРИ рамки:
-               0px — сверху/снизу, 8px — сужают рисунок по бокам под серую плашку */
-            padding: 0px 8px !important; 
-            
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: fill !important; /* Вытягивает суженный рисунок во всю высоту */
         }
     </style>
 </head>
