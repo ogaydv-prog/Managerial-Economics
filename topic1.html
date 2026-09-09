@@ -148,19 +148,17 @@
             text-align: center;
             line-height: 1.6;
         }
-      /* Замените предыдущий код .card-presentation на этот: */
-        .card-presentation {
-            max-height: 265px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
+      /* Персональная растяжка карточки Аристотеля ровно по рамке без полей и без срезки */
+.card-presentation {
+    width: 225px !important;
+    height: 265px !important;
+}
 
-        .card-presentation img {
-            max-height: 265px !important;
-            width: 100% !important;
-            object-fit: contain !important; /* Сохраняет всё изображение полностью, не срезая его */
-        }
+.card-presentation img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important; /* Растягивает картинку точно по синей рамке, заполняя её полностью */
+}
     </style>
 </head>
 <body>
