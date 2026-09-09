@@ -148,23 +148,26 @@
             text-align: center;
             line-height: 1.6;
         }
-      /* Персональная растяжка карточки Аристотеля ровно по рамке без полей и без срезки */
-.card-presentation {
-    width: 225px !important;
-    height: 265px !important;
-}
+  .card {
+            width: 225px !important;
+            height: 265px !important;
+            display: inline-block;
+            position: relative;
+        }
 
-/* Идеальная одинаковая рамка для всех карточек и точная заправка картинки */
-.card {
-    width: 225px !important;
-    height: 265px !important;
-}
+        .card img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: fill !important;
+        }
 
-.card img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill !important;
-}
+        /* Точечная подгонка только для картинки Presentation: 
+           чуть поджимает бока рисунка ровно под ширину серой плашки */
+        .card-presentation img {
+            object-fit: fill !important;
+            transform: scaleX(0.96) scaleY(1.02); /* Сужает картинку по ширине и вытягивает по высоте */
+            transform-origin: center;
+        }
     </style>
 </head>
 <body>
@@ -188,9 +191,9 @@
 
         <!-- 2. Презентация -->
 <!-- 2. Презентация -->
-<a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card" title="Презентация к лекции 1">
-    <img src="pictures/main/pic-preza-1.png" alt="Презентация 1">
-</a>
+<a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card card-presentation" title="Презентация к лекции 1">
+            <img src="pictures/main/pic-preza-1.png" alt="Презентация 1">
+        </a>
 
         <!-- 3. Симулятор: Модель кругооборота -->
         <a href="simulators/sim-model-circular-flow-me.html" class="card" title="Симулятор: Модель кругооборота">
