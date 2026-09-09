@@ -119,10 +119,24 @@
         }
 
         /* Сохранение исходных пропорций файла без сплющивания */
+      /* Единый стандарт для ВСЕХ карточек: 
+           унифицированная ширина 215px и естественная высота по содержимому (height: auto) */
+        .card {
+            display: inline-block;
+            text-decoration: none;
+            background: transparent;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 215px !important; /* Унифицированная ширина для всех карточек */
+            height: auto !important;  /* Рамка идеально обтекает картинку по высоте */
+            position: relative;
+        }
+
+        /* Картинки сохраняют свои оригинальные пропорции, а рамка следует за ними */
         .card img {
-            width: 100%;
-            height: auto;
-            object-fit: contain; /* Картинка сохраняет геометрию оригинала */
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important; /* Рисунок вписан идеально без искажений */
             display: block;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
@@ -195,8 +209,7 @@
         </a>
 
         <!-- 2. Презентация -->
-<!-- 2. Презентация -->
-<a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card card-presentation" title="Презентация к лекции 1">
+        <a href="https://drive.google.com/file/d/1rtBj0oOYSqWazy7Bo1GUPS1GwWH9MeGU/view?usp=sharing" target="_blank" rel="noopener" class="card" title="Презентация к лекции 1">
             <img src="pictures/main/pic-preza-1.png" alt="Презентация 1">
         </a>
 
