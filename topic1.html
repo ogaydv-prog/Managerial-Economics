@@ -148,25 +148,30 @@
             text-align: center;
             line-height: 1.6;
         }
-  .card {
+  /* 1. Глобальный размер ВСЕХ карточек (меняйте цифры тут, если нужно изменить всю сетку) */
+        .card {
             width: 225px !important;
             height: 265px !important;
             display: inline-block;
             position: relative;
         }
 
+        /* Стандартные картинки для всех карточек */
         .card img {
             width: 100% !important;
             height: 100% !important;
             object-fit: fill !important;
         }
 
-        /* Точечная подгонка только для картинки Presentation: 
-           чуть поджимает бока рисунка ровно под ширину серой плашки */
+        /* 2. РЕГУЛИРОВКА РИСУНКА ВНУТРИ АРИСТОТЕЛЯ (без изменения внешней рамки): */
         .card-presentation img {
-            object-fit: fill !important;
-            transform: scaleX(0.92) scaleY(1.06); /* Сужает картинку по ширине и вытягивает по высоте */
-            transform-origin: center;
+            /* Отступы сжимают рисунок ВНУТРИ рамки:
+               0px — сверху/снизу, 8px — сужают рисунок по бокам под серую плашку */
+            padding: 0px 8px !important; 
+            
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: fill !important; /* Вытягивает суженный рисунок во всю высоту */
         }
     </style>
 </head>
