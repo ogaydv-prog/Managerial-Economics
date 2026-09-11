@@ -118,15 +118,17 @@
       <p class="text-slate-400 text-xs mt-0.5">Внесите параметры вашего проекта и проанализируйте выручку компании на интерактивном графике</p>
     </div>
     
-    <!-- Интегрированный блок логотипа с поддержкой загрузки внешнего/локального файла картинки -->
+    <!-- Блок логотипа в правом верхнем углу (ссылается на gsb.logo.png в текущей папке top3) -->
     <div class="flex items-center gap-3 shrink-0">
       <div class="text-right hidden sm:block">
         <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Разработано для группы</span>
-        <span class="text-xs font-extrabold text-emerald-400">MBA-В26-М</span>
+        <span class="text-xs font-extrabold text-emerald-400">MBA-В26-МД</span>
       </div>
       <div class="h-14 w-auto flex items-center justify-center p-1.5 bg-white/5 border border-white/10 rounded-xl">
-        <!-- Поместите ссылку или название файла картинки логотипа в src="..." -->
-        <img src="pic-gsb-logo.png" alt="AlmaU GSB" class="h-8 w-auto object-contain">
+        <img src="gsb.logo.png" 
+             onerror="this.onerror=null; this.src='gsb-logo.png'; this.onerror=function(){this.src='pic-gsb-logo.png'; handleLogoError(this);};" 
+             alt="AlmaU GSB" 
+             class="h-8 w-auto object-contain">
       </div>
     </div>
   </div>
@@ -326,7 +328,7 @@
   let showArea = true;
   let isDraggingPrice = false;
 
-  // Функция авто-генерации резервного векторного логотипа (SVG) AlmaU Graduated Business School
+  // Резервная генерация SVG на случай полного отсутствия файла
   function handleLogoError(imgElement) {
     imgElement.outerHTML = `
       <div class="flex items-center gap-2 px-2 py-0.5">
