@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ эластичности спроса | MBA ALMAU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            background-color: #0b0f17; 
+            color: #f1f5f9; 
+            font-family: 'Inter', sans-serif; 
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .chart-container { 
+            background: #141c2e; 
+            border-radius: 12px; 
+            border: 1px solid #28354d; 
+        }
+        .axis { stroke: #64748b; stroke-width: 1.5; }
+        .grid { stroke: #212e46; stroke-dasharray: 2; stroke-width: 1; }
+        .curve-d { fill: none; stroke: #38bdf8; stroke-width: 3; }
+        .curve-tr { fill: none; stroke: #fb923c; stroke-width: 3; }
+        .pulse { animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { r: 6; } 50% { r: 10; fill: #22c55e; } 100% { r: 6; } }
+
+        /* ВИНТАЖНЫЙ СЛАЙДЕР С КРАСНОЙ ПОЛОСОЙ */
+        input[type="range"].vintage-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: #1e293b;
+            height: 12px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        input[type="range"].vintage-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 36px;
+            background: linear-gradient(to right, #8a95a5 0%, #cfd8dc 30%, #b0bec5 45%, #ef4444 48%, #ef4444 52%, #b0bec5 55%, #cfd8dc 70%, #8a95a5 100%);
+            border: 1.5px solid #0b0f13;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+        }
+    </style>
+</head>
+<body class="p-3 flex flex-col h-screen justify-between overflow-hidden">
+
+    <!-- ХЕДЕР НА ВСЮ ШИРИНУ -->
+    <header class="bg-slate-900 px-5 py-3 rounded-xl border border-slate-800 mb-3 flex justify-between items-center w-full shadow-lg">
+        <div>
+            <h1 class="text-base font-black text-white tracking-tight">Количественный анализ спроса и оптимизация выручки</h1>
+            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold mt-0.5">Управленческая экономика | MBA ALMAU 2026</p>
+        </div>
+        <div id="edBox" class="px-4 py-1.5 bg-slate-800 rounded-xl border border-slate-700 text-right transition-all">
+            <p class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Коэфф. эластичности (Ed)</p>
+            <p id="edVal" class="text-lg font-black text-white leading-none mt-0.5">-1.00</p>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР БЕЗ СЕРЫХ ПОЛЕЙ -->
+    <div class="flex-1 flex gap-3 w-full overflow-hidden">
+        
+        <!-- БОКОВАЯ ПАНЕЛЬ -->
+        <aside class="w-80 bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex flex-col justify-between gap-3 shadow-xl backdrop-blur-md">
+            
+            <div class="space-y-4">
+                <!-- УПРАВЛЕНИЕ ЦЕНОЙ -->
+                <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Цена абонемента:</label>
+                        <span id="pVal" class="text-base font-black text-sky-400 font-mono">250к ₸</span>
+                    </div>
+                    <input type="range" id="pRange" min="0" max="500000" step="5000" value="250000" class="vintage-slider">
+                </div>
+
+                <!-- ПОКАЗАТЕЛИ -->
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <span class="block text-[9px] text-slate-500 uppercase font-bold">Продажи (Qd)</span>
+                        <span id="qDisplay" class="font-extrabold text-white text-sm">250 шт.</span>
+                    </div>
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <span class="block text-[9px] text-slate-500 uppercase font-bold">Выручка (TR)</span>
+                        <span id="trDisplay" class="font-extrabold text-amber-400 text-sm font-mono">62.50M ₸</span>
+                    </div>
+                </div>
+
+                <button id="toggleArea" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 active:bg-sky-900 border border-slate-700 rounded-xl text-xs font-bold text-slate-200 transition shadow-md">
+                    Показать зону выручки
+                </button>
+            </div>
+
+            <!-- ДИНАМИЧЕСКИЙ БЛОК ПОЯСНЕНИЯ ЭКОНОМИКИ -->
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-indigo-900/40 space-y-1.5 shadow-inner">
+                <div class="flex items-center gap-2">
+                    <span class="h-2 w-2 bg-indigo-400 rounded-full animate-pulse"></span>
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-indigo-400">Экономический вывод:</h4>
+                </div>
+                <p id="econExplanation" class="text-[11px] text-slate-300 leading-relaxed font-medium">
+                    Загрузка данных...
+                </p>
+            </div>
+
+        </aside>
+
+        <!-- ГРАФИКИ НА ВСЮ ОСТАВШУЮСЯ ШИРИНУ И ВЫСОТУ -->
+        <main class="flex-1 grid grid-rows-2 gap-3 h-full overflow-hidden">
+            <svg id="chartD" viewBox="0 0 700 240" class="chart-container w-full h-full shadow-2xl"></svg>
+            <svg id="chartTR" viewBox="0 0 700 240" class="chart-container w-full h-full shadow-2xl"></svg>
+        </main>
+    </div>
+
+<script>
+    const pRange = document.getElementById('pRange'), pVal = document.getElementById('pVal'), 
+          qDisp = document.getElementById('qDisplay'), trDisp = document.getElementById('trDisplay'),
+          chartD = document.getElementById('chartD'), chartTR = document.getElementById('chartTR'),
+          edVal = document.getElementById('edVal'), edBox = document.getElementById('edBox'),
+          econExplanation = document.getElementById('econExplanation');
+    
+    let showArea = false;
+
+    function render() {
+        const p = parseInt(pRange.value);
+        const q = 500 - (0.001 * p);
+        const tr = p * q;
+        const ed = -0.001 * (p / (q || 0.1));
+        
+        pVal.textContent = (p/1000).toFixed(0) + "к ₸";
+        qDisp.textContent = Math.round(q) + " шт.";
+        trDisp.textContent = (tr/1000000).toFixed(2) + "M ₸";
+        edVal.textContent = ed.toFixed(2);
+
+        let statusText = "";
+        let pointColor = "#22c55e"; // Зеленый по умолчанию (оптимум)
+        
+        if (ed < -1.05) {
+            edBox.className = "px-4 py-1.5 bg-blue-950/80 rounded-xl border border-blue-600/50 text-right";
+            edVal.className = "text-lg font-black text-blue-400";
+            statusText = "Эластичный участок (|Ed| > 1)";
+            pointColor = "#3b82f6"; // Синий
+            
+            econExplanation.innerHTML = `Снижение цены стимулирует опережающий рост спроса. Валовая выручка <strong class="text-amber-400">(TR) возрастает</strong>. Повышать цену на этом участке выгодно только при снижении затрат.`;
+        } else if (ed > -0.95) {
+            edBox.className = "px-4 py-1.5 bg-rose-950/80 rounded-xl border border-rose-600/50 text-right";
+            edVal.className = "text-lg font-black text-rose-400";
+            statusText = "Неэластичный участок (|Ed| < 1)";
+            pointColor = "#ef4444"; // Красный
+            
+            econExplanation.innerHTML = `Спрос слабо реагирует на цену. Дальнейшее снижение цены приведет к <strong class="text-rose-400">падению общей выручки (TR)</strong>. Для роста выручки цену необходимо повышать!`;
+        } else {
+            edBox.className = "px-4 py-1.5 bg-emerald-950/80 rounded-xl border border-emerald-600/50 text-right";
+            edVal.className = "text-lg font-black text-emerald-400";
+            statusText = "Единичная эластичность (|Ed| = 1)";
+            pointColor = "#22c55e"; // Зеленый
+            
+            econExplanation.innerHTML = `<strong class="text-emerald-400">Точка максимума выручки (TR max)!</strong> Процентное изменение цены полностью компенсируется изменением объема. Предельная выручка (MR) равна 0.`;
+        }
+
+        const maxP = 500000;
+        const maxQ = 500;
+        const maxTR = 62500000; // 62.5M
+        
+        // --- ГРАФИК 1: КРИВАЯ СПРОСА D (P по Y, Q по X) ---
+        // Координата X зависит от объема Q (от 0 до 500 шт.)
+        const xQ = 60 + (q / maxQ) * 600; 
+        // Координата Y зависит от цены P (от 0 до 500к)
+        const yP = 200 - (p / maxP) * 160; 
+
+        // --- ГРАФИК 2: КРИВАЯ ВЫРУЧКИ TR (TR по Y, Q по X) ---
+        const yTR = 200 - (tr / (maxTR * 1.15)) * 160;
+
+        // Построение сетки координат
+        const drawGrid1 = () => `
+            ${Array.from({length: 9}, (_, i) => `<line x1="60" y1="${40 + i*20}" x2="660" y2="${40 + i*20}" class="grid"/>`).join('')}
+            ${Array.from({length: 11}, (_, i) => `<line x1="${60 + i*60}" y1="40" x2="${60 + i*60}" y2="200" class="grid"/>`).join('')}
+            <line x1="60" y1="200" x2="660" y2="200" class="axis"/> 
+            <line x1="60" y1="40" x2="60" y2="200" class="axis"/>
+            ${Array.from({length: 9}, (_, i) => `<text x="15" y="${204 - i*20}" font-size="9" font-weight="600" fill="#64748b">${((8-i)*62.5).toFixed(0)}к</text>`).join('')}
+            ${Array.from({length: 11}, (_, i) => `<text x="${52 + i*60}" y="218" font-size="9" font-weight="600" fill="#64748b">${i*50}</text>`).join('')}
+        `;
+
+        const drawGrid2 = () => `
+            ${Array.from({length: 9}, (_, i) => `<line x1="60" y1="${40 + i*20}" x2="660" y2="${40 + i*20}" class="grid"/>`).join('')}
+            ${Array.from({length: 11}, (_, i) => `<line x1="${60 + i*60}" y1="40" x2="${60 + i*60}" y2="200" class="grid"/>`).join('')}
+            <line x1="60" y1="200" x2="660" y2="200" class="axis"/> 
+            <line x1="60" y1="40" x2="60" y2="200" class="axis"/>
+            ${Array.from({length: 9}, (_, i) => `<text x="15" y="${204 - i*20}" font-size="9" font-weight="600" fill="#64748b">${((8-i)*8.95).toFixed(0)}M</text>`).join('')}
+            ${Array.from({length: 11}, (_, i) => `<text x="${52 + i*60}" y="218" font-size="9" font-weight="600" fill="#64748b">${i*50}</text>`).join('')}
+        `;
+
+        // Генерация точной кривой параболы TR(Q)
+        let trPath = "";
+        for (let q_pt = 0; q_pt <= maxQ; q_pt += 5) {
+            let p_pt = (500 - q_pt) / 0.001;
+            let tr_pt = p_pt * q_pt;
+            let x_pt = 60 + (q_pt / maxQ) * 600;
+            let y_pt = 200 - (tr_pt / (maxTR * 1.15)) * 160;
+            if (q_pt === 0) {
+                trPath += `M ${x_pt} ${y_pt} `;
+            } else {
+                trPath += `L ${x_pt} ${y_pt} `;
+            }
+        }
+
+        // Отрисовка Верхнего графика (Спрос D)
+        chartD.innerHTML = `${drawGrid1()}
+            ${showArea ? `<rect x="60" y="${yP}" width="${xQ-60}" height="${200-yP}" fill="rgba(56, 189, 248, 0.18)" stroke="rgba(56, 189, 248, 0.4)"/>` : ''}
+            <line x1="60" y1="40" x2="660" y2="200" class="curve-d"/>
+            <text x="360" y="60" font-size="13" font-weight="bold" fill="#94a3b8" text-anchor="middle">${statusText}</text>
+            <line x1="${xQ}" y1="200" x2="${xQ}" y2="${yP}" stroke="#94a3b8" stroke-dasharray="4"/>
+            <line x1="60" y1="${yP}" x2="${xQ}" y2="${yP}" stroke="#94a3b8" stroke-dasharray="4"/>
+            <circle cx="${xQ}" cy="${yP}" r="6" fill="${pointColor}" class="${Math.abs(ed + 1) < 0.05 ? 'pulse' : ''}"/>`;
+
+        // Отрисовка Нижнего графика (Выручка TR)
+        chartTR.innerHTML = `${drawGrid2()}
+            <path d="${trPath}" class="curve-tr"/>
+            <line x1="${xQ}" y1="200" x2="${xQ}" y2="${yTR}" stroke="#94a3b8" stroke-dasharray="4"/>
+            <circle cx="${xQ}" cy="${yTR}" r="6" fill="${pointColor}" class="${Math.abs(ed + 1) < 0.05 ? 'pulse' : ''}"/>`;
+    }
+
+    pRange.addEventListener('input', render);
+    document.getElementById('toggleArea').addEventListener('click', () => { showArea = !showArea; render(); });
+    render();
+</script>
+</body>
+</html>
