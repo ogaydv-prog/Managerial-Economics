@@ -9,26 +9,92 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: #ffffff; color: #333333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px 25px; position: relative; }
-        .top-left-logo { position: absolute; top: 25px; left: 30px; height: 60px; width: auto; object-fit: contain; }
-        .back-button { position: absolute; top: 30px; right: 30px; text-decoration: none; background-color: #001e50; color: white; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); }
+        
+        .top-left-logo { 
+            position: absolute; 
+            top: 25px; 
+            left: 30px; 
+            height: 60px; 
+            width: auto; 
+            object-fit: contain; 
+        }
+        
+        .back-button { 
+            position: absolute; 
+            top: 30px; 
+            right: 30px; 
+            text-decoration: none; 
+            background-color: #001e50; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); 
+        }
         .back-button:hover { background-color: #003380; transform: translateY(-2px); }
+        
         header { text-align: center; margin-top: 15px; margin-bottom: 35px; }
         h1 { font-size: 36px !important; font-weight: 900 !important; color: #001e50 !important; margin-bottom: 6px; margin-top: 10px; text-transform: uppercase !important; }
         .subtitle { font-size: 16px; color: #64748b; max-width: 800px; font-weight: 600; }
-        .grid-container { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; max-width: 1400px; width: 100%; justify-items: center; padding-bottom: 40px; }
+        
+        /* Сетка карточек */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); 
+            gap: 20px; 
+            max-width: 1400px; 
+            width: 100%; 
+            justify-items: center; 
+            align-items: stretch;
+            padding-bottom: 40px; 
+        }
         @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 700px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
-        .card { display: inline-block; text-decoration: none; border-radius: 16px; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 200px; }
-        .card img { width: 100%; height: auto; object-fit: contain; display: block; border: 2px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-8px) scale(1.03); }
-        .card:hover img { border-color: #001e50; box-shadow: 0 16px 32px rgba(0,30,80,0.22); }
+        
+        /* Карточка с ЕДИНЫМ ФИКСИРОВАННЫМ РАЗМЕРОМ */
+        .card { 
+            display: flex; 
+            flex-direction: column;
+            text-decoration: none; 
+            border-radius: 16px; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            width: 200px; 
+            height: 285px; /* Фиксированная одинаковая высота для всех */
+            overflow: hidden;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        /* Гарантия идеального заполнения без перекосов */
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Заполняет рамку целиком */
+            object-position: center top; 
+            display: block; 
+            border-radius: 14px;
+            transition: all 0.3s ease; 
+        }
+        
+        .card:hover { 
+            transform: translateY(-8px) scale(1.03); 
+            border-color: #001e50; 
+            box-shadow: 0 16px 32px rgba(0,30,80,0.22); 
+        }
+        
         footer { margin-top: auto; font-size: 14px; color: #718096; padding: 20px 0; text-align: center; }
     </style>
 </head>
 <body>
 
-    <!-- Логотип GSB (лежит в папке top3) -->
-    <img src="top3/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+    <!-- Логотип GSB с каскадом авто-проверок путей файла -->
+    <img src="top3/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='pictures/main/pic-gsb-logo.png'; this.onerror=function(){this.src='top3/gsb.png';};" 
+         alt="AlmaU GSB Logo" 
+         class="top-left-logo">
 
     <!-- Кнопка возврата -->
     <a href="index.html" class="back-button">← К списку тем</a>
@@ -41,32 +107,32 @@
     <main class="grid-container">
         <!-- 1. Конспект лекции 3 -->
         <a href="https://docs.google.com/document/d/1ujzGrdFF4hRhqH4YwgkIPkz7C6Jf7GK1/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции 3">
-            <img src="top3/pic-lecture3-me.png" alt="Лекция 3">
+            <img src="top3/pic-lecture3-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture3-me.png';" alt="Лекция 3">
         </a>
 
         <!-- 2. Презентация 3 -->
         <a href="https://docs.google.com/presentation/d/1pMIOCo2zRMt1GL3viIhrTzeZV3cFghy9/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 3">
-            <img src="top3/pic-preza3-me.png" alt="Презентация 3">
+            <img src="top3/pic-preza3-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-preza3-me.png';" alt="Презентация 3">
         </a>
 
         <!-- 3. Симулятор: Эластичность (Спорт) -->
         <a href="top3/sim-elasticity-sport.html" class="card" title="Симулятор: Эластичность спроса (Спорт)">
-            <img src="top3/pic-sim-el-sport-me.png" alt="Симулятор Эластичности Спорт">
+            <img src="top3/pic-sim-el-sport-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-el-sport-me.png';" alt="Симулятор Эластичности Спорт">
         </a>
 
         <!-- 4. Симулятор: Эластичность (Банановая индустрия) -->
         <a href="top3/sim-elasticity-banana-me.html" class="card" title="Симулятор: Эластичность в банановой индустрии">
-            <img src="top3/pic-sim-banana-elastisity-me.png" alt="Симулятор Эластичности Бананы">
+            <img src="top3/pic-sim-banana-elastisity-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-banana-elastisity-me.png';" alt="Симулятор Эластичности Бананы">
         </a>
 
         <!-- 5. Практическое задание 3 -->
         <a href="top3/sim-task3-me.html" class="card" title="Практикум: Расчет эластичности и выручки">
-            <img src="top3/pic-task3-me.png" alt="Практическое задание 3">
+            <img src="top3/pic-task3-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-task3-me.png';" alt="Практическое задание 3">
         </a>
 
         <!-- 6. Видеоматериалы -->
         <a href="video3.html" class="card" title="Видеоматериалы к теме 3">
-            <img src="top3/pic-video3-me.png" alt="Видео 3">
+            <img src="top3/pic-video3-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-video3-me.png';" alt="Видео 3">
         </a>
     </main>
 
