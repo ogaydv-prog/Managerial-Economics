@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 3: Эластичность спроса и предложения | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 25px;
+            position: relative;
+        }
+
+        /* Логотип GSB */
+        .top-left-logo {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            text-decoration: none;
+            background-color: #001e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15);
+        }
+
+        .back-button:hover {
+            background-color: #003380;
+            transform: translateY(-2px);
+        }
+
+        header {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 36px !important;
+            font-weight: 900 !important;
+            color: #001e50 !important;
+            margin-bottom: 6px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase !important;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #64748b;
+            max-width: 800px;
+            line-height: 1.5;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        /* Сетка для 6 карточек темы 3 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            justify-items: center;
+            align-items: start;
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-container { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 700px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .card {
+            display: inline-block;
+            text-decoration: none;
+            background: transparent;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 200px;
+            height: auto;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+
+        .card:hover img {
+            border-color: #001e50;
+            box-shadow: 0 16px 32px rgba(0, 30, 80, 0.22);
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 14px;
+            color: #718096;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Логотип GSB -->
+    <img src="../pictures/main/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo" onerror="this.src='pictures/main/pic-gsb-logo.png';">
+
+    <!-- Кнопка возврата -->
+    <a href="../index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 3: ЭЛАСТИЧНОСТЬ СПРОСА И ПРЕДЛОЖЕНИЯ</h1>
+        <p class="subtitle">Управленческая экономика: количественная оценка чувствительности рынка и ценовые стратегии</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Конспект лекции 3 -->
+        <a href="https://docs.google.com/document/d/1ujzGrdFF4hRhqH4YwgkIPkz7C6Jf7GK1/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции 3">
+            <img src="../pictures/main/pic-lecture3-me.png" alt="Лекция 3" onerror="this.src='pictures/main/pic-lecture3-me.png';">
+        </a>
+
+        <!-- 2. Презентация 3 -->
+        <a href="https://docs.google.com/presentation/d/1pMIOCo2zRMt1GL3viIhrTzeZV3cFghy9/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 3">
+            <img src="../pictures/main/pic-preza3-me.png" alt="Презентация 3" onerror="this.src='pictures/main/pic-preza3-me.png';">
+        </a>
+
+        <!-- 3. Симулятор: Эластичность (Спорт) -->
+        <a href="sim-elasticity-sport.html" class="card" title="Симулятор: Эластичность спроса (Спорт)">
+            <img src="../pictures/main/pic-sim-el-sport-me.png" alt="Симулятор Эластичности Спорт" onerror="this.src='pictures/main/pic-sim-el-sport-me.png';">
+        </a>
+
+        <!-- 4. Симулятор: Эластичность (Банановая индустрия) -->
+        <a href="sim-elasticity-banana-me.html" class="card" title="Симулятор: Эластичность в банановой индустрии">
+            <img src="../pictures/main/pic-sim-banana-elastisity-me.png" alt="Симулятор Эластичности Бананы" onerror="this.src='pictures/main/pic-sim-banana-elastisity-me.png';">
+        </a>
+
+        <!-- 5. Практическое задание 3 -->
+        <a href="sim-task3-me.html" class="card" title="Практикум: Расчет эластичности и выручки">
+            <img src="../pictures/main/pic-task3-me.png" alt="Практическое задание 3" onerror="this.src='pictures/main/pic-task3-me.png';">
+        </a>
+
+        <!-- 6. Видеоматериалы -->
+        <a href="video3.html" class="card" title="Видеоматериалы к теме 3">
+            <img src="../pictures/main/pic-video3-me.png" alt="Видео 3" onerror="this.src='pictures/main/pic-video3-me.png';">
+        </a>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
