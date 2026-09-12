@@ -25,7 +25,7 @@
             position: relative; 
         }
         
-        /* Логотип GSB из файла topic3 / landing page */
+        /* Логотип GSB */
         .top-left-logo { 
             position: absolute; 
             top: 25px; 
@@ -57,12 +57,12 @@
             transform: translateY(-2px); 
         }
         
-        /* Опущенный и защищенный от наплыва шапочный блок */
+        /* Шапка страницы */
         header { 
             text-align: center; 
-            margin-top: 45px; /* Опустили чуть ниже */
+            margin-top: 45px; 
             margin-bottom: 35px; 
-            padding: 0 90px; /* Отступы слева/справа, чтобы текст не пересекался с логотипом */
+            padding: 0 90px; 
             width: 100%;
             max-width: 1300px;
         }
@@ -106,15 +106,18 @@
             h1 { font-size: 24px !important; }
         }
         
-        /* Единый размер карточки */
+        /* Обновлённый размер карточки и вписывание картинок */
         .card { 
             display: flex; 
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-decoration: none; 
             border-radius: 16px; 
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease; 
             width: 200px; 
-            height: 285px; 
+            height: 310px; 
+            padding: 6px;
             overflow: hidden;
             background: #ffffff;
             border: 2px solid #e2e8f0;
@@ -124,10 +127,10 @@
         .card img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; 
-            object-position: center top; 
+            object-fit: contain; 
+            object-position: center; 
             display: block; 
-            border-radius: 14px;
+            border-radius: 10px;
             transition: all 0.3s ease; 
         }
         
@@ -149,7 +152,7 @@
 </head>
 <body>
 
-    <!-- Официальный логотип GSB с главной страницы и topic3 -->
+    <!-- Официальный логотип GSB -->
     <img src="pictures/main/pic-gsb-logo.png" 
          onerror="this.onerror=null; this.src='top4/pic-gsb-logo.png';" 
          alt="AlmaU GSB Logo" 
