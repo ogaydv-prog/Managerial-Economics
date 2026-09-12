@@ -357,7 +357,7 @@
                         
                         <div class="bg-indigo-950/10 p-4 border-t border-slate-800/80 text-xs text-indigo-300 flex items-center space-x-3.5">
                             <i class="fa-solid fa-circle-info text-indigo-400 text-lg"></i>
-                            <p><strong>Учет посещаемости:</strong> Кликните по процентам в графе «Посещ.», чтобы открыть окно отметки посещений по 4 дням (14, 18, 19, 20 сентября)!</p>
+                            <p><strong>Учет посещаемости:</strong> Нажмите на кнопку в графе «Посещ.», чтобы отметить посещения по 4 дням занятий (14, 18, 19, 20 сентября)!</p>
                         </div>
                     </div>
                 </div>
@@ -374,7 +374,7 @@
                         <p class="text-[11px] text-slate-400 mb-3 leading-relaxed">
                             Каждая новая строка воспринимается как Ф.И.О. нового слушателя.
                         </p>
-                        <textarea id="bulk-import-area" rows="4" placeholder="Иванов Иван&#10;Петров Петр" 
+                        <textarea id="bulk-import-area" rows="4" placeholder="Иванов Иван Иванович&#10;Петров Петр Петрович" 
                             class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all placeholder-slate-700 font-mono"></textarea>
                         
                         <button onclick="runBulkImport()" class="w-full mt-3 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/15">
@@ -392,7 +392,7 @@
                         <div class="space-y-3">
                             <div>
                                 <label class="block text-[10px] font-bold text-slate-400 mb-1">Ф. И. О. Слушателя</label>
-                                <input type="text" id="add-student-name" placeholder="Введите имя полностью" 
+                                <input type="text" id="add-student-name" placeholder="Введите ФИО полностью" 
                                     class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all placeholder-slate-700">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
@@ -521,29 +521,29 @@
     </footer>
 
     <script>
-        // Список слушателей группы MBA-В26-М (21 человек)
+        // Официальный список слушателей группы MBA-В26-М (21 человек, строго ФИО)
         const initialGroupStudents = [
-            { id: 'v26m-1', name: 'Исаев Хаджи Асланович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-2', name: 'Смирнягина Татьяна', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-3', name: 'Саядянц Армен Рубенович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-4', name: 'Ким Александр', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-5', name: 'Жанаева Раушан Ерланкызы', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-6', name: 'Болекбаева Галия Абзаловна', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-7', name: 'Букина Наталья Сергеевна', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-8', name: 'Байдарбеков Өнербек Өмірханұлы', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-9', name: 'Ахметов Азрет Даулетович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-10', name: 'Акпаева Асия Абубакировна', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-11', name: 'Ким Вадим Анатольевич', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-12', name: 'Баязит Бауржан Балтабаевич', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-13', name: 'Жалгасбаев Нурбек Ержанович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-14', name: 'Баймұқан Мөлдір Қуандыққызы', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-15', name: 'Саматдин Темирхан Темурлан Аблайхан', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-16', name: 'Сагимбаева Асель Есболовна', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-17', name: 'Коптлеев Ермек Суесинович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-18', name: 'Калтаев Ержан Сеиткарымович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-19', name: 'Али Исламбек Серікбайұлы', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-20', name: 'Степанюк Андрей Александрович', attendance: 100, activity: 0, exam: 0 },
-            { id: 'v26m-21', name: 'Султанова Сабина Максутовна', attendance: 100, activity: 0, exam: 0 }
+            { id: 'v26m-1', name: 'Исаев Хаджи Асланович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-2', name: 'Смирнягина Татьяна Владимировна', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-3', name: 'Саядянц Армен Рубенович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-4', name: 'Ким Александр Анатольевич', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-5', name: 'Жанаева Раушан Ерланкызы', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-6', name: 'Болекбаева Галия Абзаловна', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-7', name: 'Букина Наталья Сергеевна', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-8', name: 'Байдарбеков Өнербек Өмірханұлы', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-9', name: 'Ахметов Азрет Даулетович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-10', name: 'Акпаева Асия Абубакировна', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-11', name: 'Ким Вадим Анатольевич', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-12', name: 'Баязит Бауржан Балтабаевич', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-13', name: 'Жалгасбаев Нурбек Ержанович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-14', name: 'Баймұқан Мөлдір Қуандыққызы', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-15', name: 'Саматдин Темирхан Темурлан Аблайхан', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-16', name: 'Сагимбаева Асель Есболовна', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-17', name: 'Коптлеев Ермек Суесинович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-18', name: 'Калтаев Ержан Сеиткарымович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-19', name: 'Али Исламбек Серікбайұлы', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-20', name: 'Степанюк Андрей Александрович', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] },
+            { id: 'v26m-21', name: 'Султанова Сабина Максутовна', attendance: 0, activity: 0, exam: 0, attendanceHours: [false, false, false, false] }
         ];
 
         // 4 даты посещений (1 дата = 25%)
@@ -575,7 +575,6 @@
             });
         };
 
-        // Гарантируем наличие 4 ячеек посещения
         function ensureAttendanceHours(student) {
             if (!student.hasOwnProperty('attendanceHours') || !Array.isArray(student.attendanceHours) || student.attendanceHours.length !== 4) {
                 student.attendanceHours = [];
@@ -706,10 +705,10 @@
             document.getElementById('val-act-text').textContent = `${activity}/100`;
             
             const trendPoints = [
-                Math.max(15, Math.round(activity * 0.60)),
-                Math.min(100, Math.max(30, Math.round(activity * 0.85))),
-                Math.max(25, Math.round(activity * 0.70)),
-                Math.min(100, Math.max(45, Math.round(activity * 0.95))),
+                Math.max(0, Math.round(activity * 0.60)),
+                Math.min(100, Math.max(0, Math.round(activity * 0.85))),
+                Math.max(0, Math.round(activity * 0.70)),
+                Math.min(100, Math.max(0, Math.round(activity * 0.95))),
                 activity
             ];
 
@@ -1217,7 +1216,7 @@
                     const newSt = {
                         id: 'v26m-' + Date.now() + Math.random().toString(36).substr(2, 4),
                         name: cleanName,
-                        attendance: 100,
+                        attendance: 0,
                         activity: 0,
                         exam: 0
                     };
