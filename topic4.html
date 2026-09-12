@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 4: Теория производства и издержек | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: #ffffff; 
+            color: #333333; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px 25px; 
+            position: relative; 
+        }
+        
+        /* Логотип GSB — четко на уровне заголовка */
+        .top-left-logo { 
+            position: absolute; 
+            top: 25px; 
+            left: 30px; 
+            height: 60px; 
+            width: auto; 
+            object-fit: contain; 
+        }
+        
+        /* Кнопка возврата */
+        .back-button { 
+            position: absolute; 
+            top: 30px; 
+            right: 30px; 
+            text-decoration: none; 
+            background-color: #001e50; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); 
+        }
+        .back-button:hover { 
+            background-color: #003380; 
+            transform: translateY(-2px); 
+        }
+        
+        header { text-align: center; margin-top: 15px; margin-bottom: 35px; }
+        
+        h1 { 
+            font-size: 36px !important; 
+            font-weight: 900 !important; 
+            color: #001e50 !important; 
+            margin-bottom: 6px; 
+            margin-top: 10px; 
+            text-transform: uppercase !important; 
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+        
+        .subtitle { 
+            font-size: 16px; 
+            color: #64748b; 
+            max-width: 850px; 
+            font-weight: 600; 
+            line-height: 1.5;
+            margin: 0 auto;
+        }
+        
+        /* Сетка карточек для Темы 4 (6 карточек) */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); 
+            gap: 20px; 
+            max-width: 1400px; 
+            width: 100%; 
+            justify-items: center; 
+            align-items: stretch;
+            padding-bottom: 40px; 
+        }
+        
+        @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 700px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+        
+        /* Строго одинаковый размер карточки для идеального подгона всех изображений */
+        .card { 
+            display: flex; 
+            flex-direction: column;
+            text-decoration: none; 
+            border-radius: 16px; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease; 
+            width: 200px; 
+            height: 285px; 
+            overflow: hidden;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        /* Равномерное вытягивание и заполнение рамок */
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center top; 
+            display: block; 
+            border-radius: 14px;
+            transition: all 0.3s ease; 
+        }
+        
+        /* Интерактивный Hover-эффект */
+        .card:hover { 
+            transform: translateY(-8px) scale(1.03); 
+            border-color: #001e50; 
+            box-shadow: 0 16px 32px rgba(0,30,80,0.22); 
+        }
+        
+        footer { 
+            margin-top: auto; 
+            font-size: 14px; 
+            color: #718096; 
+            padding: 20px 0; 
+            text-align: center; 
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Логотип GSB (проверка наличия файла в top4 / pictures / root) -->
+    <img src="top4/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='top4/gsb.logo.png'; this.onerror=function(){this.src='pictures/main/pic-gsb-logo.png';};" 
+         alt="AlmaU GSB Logo" 
+         class="top-left-logo">
+
+    <!-- Кнопка возврата к списку тем -->
+    <a href="index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 4: ТЕОРИЯ ПРОИЗВОДСТВА И ЭКОНОМИЧЕСКИХ ИЗДЕРЖЕК</h1>
+        <p class="subtitle">Управленческая экономика: оптимизация производственных функций, изокосты, изокванты и анализ безубыточности</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Презентация 4 -->
+        <a href="https://docs.google.com/presentation/d/10-bZv9VVTLGmJ2GswXVEJmzkLeGzKy6Z/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 4">
+            <img src="top4/pic-preza4-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-preza4-me.png';" alt="Презентация 4">
+        </a>
+
+        <!-- 2. Симулятор: Экономические издержки -->
+        <a href="top4/sim-production-costs-bep.html" class="card" title="Симулятор: Экономические издержки производства">
+            <img src="top4/pic-sim-production-costs-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-production-costs-me.png';" alt="Симулятор издержек">
+        </a>
+
+        <!-- 3. Симулятор: Изокосты и Изокванты -->
+        <a href="top4/sim-isocost-banana.html" class="card" title="Симулятор: Изокосты и Изокванты">
+            <img src="top4/pic-sim-izocosts-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-izocosts-me.png';" alt="Симулятор Изокосты и Изокванты">
+        </a>
+
+        <!-- 4. Практические задания 4 -->
+        <a href="top4/sim-task4-production-costs.html" class="card" title="Практикум: Задания по производственным издержкам">
+            <img src="top4/pic-sim-task4-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-task4-me.png';" alt="Задания по теме 4">
+        </a>
+
+        <!-- 5. Лекция (Конспект / Материалы для чтения) -->
+        <a href="https://docs.google.com/document/d/1MByKya4C1VS46OI0EH5Xh9s9n8hLWD7O/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Материалы для чтения (Лекция 4)">
+            <img src="top4/pic-article4-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-article4-me.png';" alt="Материалы для чтения 4">
+        </a>
+
+        <!-- 6. Видеоматериалы ("Американская фабрика") -->
+        <a href="https://mix.kinogo.mu/44853--amerikanskaja-fabrika.html" target="_blank" rel="noopener" class="card" title="Видеоматериалы: Фильм 'Американская фабрика'">
+            <img src="top4/pic-video4-me.png" onerror="this.onerror=null; this.src='pictures/main/pic-video4-me.png';" alt="Видео 4">
+        </a>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
