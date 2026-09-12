@@ -25,7 +25,7 @@
             position: relative; 
         }
         
-        /* Логотип GSB — четко на уровне заголовка */
+        /* Логотип GSB из файла topic3 / landing page */
         .top-left-logo { 
             position: absolute; 
             top: 25px; 
@@ -33,6 +33,7 @@
             height: 60px; 
             width: auto; 
             object-fit: contain; 
+            z-index: 10;
         }
         
         /* Кнопка возврата */
@@ -49,23 +50,32 @@
             font-size: 14px; 
             transition: all 0.3s ease; 
             box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); 
+            z-index: 10;
         }
         .back-button:hover { 
             background-color: #003380; 
             transform: translateY(-2px); 
         }
         
-        header { text-align: center; margin-top: 15px; margin-bottom: 35px; }
+        /* Опущенный и защищенный от наплыва шапочный блок */
+        header { 
+            text-align: center; 
+            margin-top: 45px; /* Опустили чуть ниже */
+            margin-bottom: 35px; 
+            padding: 0 90px; /* Отступы слева/справа, чтобы текст не пересекался с логотипом */
+            width: 100%;
+            max-width: 1300px;
+        }
         
         h1 { 
-            font-size: 36px !important; 
+            font-size: 32px !important; 
             font-weight: 900 !important; 
             color: #001e50 !important; 
-            margin-bottom: 6px; 
+            margin-bottom: 8px; 
             margin-top: 10px; 
             text-transform: uppercase !important; 
             letter-spacing: 0.5px;
-            line-height: 1.2;
+            line-height: 1.25;
         }
         
         .subtitle { 
@@ -77,7 +87,7 @@
             margin: 0 auto;
         }
         
-        /* Сетка карточек для Темы 4 (6 карточек) */
+        /* Сетка карточек */
         .grid-container { 
             display: grid; 
             grid-template-columns: repeat(6, 1fr); 
@@ -90,9 +100,13 @@
         }
         
         @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 700px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px) { 
+            .grid-container { grid-template-columns: repeat(2, 1fr); } 
+            header { padding: 0 10px; margin-top: 70px; }
+            h1 { font-size: 24px !important; }
+        }
         
-        /* Строго одинаковый размер карточки для идеального подгона всех изображений */
+        /* Единый размер карточки */
         .card { 
             display: flex; 
             flex-direction: column;
@@ -107,7 +121,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
-        /* Равномерное вытягивание и заполнение рамок */
         .card img { 
             width: 100%; 
             height: 100%; 
@@ -118,7 +131,6 @@
             transition: all 0.3s ease; 
         }
         
-        /* Интерактивный Hover-эффект */
         .card:hover { 
             transform: translateY(-8px) scale(1.03); 
             border-color: #001e50; 
@@ -137,13 +149,13 @@
 </head>
 <body>
 
-    <!-- Логотип GSB (проверка наличия файла в top4 / pictures / root) -->
-    <img src="top4/pic-gsb-logo.png" 
-         onerror="this.onerror=null; this.src='top4/gsb.logo.png'; this.onerror=function(){this.src='pictures/main/pic-gsb-logo.png';};" 
+    <!-- Официальный логотип GSB с главной страницы и topic3 -->
+    <img src="pictures/main/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='top4/pic-gsb-logo.png';" 
          alt="AlmaU GSB Logo" 
          class="top-left-logo">
 
-    <!-- Кнопка возврата к списку тем -->
+    <!-- Кнопка возврата -->
     <a href="index.html" class="back-button">← К списку тем</a>
 
     <header>
