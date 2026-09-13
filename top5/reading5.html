@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloomberg Business Reading | Тема 5: Аналитика и Кейсы</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #0b0f19; color: #f1f5f9; min-height: 100vh; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .bloomberg-card {
+            background: linear-gradient(145deg, #131c2e, #0f172a);
+            border: 1px solid #1e293b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .bloomberg-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Стили переключателя языков */
+        .lang-switch-btn {
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .lang-switch-btn.active {
+            background-color: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        .lang-switch-btn.inactive {
+            background-color: #1e293b;
+            color: #94a3b8;
+        }
+
+        .lang-switch-btn.inactive:hover {
+            color: #ffffff;
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <!-- Header Terminal -->
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between border-b border-slate-800 pb-6 mb-8 gap-4">
+        <div class="flex items-center space-x-4">
+            <!-- Белый логотип GSB на тёмном фоне -->
+            <div class="p-2 bg-slate-900 rounded-xl border border-slate-800 shadow-lg flex items-center justify-center">
+                <img src="gsb.logo.png" onerror="this.onerror=null; this.src='../top4/gsb.logo.png';" alt="GSB Logo" class="h-10 w-auto object-contain">
+            </div>
+            <div>
+                <div class="mono text-xs text-sky-400 font-bold uppercase tracking-widest">MBA Managerial Economics </div>
+                <h1 id="page-title" class="text-2xl font-extrabold text-white tracking-tight">Reading materials</h1>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Переключатель языка [ RU | EN ] -->
+            <div class="mono bg-slate-900 p-1.5 rounded-xl border border-slate-800 flex items-center gap-1">
+                <button id="btn-ru" onclick="setLanguage('ru')" class="lang-switch-btn active">RU</button>
+                <button id="btn-en" onclick="setLanguage('en')" class="lang-switch-btn inactive">EN</button>
+            </div>
+
+            <!-- Кнопка возврата -->
+            <a href="../topic5.html" class="mono text-xs font-bold text-slate-300 bg-slate-800 hover:bg-sky-600 hover:text-white px-4 py-2.5 rounded-xl border border-slate-700 transition duration-200">
+                ← <span id="back-txt">Назад к Теме 5</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="max-w-6xl mx-auto">
+        <div class="mb-6 flex items-center justify-between">
+            <h2 id="top-section-title" class="text-lg font-bold text-slate-200 flex items-center gap-2">
+                <i class="fa-solid fa-fire text-amber-500"></i> Ключевые кейсы и публикации (Топ 3)
+            </h2>
+            <span class="mono text-xs text-slate-400">STATUS: LIVE READ</span>
+        </div>
+
+        <!-- Карточки (Топ 3) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            
+            <!-- Карточка 1: Fast Food Nation -->
+            <div class="bloomberg-card rounded-2xl overflow-hidden flex flex-col justify-between p-5 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="mono text-[10px] bg-red-950 text-red-400 border border-red-800/50 px-2 py-0.5 rounded-full font-bold uppercase">The Guardian</span>
+                        <span class="mono text-xs text-slate-400">2026</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80" alt="Fast Food" class="w-full h-40 object-cover rounded-xl mb-4 border border-slate-800">
+                    <h3 id="card1-title" class="text-base font-bold text-white mb-2 leading-snug">Мы всё еще живем в Fast Food Nation: Рыночная доля и олигополия</h3>
+                    <p id="card1-desc" class="text-xs text-slate-400 mb-4 leading-relaxed">Разбор Эрика Шлоссера о том, как доминирование 4 крупнейших корпораций трансформирует свободную конкуренцию в олигополию с молчаливым сговором.</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <a href="https://www.theguardian.com/news/2026/jan/06/we-still-live-in-fast-food-nation-eric-schlosser" target="_blank" rel="noopener" class="mono text-center text-xs font-bold text-sky-400 hover:text-white bg-sky-950/40 hover:bg-sky-600 border border-sky-800/50 hover:border-sky-500 py-2.5 rounded-xl transition duration-200">
+                        <span class="read-btn-txt">Читать статью (EN)</span> <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                    <a href="https://translate.google.com/translate?sl=auto&tl=ru&u=https://www.theguardian.com/news/2026/jan/06/we-still-live-in-fast-food-nation-eric-schlosser" target="_blank" rel="noopener" class="mono text-center text-[10px] font-bold text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 py-1.5 rounded-lg border border-slate-800 transition">
+                        <i class="fa-solid fa-language text-sky-400 mr-1"></i> <span class="trans-btn-txt">Перевод Google (RU)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Карточка 2: Clinical Lab -->
+            <div class="bloomberg-card rounded-2xl overflow-hidden flex flex-col justify-between p-5 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="mono text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-2 py-0.5 rounded-full font-bold uppercase">Clinical Diagnostics</span>
+                        <span class="mono text-xs text-slate-400">2026</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80" alt="Lab Diagnostic" class="w-full h-40 object-cover rounded-xl mb-4 border border-slate-800">
+                    <h3 id="card2-title" class="text-base font-bold text-white mb-2 leading-snug">7 главных трендов в клиниках и диагностике 2026 года</h3>
+                    <p id="card2-desc" class="text-xs text-slate-400 mb-4 leading-relaxed">Аналитика рынка высокотехнологичной меддиагностики: от ИИ-диагностов до мультиомиксных исследований и рыночных барьеров.</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <a href="https://www.clinicallab.com/7-emerging-trends-shaping-clinical-labs-in-2026-28511" target="_blank" rel="noopener" class="mono text-center text-xs font-bold text-emerald-400 hover:text-white bg-emerald-950/40 hover:bg-emerald-600 border border-emerald-800/50 hover:border-emerald-500 py-2.5 rounded-xl transition duration-200">
+                        <span class="read-btn-txt">Читать статью (EN)</span> <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                    <a href="https://translate.google.com/translate?sl=auto&tl=ru&u=https://www.clinicallab.com/7-emerging-trends-shaping-clinical-labs-in-2026-28511" target="_blank" rel="noopener" class="mono text-center text-[10px] font-bold text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 py-1.5 rounded-lg border border-slate-800 transition">
+                        <i class="fa-solid fa-language text-emerald-400 mr-1"></i> <span class="trans-btn-txt">Перевод Google (RU)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Карточка 3: Substitution -->
+            <div class="bloomberg-card rounded-2xl overflow-hidden flex flex-col justify-between p-5 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="mono text-[10px] bg-amber-950 text-amber-400 border border-amber-800/50 px-2 py-0.5 rounded-full font-bold uppercase">The Guardian</span>
+                        <span class="mono text-xs text-slate-400">2026</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="Market Substitution" class="w-full h-40 object-cover rounded-xl mb-4 border border-slate-800">
+                    <h3 id="card3-title" class="text-base font-bold text-white mb-2 leading-snug">Консервированная скумбрия и эластичность спроса</h3>
+                    <p id="card3-desc" class="text-xs text-slate-400 mb-4 leading-relaxed">Исследование эффекта замещения товаров потребителями в условиях инфляции: как меняются предпочтения при изменении цен.</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <a href="https://www.theguardian.com/business/2026/sep/11/tinned-mackerel-jack-substitution" target="_blank" rel="noopener" class="mono text-center text-xs font-bold text-amber-400 hover:text-white bg-amber-950/40 hover:bg-amber-600 border border-amber-800/50 hover:border-amber-500 py-2.5 rounded-xl transition duration-200">
+                        <span class="read-btn-txt">Читать статью (EN)</span> <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                    <a href="https://translate.google.com/translate?sl=auto&tl=ru&u=https://www.theguardian.com/business/2026/sep/11/tinned-mackerel-jack-substitution" target="_blank" rel="noopener" class="mono text-center text-[10px] font-bold text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 py-1.5 rounded-lg border border-slate-800 transition">
+                        <i class="fa-solid fa-language text-amber-400 mr-1"></i> <span class="trans-btn-txt">Перевод Google (RU)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дополнительные материалы (2 карточки снизу) -->
+        <h2 id="bottom-section-title" class="text-base font-bold text-slate-400 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-book-bookmark text-sky-400"></i> Дополнительные кейсы и аналитика
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+            <!-- Доп. Статья 1 -->
+            <a href="https://www.theguardian.com/business/retail" target="_blank" rel="noopener" class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-4 rounded-xl flex items-center justify-between group transition">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-sky-950 text-sky-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div>
+                        <h4 id="card4-title" class="text-sm font-bold text-white group-hover:text-sky-400 transition">Аналитика продовольственного ритейла</h4>
+                        <p id="card4-desc" class="text-xs text-slate-400">Обзоры ценовых войн и монополистической конкуренции в сетях</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-600 group-hover:text-sky-400 transition"></i>
+            </a>
+
+            <!-- Доп. Статья 2 -->
+            <a href="https://www.unglep.org/GYSCATalentPool/info.aspx?itemid=850" target="_blank" rel="noopener" class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-4 rounded-xl flex items-center justify-between group transition">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h4 id="card5-title" class="text-sm font-bold text-white group-hover:text-emerald-400 transition">Зеленый аудит и стандарты ESG</h4>
+                        <p id="card5-desc" class="text-xs text-slate-400">Стандарты аудита инвестиций в устойчивое развитие</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-600 group-hover:text-emerald-400 transition"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer class="text-center mono text-xs text-slate-600 border-t border-slate-900 pt-6">
+        © Almaty Management University | GSB MBA Managerial Economics 2026
+    </footer>
+
+    <!-- Скрипт мгновенного переключения языков интерфейса -->
+    <script>
+        const i18n = {
+            ru: {
+                pageTitle: "Аналитический ридер: Тема 5",
+                backTxt: "Назад к Теме 5",
+                topSectionTitle: '<i class="fa-solid fa-fire text-amber-500"></i> Ключевые кейсы и публикации (Топ 3)',
+                bottomSectionTitle: '<i class="fa-solid fa-book-bookmark text-sky-400"></i> Дополнительные кейсы и аналитика',
+                readBtnTxt: "Читать статью (EN)",
+                transBtnTxt: "Перевод Google (RU)",
+                card1Title: "Мы всё еще живем в Fast Food Nation: Рыночная доля и олигополия",
+                card1Desc: "Разбор Эрика Шлоссера о том, как доминирование 4 крупнейших корпораций трансформирует свободную конкуренцию в олигополию с молчаливым сговором.",
+                card2Title: "7 главных трендов в клиниках и диагностике 2026 года",
+                card2Desc: "Аналитика рынка высокотехнологичной меддиагностики: от ИИ-диагностов до мультиомиксных исследований и рыночных барьеров.",
+                card3Title: "Консервированная скумбрия и эластичность спроса",
+                card3Desc: "Исследование эффекта замещения товаров потребителями в условиях инфляции: как меняются предпочтения при изменении цен.",
+                card4Title: "Аналитика продовольственного ритейла",
+                card4Desc: "Обзоры ценовых войн и монополистической конкуренции в сетях",
+                card5Title: "Зеленый аудит и стандарты ESG",
+                card5Desc: "Стандарты аудита инвестиций в устойчивое развитие"
+            },
+            en: {
+                pageTitle: "Analytical Reader: Topic 5",
+                backTxt: "Back to Topic 5",
+                topSectionTitle: '<i class="fa-solid fa-fire text-amber-500"></i> Featured Cases & Publications (Top 3)',
+                bottomSectionTitle: '<i class="fa-solid fa-book-bookmark text-sky-400"></i> Additional Cases & Analysis',
+                readBtnTxt: "Read Article (EN)",
+                transBtnTxt: "Google Translate (RU)",
+                card1Title: "We Still Live in Fast Food Nation: Market Share and Collusion",
+                card1Desc: "Eric Schlosser's analysis on how 4 major corporations transform free competition into a tacit collusion oligopoly.",
+                card2Title: "7 Emerging Trends Shaping Clinical Labs in 2026",
+                card2Desc: "High-tech diagnostics market insights: from AI diagnostic tools to multiomics and entry barriers.",
+                card3Title: "Tinned Mackerel and Demand Elasticity: Substitution Effect",
+                card3Desc: "A study on consumer product substitution under inflation: how preferences shift as prices fluctuate.",
+                card4Title: "Food Retail Market Insights",
+                card4Desc: "Price wars and monopolistic competition in retail chains",
+                card5Title: "Green Auditing and ESG Standards",
+                card5Desc: "Auditing standards for investments in sustainable development"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('btn-ru').className = `lang-switch-btn ${lang === 'ru' ? 'active' : 'inactive'}`;
+            document.getElementById('btn-en').className = `lang-switch-btn ${lang === 'en' ? 'active' : 'inactive'}`;
+
+            const t = i18n[lang];
+            document.getElementById('page-title').innerText = t.pageTitle;
+            document.getElementById('back-txt').innerText = t.backTxt;
+            document.getElementById('top-section-title').innerHTML = t.topSectionTitle;
+            document.getElementById('bottom-section-title').innerHTML = t.bottomSectionTitle;
+
+            document.getElementById('card1-title').innerText = t.card1Title;
+            document.getElementById('card1-desc').innerText = t.card1Desc;
+            document.getElementById('card2-title').innerText = t.card2Title;
+            document.getElementById('card2-desc').innerText = t.card2Desc;
+            document.getElementById('card3-title').innerText = t.card3Title;
+            document.getElementById('card3-desc').innerText = t.card3Desc;
+            document.getElementById('card4-title').innerText = t.card4Title;
+            document.getElementById('card4-desc').innerText = t.card4Desc;
+            document.getElementById('card5-title').innerText = t.card5Title;
+            document.getElementById('card5-desc').innerText = t.card5Desc;
+
+            document.querySelectorAll('.read-btn-txt').forEach(el => el.innerText = t.readBtnTxt);
+            document.querySelectorAll('.trans-btn-txt').forEach(el => el.innerText = t.transBtnTxt);
+        }
+    </script>
+
+</body>
+</html>
