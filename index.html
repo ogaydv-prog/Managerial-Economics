@@ -122,6 +122,49 @@
             text-align: center;
             line-height: 1.6;
         }
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Возвращаем логотип в общий поток и центрируем */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 55px;
+                margin: 0 auto 15px auto;
+                display: block;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 10px;
+            }
+
+            /* Адаптируем заголовок: уменьшаем шрифт и убираем жесткие отступы */
+            h1 {
+                font-size: 22px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Карточки аккуратно подстраиваются по ширине экрана */
+            .grid-container {
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card {
+                width: 160px;  /* Пропорционально уменьшаем карточки для узких экранов */
+                height: 175px;
+            }
+        }
     </style>
 </head>
 <body>
