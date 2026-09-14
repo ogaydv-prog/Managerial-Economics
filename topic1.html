@@ -106,20 +106,15 @@
             .grid-container { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* ==========================================================================
-           ЕДИНСТВЕННАЯ ТОЧКА УПРАВЛЕНИЯ РАЗМЕРАМИ КАРТОЧЕК И РАМОК
-           ========================================================================== */
+        /* ЕДИНСТВЕННАЯ ТОЧКА УПРАВЛЕНИЯ РАЗМЕРАМИ КАРТОЧЕК И РАМОК */
         .card {
             display: inline-block;
             text-decoration: none;
             background: transparent;
             border-radius: 16px;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            
-            /* ВОТ ЗДЕСЬ МЕНЯЮТСЯ РАЗМЕРЫ ВСЕХ КАРТОЧЕК И РАМОК СРАЗУ: */
-            width: 200px !important;   /* ШИРИНА карточек и рамок */
-            height: 290px !important;  /* ВЫСОТА карточек и рамок (вытягивает все блоки) */
-            
+            width: 200px !important;
+            height: 290px !important;
             position: relative;
         }
 
@@ -127,7 +122,7 @@
         .card img {
             width: 100% !important;
             height: 100% !important;
-            object-fit: fill !important; /* Растягивает рисунок во всю ширину и высоту новой рамки */
+            object-fit: fill !important;
             display: block;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
@@ -153,12 +148,72 @@
             text-align: center;
             line-height: 1.6;
         }
+
+        /* ==========================================
+           АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (Topic Pages)
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Логотип по центру сверху */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+
+            /* Кнопка "Назад" центрируется под логотипом */
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 20px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Адаптивная сетка карточек 2х5 */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card {
+                width: 155px !important;
+                height: 225px !important;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Логотип GSB -->
-    <img src="pictures/main/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+    <img src="pictures/main/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='pic-gsb-logo.png';" 
+         alt="AlmaU GSB Logo" class="top-left-logo">
 
     <!-- Кнопка возврата -->
     <a href="index.html" class="back-button">← К списку тем</a>
