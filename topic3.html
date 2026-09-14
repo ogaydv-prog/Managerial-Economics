@@ -36,8 +36,8 @@
         .back-button:hover { background-color: #003380; transform: translateY(-2px); }
         
         header { text-align: center; margin-top: 15px; margin-bottom: 35px; }
-        h1 { font-size: 36px !important; font-weight: 900 !important; color: #001e50 !important; margin-bottom: 6px; margin-top: 10px; text-transform: uppercase !important; }
-        .subtitle { font-size: 16px; color: #64748b; max-width: 800px; font-weight: 600; }
+        h1 { font-size: 36px !important; font-weight: 900 !important; color: #001e50 !important; margin-bottom: 6px; margin-top: 10px; text-transform: uppercase !important; line-height: 1.2; }
+        .subtitle { font-size: 16px; color: #64748b; max-width: 800px; font-weight: 600; line-height: 1.5; margin: 0 auto; }
         
         /* Сетка карточек */
         .grid-container { 
@@ -85,7 +85,65 @@
             box-shadow: 0 16px 32px rgba(0,30,80,0.22); 
         }
         
-        footer { margin-top: auto; font-size: 14px; color: #718096; padding: 20px 0; text-align: center; }
+        footer { margin-top: auto; font-size: 14px; color: #718096; padding: 20px 0; text-align: center; line-height: 1.6; }
+
+        /* ==========================================
+           АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (Topic Pages)
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Логотип по центру сверху */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+
+            /* Кнопка "Назад" выстраивается ровно под логотипом */
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 20px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Сетка перестраивается в 2 колонки */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card {
+                width: 155px !important;
+                height: 220px !important;
+            }
+        }
     </style>
 </head>
 <body>
