@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тема 5: Рыночные структуры и совершенная конкуренция | MBA AlmaU</title>
+    <title>Тема 5: Рыночная инфраструктура: совершенная конкуренция | MBA AlmaU</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -102,11 +102,6 @@
         }
         
         @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 700px) { 
-            .grid-container { grid-template-columns: repeat(2, 1fr); } 
-            header { padding: 0 10px; margin-top: 70px; }
-            h1 { font-size: 24px !important; }
-        }
         
         /* Стандартные карточки */
         .card { 
@@ -230,6 +225,79 @@
             text-align: center; 
             line-height: 1.6;
         }
+
+        /* ==========================================
+           АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (Topic Pages)
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Логотип переносим в поток и центрируем */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+
+            /* Кнопка "Назад" выстраивается ровно под логотипом */
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 20px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Сетка аккуратно встает в 2 колонки */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card, .flip-card-container {
+                width: 155px !important;
+                height: 225px !important;
+                padding: 3px;
+            }
+
+            .flip-card-back {
+                padding: 8px 6px;
+            }
+
+            .video-list {
+                gap: 4px;
+                margin-top: 2px;
+            }
+
+            .video-link {
+                font-size: 9.5px;
+                padding: 4px 6px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -244,8 +312,8 @@
     <a href="index.html" class="back-button">← К списку тем</a>
 
     <header>
-        <h1>ТЕМА 5: РЫНОЧНЫЕ СТРУКТУРЫ И СОВЕРШЕННАЯ КОНКУРЕНЦИЯ</h1>
-        <p class="subtitle">Управленческая экономика: классификация рынков, максимизация прибыли в условиях совершенной конкуренции и рыночная инфраструктура</p>
+        <h1>ТЕМА 5: РЫНОЧНАЯ ИНФРАСТРУКТУРА: СОВЕРШЕННАЯ КОНКУРЕНЦИЯ</h1>
+        <p class="subtitle">Управленческая экономика: классификация рынков, максимизация прибыли в условиях совершенной конкуренции </p>
     </header>
 
     <main class="grid-container">
