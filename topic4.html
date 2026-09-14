@@ -100,11 +100,6 @@
         }
         
         @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 700px) { 
-            .grid-container { grid-template-columns: repeat(2, 1fr); } 
-            header { padding: 0 10px; margin-top: 70px; }
-            h1 { font-size: 24px !important; }
-        }
         
         /* Карточка с ровным прижатием верха изображений */
         .card { 
@@ -128,7 +123,7 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            object-position: top center; /* Прижимает верх картинки ровно к верху карточки */
+            object-position: top center; 
             display: block; 
             border-radius: 11px;
             transition: all 0.3s ease; 
@@ -147,6 +142,65 @@
             padding: 20px 0; 
             text-align: center; 
             line-height: 1.6;
+        }
+
+        /* ==========================================
+           АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (Topic Pages)
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Логотип переносим в поток и центрируем */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+
+            /* Кнопку "Назад" центрируем под логотипом */
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 20px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Сетка аккуратно встает в 2 колонки */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card {
+                width: 155px !important;
+                height: 225px !important;
+                padding: 3px;
+            }
         }
     </style>
 </head>
