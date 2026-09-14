@@ -146,12 +146,72 @@
             text-align: center;
             line-height: 1.6;
         }
+
+        /* ==========================================
+           АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (Topic Pages)
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Логотип центрируется сверху */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+
+            /* Кнопка "Назад" выстраивается ровно под логотипом */
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 20px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Сетка аккуратно перестраивается в 2 колонки */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card {
+                width: 155px !important;
+                height: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Логотип GSB -->
-    <img src="pictures/main/pic-gsb-logo.png" alt="AlmaU GSB Logo" class="top-left-logo">
+    <!-- Логотип GSB с фолбэком -->
+    <img src="pictures/main/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='pic-gsb-logo.png';" 
+         alt="AlmaU GSB Logo" class="top-left-logo">
 
     <!-- Кнопка возврата -->
     <a href="index.html" class="back-button">← К списку тем</a>
