@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 6: Монополия, Монополистическая конкуренция и Сетевые структуры | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: #ffffff; 
+            color: #333333; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px 25px; 
+            position: relative; 
+        }
+        
+        /* Логотип GSB */
+        .top-left-logo { 
+            position: absolute; 
+            top: 25px; 
+            left: 30px; 
+            height: 60px; 
+            width: auto; 
+            object-fit: contain; 
+            z-index: 10;
+        }
+        
+        /* Кнопка возврата */
+        .back-button { 
+            position: absolute; 
+            top: 30px; 
+            right: 30px; 
+            text-decoration: none; 
+            background-color: #001e50; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); 
+            z-index: 10;
+        }
+        .back-button:hover { 
+            background-color: #003380; 
+            transform: translateY(-2px); 
+        }
+        
+        /* Шапка страницы */
+        header { 
+            text-align: center; 
+            margin-top: 45px; 
+            margin-bottom: 35px; 
+            padding: 0 90px; 
+            width: 100%;
+            max-width: 1300px;
+        }
+        
+        h1 { 
+            font-size: 32px !important; 
+            font-weight: 900 !important; 
+            color: #001e50 !important; 
+            margin-bottom: 8px; 
+            margin-top: 10px; 
+            text-transform: uppercase !important; 
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+        
+        .subtitle { 
+            font-size: 16px; 
+            color: #64748b; 
+            max-width: 850px; 
+            font-weight: 600; 
+            line-height: 1.5;
+            margin: 0 auto;
+        }
+        
+        /* Сетка карточек */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); 
+            gap: 20px; 
+            max-width: 1400px; 
+            width: 100%; 
+            justify-items: center; 
+            align-items: stretch;
+            padding-bottom: 40px; 
+        }
+        
+        @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
+        
+        /* Стандартные карточки */
+        .card { 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-decoration: none; 
+            border-radius: 16px; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease; 
+            width: 205px; 
+            height: 298px; 
+            padding: 5px;
+            overflow: hidden;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: top center; 
+            display: block; 
+            border-radius: 11px;
+            transition: all 0.3s ease; 
+        }
+        
+        .card:hover { 
+            transform: translateY(-8px) scale(1.03); 
+            border-color: #001e50; 
+            box-shadow: 0 16px 32px rgba(0,30,80,0.22); 
+        }
+
+        /* 3D Карточка-перевертыш для Видеоматериалов */
+        .flip-card-container {
+            width: 205px;
+            height: 298px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-container:hover .flip-card-inner,
+        .flip-card-container.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flip-card-container:hover .flip-card-front {
+            border-color: #001e50;
+            box-shadow: 0 16px 32px rgba(0,30,80,0.22);
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 11px;
+        }
+
+        .flip-card-back {
+            background: #0f172a;
+            color: white;
+            transform: rotateY(180deg);
+            border: 2px solid #3b82f6;
+            padding: 12px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+            margin-top: 6px;
+        }
+
+        .video-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 6px 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.2;
+        }
+
+        .video-link:hover {
+            background: #2563eb;
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+        
+        footer { 
+            margin-top: auto; 
+            font-size: 14px; 
+            color: #718096; 
+            padding: 20px 0; 
+            text-align: center; 
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            /* Логотип переносим в поток и центрируем */
+            .top-left-logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+
+            /* Кнопка "Назад" выстраивается ровно под логотипом */
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            header {
+                margin-top: 0;
+                margin-bottom: 25px;
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 20px !important;
+                letter-spacing: 0;
+                word-wrap: break-word;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            /* Сетка выстраивается по 2 карточки в ряд */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+
+            .card, .flip-card-container {
+                width: 155px !important;
+                height: 225px !important;
+                padding: 3px;
+            }
+
+            .flip-card-back {
+                padding: 8px 6px;
+            }
+
+            .video-list {
+                gap: 4px;
+                margin-top: 2px;
+            }
+
+            .video-link {
+                font-size: 9.5px;
+                padding: 4px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Официальный логотип GSB -->
+    <img src="top6/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='pictures/main/pic-gsb-logo.png';" 
+         alt="AlmaU GSB Logo" 
+         class="top-left-logo">
+
+    <!-- Кнопка возврата -->
+    <a href="index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 6: МОНОПОЛИЯ, МОНОПОЛИСТИЧЕСКАЯ КОНКУРЕНЦИЯ И СЕТЕВЫЕ СТРУКТУРЫ</h1>
+        <p class="subtitle">Управленческая экономика: ценообразование монополиста, дифференциация продукта, сетевые эффекты и кейсы автономного ИИ</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Презентация 6 -->
+        <a href="https://docs.google.com/presentation/d/1g3Vf1ybpfLlKyGmzbvI0j6Og9wUV2zw9/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 6">
+            <img src="top6/pic-preza6.png" onerror="this.onerror=null; this.src='pictures/main/pic-preza6.png';" alt="Презентация 6">
+        </a>
+
+        <!-- 2. Практикум и Конспект лекции 6 -->
+        <a href="https://docs.google.com/document/d/1NWM2a3qc2xLVPJ9l0yU6tgeqCiS03pel/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции и задачи по Теме 6">
+            <img src="top6/pic-lecture6.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture6.png';" alt="Конспект лекции 6">
+        </a>
+
+        <!-- 3. Симулятор: Рыночные структуры (Монополия и Монополистическая конкуренция) -->
+        <a href="top6/sim-market-structures-dashboard-c-m-mc.html" class="card" title="Симулятор: Рыночные структуры">
+            <img src="top6/pic-sim-monopoly-competition.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-monopoly-competition.png';" alt="Симулятор рыночных структур">
+        </a>
+
+        <!-- 4. Симулятор: Глобальная цепочка T-Shirt -->
+        <a href="top6/sim-t-shirts.html" class="card" title="Симулятор: Глобальная цепочка создания стоимости T-Shirt">
+            <img src="top6/pic-sim-t-shirt.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-t-shirt.png';" alt="Симулятор T-Shirt">
+        </a>
+
+        <!-- 5. Кейс-тренажер: Andon Labs & Vending-Bench -->
+        <a href="top6/andon-labs.html" class="card" title="Кейс-тренажер: Andon Labs & Vending-Bench">
+            <img src="top6/pic-andon-labs.png" onerror="this.onerror=null; this.src='pictures/main/pic-andon-labs.png';" alt="Кейс Andon Labs">
+        </a>
+
+        <!-- 6. Видеоматериалы (3D Перевертыш со списком YouTube лекций по Теме 6) -->
+        <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <!-- Лицевая сторона -->
+                <div class="flip-card-front">
+                    <img src="top6/pic-video6.png" onerror="this.onerror=null; this.src='pictures/main/pic-video6.png';" alt="Видео 6">
+                </div>
+                <!-- Обратная сторона с видеоуроками -->
+                <div class="flip-card-back">
+                    <div>
+                        <div class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-1">Видеолекции</div>
+                        <h4 class="text-xs font-extrabold text-white mb-2 border-b border-slate-700 pb-1">Тема 6: Видеоматериалы</h4>
+                    </div>
+                    
+                    <div class="video-list">
+                        <a href="https://www.youtube.com/watch?v=NySt2EDS1Ik&t=78s" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-sm"></i>
+                            <span class="truncate">1. Монополия или конкуренция</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=KZfIgh0EWRE" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-sm"></i>
+                            <span class="truncate">2. Ценообразование монополии</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=YQcb73YMA6c" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-sm"></i>
+                            <span class="truncate">3. Монополистическая конкуренция</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=diLKlYISOpw" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-sm"></i>
+                            <span class="truncate">4. Сетевые эффекты и платформы</span>
+                        </a>
+                    </div>
+
+                    <div class="text-[9px] text-slate-400 mt-1 italic">Кликните по ссылке для открытия YouTube</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
