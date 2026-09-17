@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 7: Аналитический Ридинг — Олигополия в мировых отраслях | MBA AlmaU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #090d16; color: #f8fafc; }
+        .article-card { background: #0b1329; border: 1px solid #1e293b; transition: all 0.3s ease; }
+        .article-card:hover { border-color: #38bdf8; box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.2); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-8">
+
+    <!-- Header -->
+    <header class="max-w-6xl w-full mx-auto flex flex-col md:flex-row justify-between items-center gap-4 mb-8 border-b border-slate-800 pb-6">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-sky-400">MBA Managerial Economics | Topic 7</span>
+                <span class="text-[10px] bg-sky-500/20 text-sky-300 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">Oligopoly & Strategy Casebook</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">Аналитический Ридинг: Олигополия и Рыночные Стратегии</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleLanguage('ru')" id="lang-ru" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-600 text-white transition">RU</button>
+            <button onclick="toggleLanguage('en')" id="lang-en" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition">EN</button>
+            <a href="topic7.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl text-xs transition border border-slate-700">← К Теме 7</a>
+        </div>
+    </header>
+
+    <!-- Main Articles Grid -->
+    <main class="max-w-6xl w-full mx-auto space-y-6 flex-grow">
+
+        <!-- Article 1: USA (OpenAI & Sam Altman) -->
+        <article class="article-card p-6 rounded-2xl">
+            <div class="flex items-center justify-between text-xs mb-2">
+                <span class="font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-earth-americas"></i> США / Технологическая Олигополия</span>
+                <span class="text-slate-400 font-mono">2026</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-2 lang-ru">OpenAI и Сэм Альтман откладывают IPO на $1 трлн: Стратегическая барьерность в олигополии ИИ</h2>
+            <h2 class="text-lg font-bold text-white mb-2 lang-en hidden">OpenAI & Sam Altman Delay $1T IPO: Strategic Barriers in AI Oligopoly</h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-ru">
+                Генеральный директор OpenAI Сэм Альтман заявил о переносе выхода компании на публичный рынок (IPO). В условиях жесткой олигополистической гонки с Google (Gemini) и Anthropic, OpenAI выбирает стратегию концентрации частного капитала. Рынок ИИ-моделей демонстрирует классические черты модели Штакельберга, где лидер инвестирует миллиарды в инфраструктуру, создавая колоссальные барьеры входа для новых игроков.
+            </p>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-en hidden">
+                OpenAI CEO Sam Altman confirmed delaying the company's IPO. Competing in a fierce oligopoly alongside Google (Gemini) and Anthropic, OpenAI focuses on private capital concentration. The AI market exhibits classic Stackelberg leadership dynamics, where first-movers invest billions in compute infrastructure to construct massive barriers to entry.
+            </p>
+            <div class="flex justify-between items-center border-t border-slate-800 pt-3">
+                <span class="text-[11px] text-slate-400 italic">Источник: Forbes & Fortune Media</span>
+                <a href="https://www.theguardian.com/us-news/2026/sep/12/openai-delays-ipo-sam-altman-ai-safety-concerns" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:text-sky-300 font-bold flex items-center gap-1">Читать оригинал <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+        </article>
+
+        <!-- Article 2: EUROPE (Planet A Foods / ChoViva) -->
+        <article class="article-card p-6 rounded-2xl">
+            <div class="flex items-center justify-between text-xs mb-2">
+                <span class="font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-seedling"></i> Европа / Подрыв Картеля Сырья</span>
+                <span class="text-slate-400 font-mono">2026</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-2 lang-ru">Германский стартап ChoViva подрывает мировой шоколадный олигопольный рынок помощью подсолнечника</h2>
+            <h2 class="text-lg font-bold text-white mb-2 lang-en hidden">Bavarian Startup ChoViva Disrupts Global Chocolate Oligopoly Using Sunflower Seeds</h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-ru">
+                Баварский стартап Planet A Foods запустил промышленное производство альтернативы какао-бобам из локальных семян подсолнечника. Мировой рынок какао контролируется жестким картелем поставщиков и переработчиков, испытывающим дефицит. Внедрение технологии ChoViva демонстрирует стратегическую дифференциацию продукта и разрушает ценовую силу традиционных участников рынка.
+            </p>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-en hidden">
+                Bavarian startup Planet A Foods scaled cocoa-free chocolate production made from sunflower seeds. As the global cocoa market faces supply crunches controlled by an established oligopoly, ChoViva's technological innovation demonstrates product differentiation that challenges incumbent pricing power.
+            </p>
+            <div class="flex justify-between items-center border-t border-slate-800 pt-3">
+                <span class="text-[11px] text-slate-400 italic">Источник: Euronews Green</span>
+                <a href="https://ru.euronews.com/my-europe/2026/06/19/game-changer-sweets-the-bavarian-start-up-making-sustainable-chocolate-from-sunflowers" target="_blank" rel="noopener" class="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1">Читать оригинал <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+        </article>
+
+        <!-- Article 3: CENTRAL ASIA (Financial Hubs Almaty/Astana/Tashkent) -->
+        <article class="article-card p-6 rounded-2xl">
+            <div class="flex items-center justify-between text-xs mb-2">
+                <span class="font-bold text-amber-400 flex items-center gap-1.5"><i class="fa-solid fa-building-columns"></i> Центральная Азия / Региональные Хабы</span>
+                <span class="text-slate-400 font-mono">2026</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-2 lang-ru">Формирование дуополии финансовых центров: Анализ экономического лидерства Астаны и Алматы</h2>
+            <h2 class="text-lg font-bold text-white mb-2 lang-en hidden">The Financial Hub Duopoly: Analyzing Economic Dominance of Astana and Almaty</h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-ru">
+                Центральноазиатский экономический ландшафт концентрируется вокруг институциональной дуополии Астаны (МФЦА) и Алматы (KASE). Казахстан аккумулирует 66.4% всех ПИИ региона ($156.4 млрд). Алматы и Астана распределили роли: финансовый инжиниринг и штаб-квартиры транснациональных гигантов (Alstom, Mercuria, Huawei) концентрируются в Казахстане, конкурируя с быстрорастущим рынком Ташкента.
+            </p>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-en hidden">
+                Central Asia's economic infrastructure forms an institutional duopoly around Astana (AIFC) and Almaty (KASE). Kazakhstan captures 66.4% of total inward FDI ($156.4B). The two cities strategically divide functions, attracting corporate headquarters (Alstom, Mercuria, Huawei) while competing with Tashkent's rapid expansion.
+            </p>
+            <div class="flex justify-between items-center border-t border-slate-800 pt-3">
+                <span class="text-[11px] text-slate-400 italic">Источник: The Times of Central Asia</span>
+                <a href="https://timesca.com/how-almaty-and-astana-built-central-asias-deepest-business-ecosystem/" target="_blank" rel="noopener" class="text-xs text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1">Читать оригинал <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+        </article>
+
+        <!-- Article 4: CAUCASUS & CENTRAL ASIA (KPMG M&A League) -->
+        <article class="article-card p-6 rounded-2xl">
+            <div class="flex items-center justify-between text-xs mb-2">
+                <span class="font-bold text-purple-400 flex items-center gap-1.5"><i class="fa-solid fa-chart-pie"></i> Кавказ & ЦА / M&A Консолидация</span>
+                <span class="text-slate-400 font-mono">2026</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-2 lang-ru">Консолидация рынков Кавказа и Центральной Азии: Роль M&A сделок в олигополизации отраслей</h2>
+            <h2 class="text-lg font-bold text-white mb-2 lang-en hidden">Market Consolidation in Caucasus & Central Asia: M&A Driving Corporate Oligopolies</h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-ru">
+                Отчет Mergermarket подтверждает резкий рост сделок по слияниям и поглощениям (M&A) в регионе Кавказа и Центральной Азии под руководством команд KPMG. Волна приватизации в Узбекистане и слияний в Грузии приводит к укрупнению ключевых отраслей (энергетика, телеком, ритейл), превращая монополистическую конкуренцию в узкие олигопольные структуры.
+            </p>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 lang-en hidden">
+                Mergermarket research highlights an acceleration of M&A deals across Caucasus and Central Asia led by KPMG deal advisory. Privatization programs in Uzbekistan and consolidation in Georgia convert fragmented markets into tight corporate oligopolies across energy, telecom, and retail.
+            </p>
+            <div class="flex justify-between items-center border-t border-slate-800 pt-3">
+                <span class="text-[11px] text-slate-400 italic">Источник: KPMG Caucasus & Central Asia Insights</span>
+                <a href="https://kpmg.com/ge/en/insights/2026/09/kpmg-tops-regional-league-table.html" target="_blank" rel="noopener" class="text-xs text-purple-400 hover:text-purple-300 font-bold flex items-center gap-1">Читать оригинал <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl w-full mx-auto text-center text-xs text-slate-500 py-6 border-t border-slate-800 mt-8">
+        © Almaty Management University | Высшая Школа Бизнеса (GSB) 2026
+    </footer>
+
+    <script>
+        function toggleLanguage(lang) {
+            const ruElems = document.querySelectorAll('.lang-ru');
+            const enElems = document.querySelectorAll('.lang-en');
+            const btnRu = document.getElementById('lang-ru');
+            const btnEn = document.getElementById('lang-en');
+
+            if (lang === 'en') {
+                ruElems.forEach(el => el.classList.add('hidden'));
+                enElems.forEach(el => el.classList.remove('hidden'));
+                btnEn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-600 text-white transition';
+                btnRu.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition';
+            } else {
+                enElems.forEach(el => el.classList.add('hidden'));
+                ruElems.forEach(el => el.classList.remove('hidden'));
+                btnRu.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-600 text-white transition';
+                btnEn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition';
+            }
+        }
+    </script>
+</body>
+</html>
