@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 7: Олигополия и стратегическое взаимодействие | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: #ffffff; 
+            color: #333333; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px 25px; 
+            position: relative; 
+        }
+        
+        /* Логотип GSB */
+        .top-left-logo { 
+            position: absolute; 
+            top: 25px; 
+            left: 30px; 
+            height: 60px; 
+            width: auto; 
+            object-fit: contain; 
+            z-index: 10;
+        }
+        
+        /* Кнопка возврата */
+        .back-button { 
+            position: absolute; 
+            top: 30px; 
+            right: 30px; 
+            text-decoration: none; 
+            background-color: #001e50; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); 
+            z-index: 10;
+        }
+        .back-button:hover { 
+            background-color: #003380; 
+            transform: translateY(-2px); 
+        }
+        
+        /* Шапка страницы */
+        header { 
+            text-align: center; 
+            margin-top: 45px; 
+            margin-bottom: 35px; 
+            padding: 0 90px; 
+            width: 100%;
+            max-width: 1300px;
+        }
+        
+        h1 { 
+            font-size: 32px !important; 
+            font-weight: 900 !important; 
+            color: #001e50 !important; 
+            margin-bottom: 8px; 
+            margin-top: 10px; 
+            text-transform: uppercase !important; 
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+        
+        .subtitle { 
+            font-size: 16px; 
+            color: #64748b; 
+            max-width: 850px; 
+            font-weight: 600; 
+            line-height: 1.5;
+            margin: 0 auto;
+        }
+        
+        /* Сетка карточек */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); 
+            gap: 20px; 
+            max-width: 1400px; 
+            width: 100%; 
+            justify-items: center; 
+            align-items: stretch;
+            padding-bottom: 40px; 
+        }
+        
+        @media (max-width: 1200px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
+        
+        /* Стандартные карточки */
+        .card { 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-decoration: none; 
+            border-radius: 16px; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease; 
+            width: 205px; 
+            height: 298px; 
+            padding: 5px;
+            overflow: hidden;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: top center; 
+            display: block; 
+            border-radius: 11px;
+            transition: all 0.3s ease; 
+        }
+        
+        .card:hover { 
+            transform: translateY(-8px) scale(1.03); 
+            border-color: #001e50; 
+            box-shadow: 0 16px 32px rgba(0,30,80,0.22); 
+        }
+
+        /* 3D Карточка-перевертыш для Видеоматериалов */
+        .flip-card-container {
+            width: 205px;
+            height: 298px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-container:hover .flip-card-inner,
+        .flip-card-container.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flip-card-container:hover .flip-card-front {
+            border-color: #001e50;
+            box-shadow: 0 16px 32px rgba(0,30,80,0.22);
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 11px;
+        }
+
+        .flip-card-back {
+            background: #0f172a;
+            color: white;
+            transform: rotateY(180deg);
+            border: 2px solid #3b82f6;
+            padding: 10px 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+            margin-top: 4px;
+        }
+
+        .video-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 5px 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.2;
+        }
+
+        .video-link:hover {
+            background: #2563eb;
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+        
+        footer { 
+            margin-top: auto; 
+            font-size: 14px; 
+            color: #718096; 
+            padding: 20px 0; 
+            text-align: center; 
+            line-height: 1.6;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            body { padding: 15px 10px; }
+            .top-left-logo {
+                position: relative;
+                top: 0; left: 0;
+                height: 50px;
+                margin: 0 auto 12px auto;
+                display: block;
+            }
+            .back-button {
+                position: relative;
+                top: 0; right: 0;
+                display: inline-block;
+                margin: 0 auto 15px auto;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            header { margin-top: 0; margin-bottom: 25px; padding: 0 5px; }
+            h1 { font-size: 20px !important; letter-spacing: 0; word-wrap: break-word; }
+            .subtitle { font-size: 13px; }
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                padding-bottom: 20px;
+            }
+            .card, .flip-card-container {
+                width: 155px !important;
+                height: 225px !important;
+                padding: 3px;
+            }
+            .flip-card-back { padding: 8px 6px; }
+            .video-list { gap: 3px; margin-top: 2px; }
+            .video-link { font-size: 9px; padding: 4px 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Официальный логотип GSB -->
+    <img src="top7/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='pictures/main/pic-gsb-logo.png';" 
+         alt="AlmaU GSB Logo" 
+         class="top-left-logo">
+
+    <!-- Кнопка возврата -->
+    <a href="index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 7: Олигополия и стратегическое взаимодействие</h1>
+        <p class="subtitle">Управленческая экономика: модели Курно, Бертрана, Штакельберга, теории игр и корпоративные кейсы</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Презентация 7 -->
+        <a href="https://docs.google.com/presentation/d/1zRoh_J4kWQyW6-YwASS6Fa38u0a6Esjs/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 7">
+            <img src="top7/pic-preza7.png" onerror="this.onerror=null; this.src='pictures/main/pic-preza7.png';" alt="Презентация 7">
+        </a>
+
+        <!-- 2. Практикум и Конспект лекции 7 -->
+        <a href="https://docs.google.com/document/d/1Ih3icEUm2417VQogcbRhHpDsoeXzh8Xc/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции и задачи по Теме 7">
+            <img src="top7/pic-lecture7.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture7.png';" alt="Конспект лекции 7">
+        </a>
+
+        <!-- 3. Симулятор 4 Модели Олигополии -->
+        <a href="top7/sim-oligopoly-4-model.html" class="card" title="Симулятор: 4 Модели Олигополии (Курно, Бертран, Штакельберг, Залом)">
+            <img src="top7/pic-sim-oligopoly-models.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-oligopoly-models.png';" alt="Симулятор 4 Модели Олигополии">
+        </a>
+
+        <!-- 4. Симулятор BI Group -->
+        <a href="top7/sim-bi-group.html" class="card" title="Симулятор: BI Group Deep Analytics Hub & Управление проектами">
+            <img src="top7/pic-case-bi-group.png" onerror="this.onerror=null; this.src='pictures/main/pic-case-bi-group.png';" alt="Симулятор BI Group">
+        </a>
+
+        <!-- 5. Аналитические ридинги по олигополии -->
+        <a href="top7/reading7.html" class="card" title="Аналитический Ридинг по Теме 7: Рынки Олигополии">
+            <img src="top7/pic-reading7.png" onerror="this.onerror=null; this.src='pictures/main/pic-reading7.png';" alt="Ридинг 7">
+        </a>
+
+        <!-- 6. Видеоматериалы (3D Перевертыш) -->
+        <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <!-- Лицевая сторона -->
+                <div class="flip-card-front">
+                    <img src="top7/pic-video7.png" onerror="this.onerror=null; this.src='pictures/main/pic-video7.png';" alt="Видео 7">
+                </div>
+                <!-- Обратная сторона -->
+                <div class="flip-card-back">
+                    <div>
+                        <div class="text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-0.5">Видеолекции</div>
+                        <h4 class="text-xs font-extrabold text-white mb-1.5 border-b border-slate-700 pb-1">Тема 7: Олигополия</h4>
+                    </div>
+                    
+                    <div class="video-list">
+                        <a href="https://www.youtube.com/watch?v=c-yK5TnaQmo" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">1. Модели олигополии</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=PeQKddInz5c" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">2. Дуополия Курно</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=GFF6rtk0z4c" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">3. Конкуренция Бертрана</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=U-miKGEyMhg" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">4. Модель Штакельберга</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=38kALMkU9K8" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="video-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">5. Теория игр & Наш</span>
+                        </a>
+                    </div>
+
+                    <div class="text-[9px] text-slate-400 mt-1 italic">Кликните по ссылке для открытия</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
