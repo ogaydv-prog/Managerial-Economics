@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 10: Стратегическое ценообразование и продвинутые бизнес-модели | MBA AlmaU</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: #ffffff; 
+            color: #333333; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px 15px; 
+            position: relative; 
+        }
+        
+        /* Логотип GSB */
+        .top-left-logo { 
+            position: absolute; 
+            top: 20px; 
+            left: 25px; 
+            height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            z-index: 10;
+        }
+        
+        /* Кнопка возврата */
+        .back-button { 
+            position: absolute; 
+            top: 25px; 
+            right: 25px; 
+            text-decoration: none; 
+            background-color: #001e50; 
+            color: white; 
+            padding: 9px 18px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0, 30, 80, 0.15); 
+            z-index: 10;
+        }
+        .back-button:hover { 
+            background-color: #003380; 
+            transform: translateY(-2px); 
+        }
+        
+        /* Шапка страницы */
+        header { 
+            text-align: center; 
+            margin-top: 40px; 
+            margin-bottom: 30px; 
+            padding: 0 40px; 
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        h1 { 
+            font-size: 28px !important; 
+            font-weight: 900 !important; 
+            color: #001e50 !important; 
+            margin-bottom: 8px; 
+            margin-top: 10px; 
+            text-transform: uppercase !important; 
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+        
+        .subtitle { 
+            font-size: 15px; 
+            color: #64748b; 
+            max-width: 850px; 
+            font-weight: 600; 
+            line-height: 1.4;
+            margin: 0 auto;
+        }
+        
+        /* Сетка в 6 колонок */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(6, 210px); 
+            gap: 16px; 
+            max-width: 1380px; 
+            width: 100%; 
+            justify-content: center; 
+            align-items: stretch;
+            padding-bottom: 30px; 
+        }
+        
+        @media (max-width: 1350px) { 
+            .grid-container { 
+                grid-template-columns: repeat(3, 210px); 
+                gap: 20px; 
+            } 
+        } 
+        
+        /* Стандартные карточки */
+        .card { 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; 
+            border-radius: 16px; 
+            width: 210px; 
+            height: 330px; 
+            padding: 6px;
+            overflow: hidden;
+            background: #ffffff; 
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        border-color 0.35s ease, 
+                        box-shadow 0.35s ease;
+        }
+        
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            object-position: center;
+            display: block; 
+            border-radius: 12px;
+            background-color: #f8fafc;
+            transition: all 0.35s ease; 
+        }
+        
+        .card:hover { 
+            transform: translateY(-8px) scale(1.03); 
+            border-color: #2563eb; 
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2); 
+        }
+
+        /* 3D Перевертыш */
+        .flip-card-container {
+            width: 210px;
+            height: 330px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-container:hover .flip-card-inner,
+        .flip-card-container.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: #ffffff; 
+            border: 2px solid #cbd5e1;
+            padding: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        border-color 0.35s ease, 
+                        box-shadow 0.35s ease;
+        }
+
+        .flip-card-container:hover .flip-card-front {
+            border-color: #2563eb;
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 12px;
+            background-color: #f8fafc;
+        }
+
+        .flip-card-back {
+            background: #0f172a;
+            color: white;
+            transform: rotateY(180deg);
+            border: 2px solid #3b82f6;
+            padding: 10px 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        /* Список ссылок со скроллом для обратной стороны */
+        .custom-scroll-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+            margin-top: 4px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .custom-scroll-list::-webkit-scrollbar {
+            width: 3px;
+        }
+        .custom-scroll-list::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 3px;
+        }
+
+        .item-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 9.5px;
+            font-weight: 600;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 5px 7px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.2;
+        }
+
+        .item-link:hover {
+            background: #2563eb;
+            color: #ffffff;
+            transform: translateX(2px);
+        }
+        
+        footer { 
+            margin-top: auto; 
+            font-size: 13px; 
+            color: #718096; 
+            padding: 15px 0; 
+            text-align: center; 
+            line-height: 1.5;
+        }
+
+        /* Адаптивность для смартфонов */
+        @media (max-width: 768px) {
+            body { padding: 15px 10px; }
+            .top-left-logo {
+                position: relative;
+                top: 0; left: 0;
+                height: 48px;
+                margin: 0 auto 10px auto;
+                display: block;
+            }
+            .back-button {
+                position: relative;
+                top: 0; right: 0;
+                display: inline-block;
+                margin: 0 auto 12px auto;
+                padding: 7px 14px;
+                font-size: 11px;
+            }
+            header { margin-top: 0; margin-bottom: 20px; padding: 0 5px; }
+            h1 { font-size: 18px !important; letter-spacing: 0; word-wrap: break-word; }
+            .subtitle { font-size: 12px; }
+            .grid-container {
+                grid-template-columns: repeat(2, 160px) !important;
+                gap: 12px;
+                padding-bottom: 15px;
+            }
+            .card, .flip-card-container {
+                width: 160px !important;
+                height: 270px !important;
+                padding: 4px;
+            }
+            .flip-card-back { padding: 8px 6px; }
+            .custom-scroll-list { max-height: 200px; }
+            .item-link { font-size: 8.5px; padding: 4px 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Официальный логотип GSB -->
+    <img src="top10/pic-gsb-logo.png" 
+         onerror="this.onerror=null; this.src='pictures/main/pic-gsb-logo.png';" 
+         alt="AlmaU GSB Logo" 
+         class="top-left-logo">
+
+    <!-- Кнопка возврата -->
+    <a href="index.html" class="back-button">← К списку тем</a>
+
+    <header>
+        <h1>ТЕМА 10: СТРАТЕГИЧЕСКОЕ ЦЕНООБРАЗОВАНИЕ И ПРОДВИНУТЫЕ БИЗНЕС-МОДЕЛИ</h1>
+        <p class="subtitle">Управленческая экономика: дискриминация цен, пакетные продажи, двучленные тарифы, аукционы и цифровые двойники</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- 1. Презентация 10 -->
+        <a href="https://docs.google.com/presentation/d/1Wzs493SUwukHtUSQWfFGfxSXJWn32-eO/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Презентация к лекции 10">
+            <img src="top10/pic-preza10.png" onerror="this.onerror=null; this.src='pictures/main/pic-preza10.png';" alt="Презентация 10">
+        </a>
+
+        <!-- 2. Конспект лекции 10 -->
+        <a href="https://docs.google.com/document/d/1JNlb4gyhhqC4vsW71YzW8qFVeUdH3fxV/edit?usp=sharing&ouid=109725301150629205728&rtpof=true&sd=true" target="_blank" rel="noopener" class="card" title="Конспект лекции и материалы 10">
+            <img src="top10/pic-lecture10.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture10.png';" alt="Конспект лекции 10">
+        </a>
+
+        <!-- 3. Симулятор: Ограничительное ценообразование -->
+        <a href="top10/sim-limit.html" class="card" title="Симулятор: Ограничительное ценообразование">
+            <img src="top10/pic-sim-limit.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-limit.png';" alt="Симулятор Лимитное Ценообразование">
+        </a>
+
+        <!-- 4. Симулятор: Стратегическое ценообразование -->
+        <a href="top10/sim-strateg.html" class="card" title="Симулятор: Стратегическое ценообразование">
+            <img src="top10/pic-sim-strateg.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-strateg.png';" alt="Симулятор Стратегическое Ценообразование">
+        </a>
+
+        <!-- 5. Статьи и Кейсы (3D Перевертыш) -->
+        <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <!-- Лицевая сторона -->
+                <div class="flip-card-front">
+                    <img src="top10/pic-articles10.png" onerror="this.onerror=null; this.src='pictures/main/pic-articles10.png';" alt="Статьи 10">
+                </div>
+                <!-- Обратная сторона -->
+                <div class="flip-card-back">
+                    <div>
+                        <div class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mb-0.5">Кейсы & Ридинги</div>
+                        <h4 class="text-[10.5px] font-extrabold text-white mb-1 border-b border-slate-700 pb-0.5">Тема 10: Аналитика</h4>
+                    </div>
+                    
+                    <div class="custom-scroll-list">
+                        <a href="https://alcor.kz/services/cifrovoj-dvojnik-predpriatia.html" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-solid fa-industry text-amber-400 text-xs"></i>
+                            <span class="truncate">1. Цифровой двойник Alcor</span>
+                        </a>
+                        <a href="https://www.rbc.ru/life/news/69d65e6d9a79476ee6bffa0a?utm_referrer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-solid fa-newspaper text-blue-400 text-xs"></i>
+                            <span class="truncate">2. Аналитический обзор РБК</span>
+                        </a>
+                        <a href="https://www.lufthansa.com/kz/ru/discover-lufthansa/flightreservation-priceguarantee" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-solid fa-plane text-sky-400 text-xs"></i>
+                            <span class="truncate">3. Гарантия цены Lufthansa</span>
+                        </a>
+                        <a href="https://ru.wikipedia.org/wiki/%D0%90%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD_%D0%92%D0%B8%D0%BA%D1%80%D0%B8" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-solid fa-gavel text-emerald-400 text-xs"></i>
+                            <span class="truncate">4. Аукцион Викри (Вики)</span>
+                        </a>
+                        <a href="https://ertenmedia.kz/ru/skrytye-pereplaty-banki-kazahstan-novye-pravila/" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-solid fa-building-columns text-rose-400 text-xs"></i>
+                            <span class="truncate">5. Банки РК: Переплаты</span>
+                        </a>
+                    </div>
+
+                    <div class="text-[8px] text-slate-400 mt-0.5 italic">Кликните по ссылке для открытия</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Видеоматериалы (3D Перевертыш) -->
+        <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <!-- Лицевая сторона -->
+                <div class="flip-card-front">
+                    <img src="top10/pic-video10.png" onerror="this.onerror=null; this.src='pictures/main/pic-video10.png';" alt="Видео 10">
+                </div>
+                <!-- Обратная сторона -->
+                <div class="flip-card-back">
+                    <div>
+                        <div class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mb-0.5">Видеолекции</div>
+                        <h4 class="text-[10.5px] font-extrabold text-white mb-1 border-b border-slate-700 pb-0.5">Тема 10: Видеокурс</h4>
+                    </div>
+                    
+                    <div class="custom-scroll-list">
+                        <a href="https://www.youtube.com/watch?v=H2a2ZAoXoiI" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">1. Стратегическое ценообразование</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=88qDlNUZ2OI&t=4226s" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">2. Дискриминация цен</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=Zm6wAP2YJcE" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">3. Пакетные продажи</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=FZxQJOxILaI" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">4. Двучленные тарифы</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=MC-iE33-UgM" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">5. Теория аукционов</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=2XWaZq9jClE" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">6. Лимитное ценообразование</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=z-kW9zq30nM&t=1s" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">7. Модели переноса затрат</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=gxFrtJvy-2Y&t=2s" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">8. Динамическое ценообразование</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=8zYz3JEAoUA" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
+                            <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
+                            <span class="truncate">9. Цифровые двойники бизнеса</span>
+                        </a>
+                    </div>
+
+                    <div class="text-[8px] text-slate-400 mt-0.5 italic">Кликните по ссылке для открытия</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Разработано для слушателей программ MBA | Управленческая экономика</p>
+        <p>© Almaty Management University | Высшая Школа Бизнеса (GSB) 2026</p>
+    </footer>
+
+</body>
+</html>
