@@ -89,37 +89,37 @@
             margin: 0 auto;
         }
         
-        /* Сетка: Расширенные карточки (220px) в 6 колонок */
+        /* Сетка на ПК: 6 одинаковых колонок */
         .grid-container { 
             display: grid; 
-            grid-template-columns: repeat(6, 220px); 
+            grid-template-columns: repeat(6, 200px); 
             gap: 16px; 
-            max-width: 1440px; 
+            max-width: 1320px; 
             width: 100%; 
             justify-content: center; 
             align-items: stretch;
             padding-bottom: 30px; 
         }
         
-        @media (max-width: 1400px) { 
+        @media (max-width: 1300px) { 
             .grid-container { 
-                grid-template-columns: repeat(3, 220px); 
-                gap: 20px; 
+                grid-template-columns: repeat(3, 200px); 
+                gap: 18px; 
             } 
         }
         
-        /* Единый размер карточек */
+        /* Карточка товара / материалов */
         .card { 
             display: flex; 
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             text-decoration: none; 
             border-radius: 16px; 
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease; 
-            width: 220px; 
-            height: 330px; 
-            padding: 6px;
+            width: 200px; 
+            height: 320px; 
+            padding: 5px;
             overflow: hidden;
             background: #ffffff;
             border: 2px solid #cbd5e1;
@@ -127,7 +127,7 @@
             cursor: pointer;
         }
         
-        /* Оптимальное отображение картинок без обрезки */
+        /* Полный вывод картинки без срезки edges */
         .card img { 
             width: 100%; 
             height: 100%; 
@@ -147,8 +147,8 @@
 
         /* 3D Перевертыш для Видеоматериалов */
         .flip-card-container {
-            width: 220px;
-            height: 330px;
+            width: 200px;
+            height: 320px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -180,7 +180,7 @@
         .flip-card-front {
             background: #ffffff;
             border: 2px solid #cbd5e1;
-            padding: 6px;
+            padding: 5px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.06);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease;
         }
@@ -227,7 +227,7 @@
             font-weight: 600;
             color: #cbd5e1;
             text-decoration: none;
-            padding: 6px 8px;
+            padding: 5px 7px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 6px;
             transition: all 0.2s ease;
@@ -249,7 +249,7 @@
             line-height: 1.5;
         }
 
-        /* Мобильная адаптивность */
+        /* Полная оптимизация под смартфоны */
         @media (max-width: 768px) {
             body { padding: 15px 10px; }
             .top-left-logo {
@@ -271,18 +271,18 @@
             h1 { font-size: 18px !important; letter-spacing: 0; word-wrap: break-word; }
             .subtitle { font-size: 12px; }
             .grid-container {
-                grid-template-columns: repeat(2, 160px) !important;
-                gap: 10px;
+                grid-template-columns: repeat(2, 155px) !important;
+                gap: 12px;
                 padding-bottom: 15px;
             }
             .card, .flip-card-container {
-                width: 160px !important;
-                height: 270px !important;
+                width: 155px !important;
+                height: 260px !important;
                 padding: 4px;
             }
-            .flip-card-back { padding: 8px 5px; }
+            .flip-card-back { padding: 8px 6px; }
             .video-list { gap: 4px; margin-top: 2px; }
-            .video-link { font-size: 9px; padding: 5px 5px; }
+            .video-link { font-size: 8.5px; padding: 4px 5px; }
         }
     </style>
 </head>
