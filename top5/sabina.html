@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оптимизация смены стилиста</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0d0814',
+                        cardbg: 'rgba(22, 13, 33, 0.85)',
+                        neonpink: '#ec4899',
+                        deeprose: '#f43f5e',
+                        softpurple: '#c084fc',
+                        neonamber: '#f59e0b',
+                        goldaccent: '#fbbf24'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0814;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        .num-font {
+            font-family: 'Inter', sans-serif;
+            font-feature-settings: "tnum";
+        }
+        .glass-card {
+            background: rgba(22, 13, 33, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(236, 72, 153, 0.15);
+            border-radius: 0.85rem;
+        }
+        .glass-card:hover {
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+        
+        /* Large Sliders: Dark Gray track, inner thin red line, tall gray thumb with red stripe */
+        input[type=range].vintage-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px;
+            background: #1a1026;
+            border: 1px solid #321c4a;
+            border-radius: 6px;
+            outline: none;
+            position: relative;
+        }
+        input[type=range].vintage-slider::-webkit-slider-runnable-track {
+            height: 4px;
+            background: #ef4444;
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+        }
+        input[type=range].vintage-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 26px;
+            width: 16px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #9ca3af 0%, #9ca3af 40%, #ef4444 40%, #ef4444 60%, #9ca3af 60%, #9ca3af 100%);
+            border: 1px solid #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            cursor: pointer;
+            margin-top: -11px;
+            transition: all 0.15s ease;
+        }
+        input[type=range].vintage-slider::-webkit-slider-thumb:hover {
+            background: linear-gradient(to right, #ffffff 0%, #ffffff 40%, #ef4444 40%, #ef4444 60%, #ffffff 60%, #ffffff 100%);
+            box-shadow: 0 0 12px #ec4899;
+        }
+
+        /* 3D Flip Card Styles */
+        .flip-card {
+            perspective: 1000px;
+            height: 260px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.85rem;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: rgba(18, 10, 28, 0.96);
+            border: 1px solid #ec4899;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-5 min-h-screen space-y-5">
+
+<div class="max-w-[1650px] mx-auto w-full space-y-5">
+
+    <!-- Header -->
+    <header class="glass-card p-4 sm:p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-l-4 border-l-neonpink">
+        <div class="flex items-center gap-4">
+            <!-- Lash Eye Icon -->
+            <div class="p-3 bg-pink-950/60 rounded-xl text-neonpink border border-pink-500/30 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M3 9 1 6"/>
+                    <path d="M6 5 5 2"/>
+                    <path d="M10 3v-2"/>
+                    <path d="M14 3v-2"/>
+                    <path d="M18 5l1-3"/>
+                    <path d="M21 9l2-3"/>
+                </svg>
+            </div>
+            <div>
+                <div class="flex items-center gap-2">
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">Оптимизация смены стилиста</h1>
+                    <span class="text-[10px] px-2.5 py-0.5 rounded bg-pink-950 text-pink-300 font-bold border border-pink-800 uppercase tracking-wider num-font">Beauty Management</span>
+                </div>
+                <p class="text-xs text-gray-400 mt-0.5">Анализ утилизации времени смены (480 мин), транзакционных издержек сетапа и маржинальности услуг</p>
+            </div>
+        </div>
+
+        <!-- Единственное упоминание имени Сабины без курсива -->
+        <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-950/40 border border-pink-500/30 text-gray-300 opacity-80 hover:opacity-100 transition-opacity">
+            <span class="text-base">😊</span>
+            <span class="text-xs font-semibold tracking-wide text-pink-300">Special for Sabina</span>
+        </div>
+    </header>
+
+    <!-- Top KPI Bar -->
+    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+        <div class="glass-card p-3.5 border-b-2 border-b-neonpink">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Дневная Выручка</p>
+            <h3 class="text-lg sm:text-xl font-black text-pink-300 mt-1 num-font" id="kpiRevenue">0 ₸</h3>
+            <p class="text-[9px] text-gray-500 mt-0.5">Сумма чеков за смену</p>
+        </div>
+        <div class="glass-card p-3.5 border-b-2 border-b-emerald-400">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Чистая Маржа Смены</p>
+            <h3 class="text-lg sm:text-xl font-black text-emerald-400 mt-1 num-font" id="kpiProfit">0 ₸</h3>
+            <p class="text-[9px] text-gray-500 mt-0.5">Выручка - Косметика - Аренда</p>
+        </div>
+        <div class="glass-card p-3.5 border-b-2 border-b-purple-400">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Полезная Работа</p>
+            <h3 class="text-lg sm:text-xl font-black text-purple-300 mt-1 num-font" id="kpiWorkTime">0 мин</h3>
+            <p class="text-[9px] text-gray-500 mt-0.5">Из 480 минут смены</p>
+        </div>
+        <div class="glass-card p-3.5 border-b-2 border-b-neonamber">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Оверхед Сетапа (t0)</p>
+            <h3 class="text-lg sm:text-xl font-black text-amber-300 mt-1 num-font" id="kpiSetupTime">0 мин</h3>
+            <p class="text-[9px] text-gray-500 mt-0.5">Подготовка + Дезинфекция</p>
+        </div>
+        <div class="glass-card p-3.5 border-b-2 border-b-deeprose col-span-2 sm:col-span-1">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Эффективность Часа</p>
+            <h3 class="text-lg sm:text-xl font-black text-rose-400 mt-1 num-font" id="kpiHourlyRate">0 ₸/ч</h3>
+            <p class="text-[9px] text-gray-500 mt-0.5">Маржа на 1 час смены</p>
+        </div>
+    </section>
+
+    <!-- Context Intro Box -->
+    <div class="glass-card p-4 border-l-4 border-l-goldaccent text-xs leading-relaxed text-gray-300 space-y-1">
+        <span class="font-bold text-goldaccent uppercase tracking-wider block text-sm">Суть экономии рабочего времени стилиста (Входной контекст):</span>
+        <p>Рабочий день студии ограничен 8 часами (480 минут). На каждого нового клиента расходуется не только время услуги, но и обязательное фиксированное время сетапа/дезинфекции/консультации (<strong>t0</strong>). Чем короче слоты клиентов, тем больше времени смены съедают суммарные оверхеды <strong>t0</strong>. Задача — подбирать комбинацию быстрых, средних и VIP-комплексов для максимизации чистой маржи смены.</p>
+    </div>
+
+    <!-- Main Working Screen -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+        <!-- Controls Sidebar -->
+        <div class="lg:col-span-4 space-y-4">
+            <div class="glass-card p-4 space-y-3.5 border-t-2 border-t-neonpink">
+                <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                    <h2 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i data-lucide="sliders" class="w-4 h-4 text-neonpink"></i>
+                        Параметры смены
+                    </h2>
+                    <span class="text-[9px] bg-pink-950 text-pink-300 px-2 py-0.5 rounded border border-pink-800 num-font">8 HOURS SHIFT</span>
+                </div>
+
+                <!-- Quick Scenario Combo Buttons -->
+                <div class="space-y-1.5">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Быстрый выбор структуры дня:</span>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <button onclick="applyCombo(8,0,0)" class="px-2 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-gray-800 transition-all text-[11px] font-medium">8 × 1ч (Экспресс)</button>
+                        <button onclick="applyCombo(0,4,0)" class="px-2 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-gray-800 transition-all text-[11px] font-medium">4 × 2ч (Вечерний)</button>
+                        <button onclick="applyCombo(0,0,2)" class="px-2 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-gray-800 transition-all text-[11px] font-medium">2 × 4ч (VIP Съемка)</button>
+                        <button onclick="applyCombo(2,2,0)" class="px-2 py-1.5 rounded bg-pink-950 text-pink-300 border border-pink-700 hover:bg-pink-900 transition-all text-[11px] font-bold">2×3ч + 1×2ч (Гибрид)</button>
+                    </div>
+                </div>
+
+                <!-- Sliders with larger thumb and red center line -->
+                <div class="space-y-1.5 bg-slate-950/60 p-3 rounded border border-gray-800">
+                    <div class="flex justify-between items-center text-xs">
+                        <label for="sliderT0" class="text-gray-300 font-medium text-[11px]">Сетап / Подготовка (t0):</label>
+                        <span class="font-bold text-neonamber num-font text-[12px]" id="valT0">20 мин</span>
+                    </div>
+                    <input type="range" id="sliderT0" min="0" max="40" step="5" value="20" class="vintage-slider">
+                </div>
+
+                <div class="space-y-1.5 bg-slate-950/60 p-3 rounded border border-gray-800">
+                    <div class="flex justify-between items-center text-xs">
+                        <label for="sliderRent" class="text-gray-300 font-medium text-[11px]">Аренда места за день:</label>
+                        <span class="font-bold text-deeprose num-font text-[12px]" id="valRent">15,000 ₸</span>
+                    </div>
+                    <input type="range" id="sliderRent" min="5000" max="40000" step="1000" value="15000" class="vintage-slider">
+                </div>
+
+                <div class="space-y-1.5 bg-slate-950/60 p-3 rounded border border-gray-800">
+                    <div class="flex justify-between items-center text-xs">
+                        <label for="sliderCountS" class="text-gray-300 font-medium text-[11px]">Слоты S (Экспресс 60м / 10к ₸):</label>
+                        <span class="font-bold text-pink-400 num-font text-[12px]" id="valCountS">2 клиента</span>
+                    </div>
+                    <input type="range" id="sliderCountS" min="0" max="8" step="1" value="2" class="vintage-slider">
+                </div>
+
+                <div class="space-y-1.5 bg-slate-950/60 p-3 rounded border border-gray-800">
+                    <div class="flex justify-between items-center text-xs">
+                        <label for="sliderCountM" class="text-gray-300 font-medium text-[11px]">Слоты M (Вечерний 120м / 25к ₸):</label>
+                        <span class="font-bold text-purple-300 num-font text-[12px]" id="valCountM">2 клиента</span>
+                    </div>
+                    <input type="range" id="sliderCountM" min="0" max="4" step="1" value="2" class="vintage-slider">
+                </div>
+
+                <div class="space-y-1.5 bg-slate-950/60 p-3 rounded border border-gray-800">
+                    <div class="flex justify-between items-center text-xs">
+                        <label for="sliderCountL" class="text-gray-300 font-medium text-[11px]">Слоты L (VIP невеста 240м / 50к ₸):</label>
+                        <span class="font-bold text-emerald-400 num-font text-[12px]" id="valCountL">0 клиентов</span>
+                    </div>
+                    <input type="range" id="sliderCountL" min="0" max="2" step="1" value="0" class="vintage-slider">
+                </div>
+
+                <!-- Balance Widget -->
+                <div class="p-3 rounded bg-slate-950/90 border border-gray-800 text-xs space-y-1.5 num-font">
+                    <div class="flex justify-between"><span class="text-gray-400">Занято времени:</span><span class="text-pink-400 font-bold" id="totalTimeUsed">0 / 480 мин</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Окно простоя:</span><span class="text-amber-300 font-bold" id="freeTimeLeft">0 мин</span></div>
+                    <div class="flex justify-between pt-1 border-t border-gray-800"><span class="text-gray-400">Статус смены:</span><span id="shiftStatusTag" class="font-bold text-emerald-400">В норме</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Width Timeline Block + Explanation Below -->
+        <div class="lg:col-span-8 space-y-4">
+            
+            <!-- Timeline Chart (Expanded Height & Width) -->
+            <div class="glass-card p-5 border-t-2 border-t-neonpink space-y-4">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                    <h3 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4 text-neonpink"></i>
+                        Визуальная лента смены (09:00 - 17:00 / 480 минут)
+                    </h3>
+                    <span class="text-[10px] bg-slate-800 text-pink-300 border border-gray-700 px-2 py-0.5 rounded num-font">TIMELINE</span>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between text-[11px] text-gray-400 num-font font-semibold px-1">
+                        <span>09:00</span>
+                        <span>11:00</span>
+                        <span>13:00</span>
+                        <span>15:00</span>
+                        <span>17:00</span>
+                    </div>
+
+                    <div id="dayTimelineBar" class="w-full h-20 bg-slate-950 rounded-lg border border-gray-800 flex overflow-hidden p-1.5 gap-1 shadow-inner">
+                        <!-- Dynamic Gantt blocks -->
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="grid grid-cols-3 gap-2 text-[11px] pt-2 border-t border-gray-800/80 text-gray-400 font-medium">
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-pink-500 inline-block"></span><span>Работа (Слоты)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-amber-400 inline-block"></span><span>Сетап / Дезинфекция (t0)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-slate-700 inline-block"></span><span>Простой / Окно</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moved Explanation Box Below Timeline -->
+            <div class="glass-card p-5 border-t-2 border-t-goldaccent space-y-3">
+                <h3 class="text-xs font-bold text-goldaccent uppercase tracking-wider flex items-center gap-2 border-b border-gray-800 pb-2">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    Пояснение к структуре записи
+                </h3>
+                
+                <div id="shiftExplanationText" class="text-xs text-gray-300 leading-relaxed space-y-2">
+                    <!-- Dynamic Text -->
+                </div>
+
+                <div class="p-3 rounded bg-slate-950/80 border border-gray-800/80 text-[11px] text-gray-400">
+                    <span class="text-emerald-400 font-bold block mb-0.5">Маржинальный баланс:</span>
+                    Модель автоматически учитывает затраты на расходные материалы (косметику) и фиксированную суточную аренду студии.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 4 Flip Cards Section -->
+    <section class="space-y-2">
+        <div class="flex justify-between items-center">
+            <h2 class="text-sm font-bold text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-neonpink"></i>
+                Аналитика структуры смены (Кликните на карточку для переворота)
+            </h2>
+            <span class="text-[10px] text-gray-500">3D FLIP CARDS</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <!-- Card 1 -->
+            <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 space-y-2 border-b-2 border-b-neonpink flex flex-col justify-between">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-1.5">
+                            <h4 class="text-[11px] font-bold text-gray-200">1. Баланс времени смены</h4>
+                            <span class="text-[9px] text-pink-400 bg-pink-950 px-1.5 py-0.5 rounded border border-pink-800">Инфо 🔄</span>
+                        </div>
+                        <div class="h-44 relative">
+                            <canvas id="chartTimeBreakdown"></canvas>
+                        </div>
+                    </div>
+                    <div class="flip-card-back p-4 space-y-2">
+                        <div class="flex justify-between items-center border-b border-pink-500/40 pb-1">
+                            <h4 class="text-xs font-bold text-pink-300">Экономический смысл графика 1</h4>
+                            <span class="text-[9px] text-gray-400">Назад 🔄</span>
+                        </div>
+                        <p class="text-[11px] text-gray-300 leading-relaxed">
+                            Делит 480 минут смены на 3 категории: Чистый визаж (Розовый), Подготовка t0 (Янтарный) и Простой (Серый).
+                            <br/><br/>
+                            <em>Управленческий вывод:</em> Большой янтарный сектор указывает на скрытую потерю дохода из-за частой смены клиентов.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 space-y-2 border-b-2 border-b-purple-400 flex flex-col justify-between">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-1.5">
+                            <h4 class="text-[11px] font-bold text-gray-200">2. Доход в минуту по слотам</h4>
+                            <span class="text-[9px] text-purple-400 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">Инфо 🔄</span>
+                        </div>
+                        <div class="h-44 relative">
+                            <canvas id="chartSlotMargin"></canvas>
+                        </div>
+                    </div>
+                    <div class="flip-card-back p-4 space-y-2">
+                        <div class="flex justify-between items-center border-b border-purple-500/40 pb-1">
+                            <h4 class="text-xs font-bold text-purple-300">Экономический смысл графика 2</h4>
+                            <span class="text-[9px] text-gray-400">Назад 🔄</span>
+                        </div>
+                        <p class="text-[11px] text-gray-300 leading-relaxed">
+                            Сравнивает реальную маржу на 1 минуту полного времени (услуга + t0) для слотов Экспресс, Вечерний и VIP.
+                            <br/><br/>
+                            <em>Управленческий вывод:</em> Показывает, какой формат записи приносит максимальный доход в единицу времени.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 space-y-2 border-b-2 border-b-emerald-400 flex flex-col justify-between">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-1.5">
+                            <h4 class="text-[11px] font-bold text-gray-200">3. Сравнение сценариев</h4>
+                            <span class="text-[9px] text-emerald-400 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">Инфо 🔄</span>
+                        </div>
+                        <div class="h-44 relative">
+                            <canvas id="chartScenarios"></canvas>
+                        </div>
+                    </div>
+                    <div class="flip-card-back p-4 space-y-2">
+                        <div class="flex justify-between items-center border-b border-emerald-500/40 pb-1">
+                            <h4 class="text-xs font-bold text-emerald-300">Экономический смысл графика 3</h4>
+                            <span class="text-[9px] text-gray-400">Назад 🔄</span>
+                        </div>
+                        <p class="text-[11px] text-gray-300 leading-relaxed">
+                            Сравнивает чистую маржу при 3 стратегиях: Только экспресс-клиенты, Ваш текущий баланс и Только VIP-комплексы.
+                            <br/><br/>
+                            <em>Управленческий вывод:</em> Наглядно демонстрирует выгоду сокращения количества сетапов t0.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 space-y-2 border-b-2 border-b-goldaccent flex flex-col justify-between">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-1.5">
+                            <h4 class="text-[11px] font-bold text-gray-200">4. Покрытие аренды студии</h4>
+                            <span class="text-[9px] text-amber-400 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">Инфо 🔄</span>
+                        </div>
+                        <div class="h-44 relative">
+                            <canvas id="chartBreakEven"></canvas>
+                        </div>
+                    </div>
+                    <div class="flip-card-back p-4 space-y-2">
+                        <div class="flex justify-between items-center border-b border-amber-500/40 pb-1">
+                            <h4 class="text-xs font-bold text-goldaccent">Экономический смысл графика 4</h4>
+                            <span class="text-[9px] text-gray-400">Назад 🔄</span>
+                        </div>
+                        <p class="text-[11px] text-gray-300 leading-relaxed">
+                            Waterfall затрат смены: Выручка за вычетом прямых расходов на косметику за вычетом суточной аренды.
+                            <br/><br/>
+                            <em>Управленческий вывод:</em> Финальный столбец показывает чистый заработок мастера за смену.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Academic Case Section -->
+    <section class="glass-card p-5 border-l-4 border-l-indigo-500 space-y-4">
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+            <div class="flex items-center gap-2">
+                <i data-lucide="graduation-cap" id="secretAnswerToggle" onclick="toggleAnswersKey()" class="w-5 h-5 text-gray-700 hover:text-indigo-400 transition-colors cursor-pointer opacity-30"></i>
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Учебные MBA-кейсы и контрольные задания</h3>
+            </div>
+            <span class="text-xs text-indigo-300 bg-slate-800 px-2.5 py-1 rounded border border-gray-700 font-mono">PRACTICE MODULE</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            
+            <div class="bg-slate-950/80 p-4 rounded-lg border border-gray-800 space-y-2 flex flex-col justify-between">
+                <div class="space-y-1.5">
+                    <span class="text-[10px] font-bold text-pink-400 uppercase tracking-widest">Кейс 1: Влияние оверхеда t0</span>
+                    <p class="text-gray-300 font-medium">Если время дезинфекции и консультации t0 вырастет с 15 до 30 минут, почему при 6 экспресс-клиентах мастер теряет 1.5 часа рабочего времени?</p>
+                </div>
+                <div class="answer-key hidden mt-2 p-2.5 bg-slate-900/90 rounded border border-pink-500/40 text-gray-300 leading-relaxed text-[11px]">
+                    <span class="text-pink-400 font-bold block mb-1">Разбор эксперта:</span>
+                    При 6 клиентах увеличение t0 на 15 минут даёт 6 × 15 = 90 минут потерь продуктивного времени. Из 8 часов рабочее время услуги сокращается с 6.5 до 5 часов, снижая дневную выработку на 23%.
+                </div>
+            </div>
+
+            <div class="bg-slate-950/80 p-4 rounded-lg border border-gray-800 space-y-2 flex flex-col justify-between">
+                <div class="space-y-1.5">
+                    <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Кейс 2: Ценообразование VIP-слотов</span>
+                    <p class="text-gray-300 font-medium">Какую цену необходимо установить на 4-часовой VIP-образ невесты, чтобы он был выгоднее приема 3 экспресс-клиентов?</p>
+                </div>
+                <div class="answer-key hidden mt-2 p-2.5 bg-slate-900/90 rounded border border-purple-500/40 text-gray-300 leading-relaxed text-[11px]">
+                    <span class="text-purple-300 font-bold block mb-1">Разбор эксперта:</span>
+                    3 экспресс-клиента приносят 30,000 ₸ за вычетом 3 сетапов t0. VIP-слот экономит 2 сетапа (40 мин). Минимальная цена VIP-слота должна перекрывать суммарную маржу 3 коротких клиентов с учетом разницы в расходных материалах.
+                </div>
+            </div>
+
+            <div class="bg-slate-950/80 p-4 rounded-lg border border-gray-800 space-y-2 flex flex-col justify-between">
+                <div class="space-y-1.5">
+                    <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Кейс 3: Диверсификация рисков записи</span>
+                    <p class="text-gray-300 font-medium">Почему ориентироваться исключительно на 4-часовые VIP-слоты рискованно при возможной отмене клиента?</p>
+                </div>
+                <div class="answer-key hidden mt-2 p-2.5 bg-slate-900/90 rounded border border-emerald-500/40 text-gray-300 leading-relaxed text-[11px]">
+                    <span class="text-emerald-400 font-bold block mb-1">Разбор эксперта:</span>
+                    При 2 крупных клиентах за день отмена одной записи лишает мастера 50% суточной выручки при 100% сохранении фиксированной аренды студии. Гибридный график (S + M + L) сглаживает этот риск.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<script>
+    lucide.createIcons();
+
+    function toggleFlip(cardElement) {
+        cardElement.classList.toggle('flipped');
+    }
+
+    function toggleAnswersKey() {
+        document.querySelectorAll('.answer-key').forEach(ans => ans.classList.toggle('hidden'));
+    }
+
+    const SLOTS = {
+        S: { name: 'Экспресс (S)', time: 60, price: 10000, cost: 1000 },
+        M: { name: 'Вечерний (M)', time: 120, price: 25000, cost: 3000 },
+        L: { name: 'VIP Невеста (L)', time: 240, price: 50000, cost: 7000 }
+    };
+
+    let chart1 = null, chart2 = null, chart3 = null, chart4 = null;
+
+    function applyCombo(s, m, l) {
+        document.getElementById('sliderCountS').value = s;
+        document.getElementById('sliderCountM').value = m;
+        document.getElementById('sliderCountL').value = l;
+        recalculateShift();
+    }
+
+    function recalculateShift() {
+        const t0 = parseInt(document.getElementById('sliderT0').value);
+        const rent = parseInt(document.getElementById('sliderRent').value);
+        const countS = parseInt(document.getElementById('sliderCountS').value);
+        const countM = parseInt(document.getElementById('sliderCountM').value);
+        const countL = parseInt(document.getElementById('sliderCountL').value);
+
+        document.getElementById('valT0').innerText = t0 + ' мин';
+        document.getElementById('valRent').innerText = rent.toLocaleString('ru-RU') + ' ₸';
+        document.getElementById('valCountS').innerText = countS + ' кл';
+        document.getElementById('valCountM').innerText = countM + ' кл';
+        document.getElementById('valCountL').innerText = countL + ' кл';
+
+        const totalClients = countS + countM + countL;
+        const totalSetupTime = totalClients * t0;
+        const totalWorkTime = (countS * SLOTS.S.time) + (countM * SLOTS.M.time) + (countL * SLOTS.L.time);
+        const totalTimeUsed = totalWorkTime + totalSetupTime;
+        const freeTimeLeft = Math.max(0, 480 - totalTimeUsed);
+
+        const totalRevenue = (countS * SLOTS.S.price) + (countM * SLOTS.M.price) + (countL * SLOTS.L.price);
+        const totalVarCosts = (countS * SLOTS.S.cost) + (countM * SLOTS.M.cost) + (countL * SLOTS.L.cost);
+        const netProfit = totalRevenue - totalVarCosts - rent;
+        const hourlyRate = netProfit > 0 ? Math.round((netProfit / 480) * 60) : 0;
+
+        document.getElementById('kpiRevenue').innerText = totalRevenue.toLocaleString('ru-RU') + ' ₸';
+        document.getElementById('kpiProfit').innerText = netProfit.toLocaleString('ru-RU') + ' ₸';
+        document.getElementById('kpiWorkTime').innerText = totalWorkTime + ' мин';
+        document.getElementById('kpiSetupTime').innerText = totalSetupTime + ' мин';
+        document.getElementById('kpiHourlyRate').innerText = hourlyRate.toLocaleString('ru-RU') + ' ₸/ч';
+
+        document.getElementById('totalTimeUsed').innerText = totalTimeUsed + ' / 480 мин';
+        document.getElementById('freeTimeLeft').innerText = freeTimeLeft + ' мин';
+
+        const tag = document.getElementById('shiftStatusTag');
+        if (totalTimeUsed > 480) {
+            tag.innerText = `Перегруз +${totalTimeUsed - 480}м!`;
+            tag.className = 'font-bold text-rose-400';
+        } else {
+            tag.innerText = 'В норме (<= 8ч)';
+            tag.className = 'font-bold text-emerald-400';
+        }
+
+        renderTimeline(countS, countM, countL, t0, freeTimeLeft);
+        renderExplanation(totalWorkTime, totalSetupTime, netProfit, totalClients, t0);
+        renderCharts(totalWorkTime, totalSetupTime, freeTimeLeft, t0, netProfit, totalRevenue, totalVarCosts, rent);
+    }
+
+    function renderTimeline(countS, countM, countL, t0, freeTime) {
+        const bar = document.getElementById('dayTimelineBar');
+        bar.innerHTML = '';
+
+        function addBlock(widthPct, colorClass, label) {
+            if (widthPct <= 0) return;
+            const div = document.createElement('div');
+            div.className = `h-full ${colorClass} rounded-md flex items-center justify-center text-xs font-bold text-slate-950 transition-all shadow-sm`;
+            div.style.width = widthPct + '%';
+            div.title = label;
+            if (widthPct > 3) div.innerText = label;
+            bar.appendChild(div);
+        }
+
+        for (let i = 0; i < countS; i++) {
+            addBlock((SLOTS.S.time / 480) * 100, 'bg-pink-500 text-white', 'S');
+            if (t0 > 0) addBlock((t0 / 480) * 100, 'bg-amber-400', 't0');
+        }
+        for (let i = 0; i < countM; i++) {
+            addBlock((SLOTS.M.time / 480) * 100, 'bg-purple-400 text-slate-950', 'M');
+            if (t0 > 0) addBlock((t0 / 480) * 100, 'bg-amber-400', 't0');
+        }
+        for (let i = 0; i < countL; i++) {
+            addBlock((SLOTS.L.time / 480) * 100, 'bg-emerald-400 text-slate-950', 'L');
+            if (t0 > 0) addBlock((t0 / 480) * 100, 'bg-amber-400', 't0');
+        }
+        if (freeTime > 0) {
+            addBlock((freeTime / 480) * 100, 'bg-slate-800 text-gray-400', 'Окно');
+        }
+    }
+
+    function renderExplanation(workTime, setupTime, profit, clientsCount, t0) {
+        const expBox = document.getElementById('shiftExplanationText');
+        const setupRatio = Math.round((setupTime / 480) * 100);
+
+        let html = `
+            <div class="p-2.5 rounded bg-pink-950/40 border border-pink-500/30 space-y-1">
+                <strong class="text-pink-300 block">Принято клиентов за смену: ${clientsCount} чел.</strong>
+                <span>Потери на подготовку/сетапы (t0): <strong class="text-amber-300">${setupTime} мин (${setupRatio}% времени смены)</strong></span>
+            </div>
+            <p class="text-[11px] text-gray-300 leading-relaxed">
+                ${setupRatio > 20 
+                    ? 'Высокая доля оверхедов! Более 20% времени смены расходуется на подготовку и дезинфекцию. Рекомендуется сместить баланс записи в сторону более длинных вечерних и VIP-комплексов.' 
+                    : 'Сбалансированная структура смены! Время сетапа минимизировано, основную часть рабочего дня занимает полезная выработка.'}
+            </p>
+        `;
+        expBox.innerHTML = html;
+    }
+
+    function renderCharts(workTime, setupTime, freeTime, t0, netProfit, revenue, varCosts, rent) {
+        const ctx1 = document.getElementById('chartTimeBreakdown').getContext('2d');
+        if (chart1) chart1.destroy();
+        chart1 = new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['Работа', 'Подготовка t0', 'Простой'],
+                datasets: [{
+                    data: [workTime, setupTime, freeTime],
+                    backgroundColor: ['#ec4899', '#f59e0b', '#334155']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        const ctx2 = document.getElementById('chartSlotMargin').getContext('2d');
+        if (chart2) chart2.destroy();
+        const marginS = Math.round((SLOTS.S.price - SLOTS.S.cost) / (SLOTS.S.time + t0));
+        const marginM = Math.round((SLOTS.M.price - SLOTS.M.cost) / (SLOTS.M.time + t0));
+        const marginL = Math.round((SLOTS.L.price - SLOTS.L.cost) / (SLOTS.L.time + t0));
+
+        chart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Экспресс S', 'Вечерний M', 'VIP Невеста L'],
+                datasets: [{
+                    label: 'Маржа (₸/мин)',
+                    data: [marginS, marginM, marginL],
+                    backgroundColor: ['#ec4899', '#c084fc', '#10b981']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        const ctx3 = document.getElementById('chartScenarios').getContext('2d');
+        if (chart3) chart3.destroy();
+        
+        const scA = (6 * (SLOTS.S.price - SLOTS.S.cost)) - rent;
+        const scB = netProfit;
+        const scC = (2 * (SLOTS.L.price - SLOTS.L.cost)) - rent;
+
+        chart3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['8 × 1ч (S)', 'Текущий', '2 × 4ч (VIP L)'],
+                datasets: [{
+                    label: 'Чистая маржа (₸)',
+                    data: [scA, scB, scC],
+                    backgroundColor: ['#334155', '#ec4899', '#c084fc']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        const ctx4 = document.getElementById('chartBreakEven').getContext('2d');
+        if (chart4) chart4.destroy();
+        chart4 = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['Выручка', 'Косметика', 'Аренда', 'Маржа'],
+                datasets: [{
+                    label: 'Сумма (₸)',
+                    data: [revenue, varCosts, rent, Math.max(0, netProfit)],
+                    backgroundColor: ['#ec4899', '#f59e0b', '#f43f5e', '#10b981']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+
+    ['sliderT0', 'sliderRent', 'sliderCountS', 'sliderCountM', 'sliderCountL'].forEach(id => {
+        document.getElementById(id).addEventListener('input', recalculateShift);
+    });
+
+    window.onload = recalculateShift;
+</script>
+</body>
+</html>
