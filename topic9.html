@@ -89,7 +89,7 @@
             margin: 0 auto;
         }
         
-        /* Сетка под 7 карточек в один ряд на десктопе */
+        /* Сетка под 7 карточек */
         .grid-container { 
             display: grid; 
             grid-template-columns: repeat(7, 185px); 
@@ -115,19 +115,16 @@
             } 
         } 
         
-        /* Стандартные карточки-ссылки */
+        /* Стандартные карточки без зазоров и отступов */
         .card { 
-            display: flex; 
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: block; 
             text-decoration: none; 
             border-radius: 16px; 
             width: 100%; 
             height: 310px; 
-            padding: 5px;
+            padding: 0; 
             overflow: hidden;
-            background: #ffffff; 
+            background: transparent; 
             border: 2px solid #cbd5e1;
             box-shadow: 0 4px 14px rgba(0,0,0,0.06);
             cursor: pointer;
@@ -139,21 +136,21 @@
         .card img { 
             width: 100%; 
             height: 100%; 
-            object-fit: contain; 
+            object-fit: cover; 
             object-position: center;
             display: block; 
-            border-radius: 12px;
-            background-color: #f8fafc;
-            transition: all 0.35s ease; 
+            border: none;
+            margin: 0;
+            padding: 0;
         }
         
         .card:hover { 
             transform: translateY(-8px) scale(1.03); 
-            border-color: #2563eb; 
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2); 
+            border-color: #001e50; 
+            box-shadow: 0 12px 25px rgba(0, 30, 80, 0.25); 
         }
 
-        /* 3D Интерактивные Перевертыши (Видео и Статьи) */
+        /* 3D Перевертыши без отступов */
         .flip-card-container {
             width: 100%;
             height: 310px;
@@ -186,9 +183,9 @@
         }
 
         .flip-card-front {
-            background: #ffffff; 
+            background: transparent; 
             border: 2px solid #cbd5e1;
-            padding: 5px;
+            padding: 0;
             box-shadow: 0 4px 14px rgba(0,0,0,0.06);
             transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         border-color 0.35s ease, 
@@ -196,17 +193,19 @@
         }
 
         .flip-card-container:hover .flip-card-front {
-            border-color: #2563eb;
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2);
+            border-color: #001e50;
+            box-shadow: 0 12px 25px rgba(0, 30, 80, 0.25);
         }
 
         .flip-card-front img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
-            border-radius: 12px;
-            background-color: #f8fafc;
+            display: block;
+            border: none;
+            margin: 0;
+            padding: 0;
         }
 
         .flip-card-back {
@@ -214,7 +213,7 @@
             color: white;
             transform: rotateY(180deg);
             border: 2px solid #3b82f6;
-            padding: 10px 8px;
+            padding: 12px 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -294,7 +293,7 @@
             .card, .flip-card-container {
                 width: 160px !important;
                 height: 270px !important;
-                padding: 4px;
+                padding: 0 !important;
             }
             .flip-card-back { padding: 8px 6px; }
             .item-list { gap: 4px; margin-top: 2px; max-height: 180px; }
