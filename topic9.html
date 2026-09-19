@@ -64,9 +64,9 @@
             text-align: center; 
             margin-top: 40px; 
             margin-bottom: 30px; 
-            padding: 0 40px; 
+            padding: 0 20px; 
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
         }
         
         h1 { 
@@ -89,22 +89,29 @@
             margin: 0 auto;
         }
         
-        /* Сетка в 6 колонок под одинаковую ширину */
+        /* Сетка под 7 карточек в один ряд на десктопе */
         .grid-container { 
             display: grid; 
-            grid-template-columns: repeat(6, 210px); 
-            gap: 16px; 
-            max-width: 1380px; 
+            grid-template-columns: repeat(7, 185px); 
+            gap: 14px; 
+            max-width: 1450px; 
             width: 100%; 
             justify-content: center; 
-            align-items: stroke;
+            align-items: stretch;
             padding-bottom: 30px; 
         }
         
-        @media (max-width: 1350px) { 
+        @media (max-width: 1400px) { 
             .grid-container { 
-                grid-template-columns: repeat(3, 210px); 
-                gap: 20px; 
+                grid-template-columns: repeat(4, 195px); 
+                gap: 18px; 
+            } 
+        } 
+
+        @media (max-width: 900px) { 
+            .grid-container { 
+                grid-template-columns: repeat(3, 195px); 
+                gap: 16px; 
             } 
         } 
         
@@ -116,9 +123,9 @@
             justify-content: center;
             text-decoration: none; 
             border-radius: 16px; 
-            width: 210px; 
-            height: 330px; 
-            padding: 6px;
+            width: 100%; 
+            height: 310px; 
+            padding: 5px;
             overflow: hidden;
             background: #ffffff; 
             border: 2px solid #cbd5e1;
@@ -148,8 +155,8 @@
 
         /* 3D Интерактивные Перевертыши (Видео и Статьи) */
         .flip-card-container {
-            width: 210px;
-            height: 330px;
+            width: 100%;
+            height: 310px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -181,7 +188,7 @@
         .flip-card-front {
             background: #ffffff; 
             border: 2px solid #cbd5e1;
-            padding: 6px;
+            padding: 5px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.06);
             transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         border-color 0.35s ease, 
@@ -207,7 +214,7 @@
             color: white;
             transform: rotateY(180deg);
             border: 2px solid #3b82f6;
-            padding: 12px 10px;
+            padding: 10px 8px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -221,27 +228,26 @@
             text-align: left;
             margin-top: 4px;
             overflow-y: auto;
-            max-height: 230px;
+            max-height: 220px;
             padding-right: 2px;
         }
 
-        /* Кастомный скроллбар для списка на обратной стороне */
         .item-list::-webkit-scrollbar { width: 3px; }
         .item-list::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
 
         .item-link {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 9.5px;
+            gap: 5px;
+            font-size: 9px;
             font-weight: 600;
             color: #cbd5e1;
             text-decoration: none;
-            padding: 5px 7px;
+            padding: 5px 6px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 6px;
             transition: all 0.2s ease;
-            line-height: 1.25;
+            line-height: 1.2;
         }
 
         .item-link:hover {
@@ -259,7 +265,7 @@
             line-height: 1.5;
         }
 
-        /* Адаптивность для мобильных устройств */
+        /* Адаптивность для смартфонов */
         @media (max-width: 768px) {
             body { padding: 15px 10px; }
             .top-left-logo {
@@ -291,7 +297,7 @@
                 padding: 4px;
             }
             .flip-card-back { padding: 8px 6px; }
-            .item-list { gap: 4px; margin-top: 2px; max-height: 185px; }
+            .item-list { gap: 4px; margin-top: 2px; max-height: 180px; }
             .item-link { font-size: 8px; padding: 4px 5px; }
         }
     </style>
@@ -323,17 +329,22 @@
             <img src="top9/pic-lecture9.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture9.png';" alt="Конспект лекции 9">
         </a>
 
-        <!-- 3. Симулятор: Антимонопольное регулирование -->
+        <!-- 3. Симулятор 1: Антимонопольное регулирование -->
         <a href="top9/sim-antitrust-regulation.html" class="card" title="Симулятор: Антимонопольное регулирование естественных монополий">
             <img src="top9/pic-sim-reg.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-reg.png';" alt="Симулятор Антимонопольное регулирование">
         </a>
 
-        <!-- 4. Симулятор: Предельные выгоды и издержки (MC-MB) -->
+        <!-- 4. Симулятор 2: Общественные блага (sim-public.html) -->
+        <a href="top9/sim-public.html" class="card" title="Симулятор: Общественные блага и антимонопольная политика">
+            <img src="top9/pic-sim-antitrust.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-antitrust.png';" alt="Симулятор Общественные блага">
+        </a>
+
+        <!-- 5. Симулятор 3: Предельные выгоды и издержки (MC = MB) -->
         <a href="top9/MC-MB.html" class="card" title="Симулятор: Оптимум общественных благ (MC = MB)">
             <img src="top9/pic-sim-mc-mb.png" onerror="this.onerror=null; this.src='pictures/main/pic-sim-mc-mb.png';" alt="Симулятор MC-MB">
         </a>
 
-        <!-- 5. Статьи и Кейсы (3D Перевертыш) -->
+        <!-- 6. Статьи и Кейсы (3D Перевертыш) -->
         <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
                 <!-- Лицевая сторона -->
@@ -344,30 +355,30 @@
                 <div class="flip-card-back">
                     <div>
                         <div class="text-[9px] font-bold text-amber-400 uppercase tracking-wider mb-0.5">Кейсы & Аналитика</div>
-                        <h4 class="text-[11px] font-extrabold text-white mb-1 border-b border-slate-700 pb-0.5">Тема 9: Фиаско Рынка</h4>
+                        <h4 class="text-[10.5px] font-extrabold text-white mb-1 border-b border-slate-700 pb-0.5">Тема 9: Фиаско Рынка</h4>
                     </div>
                     
                     <div class="item-list">
                         <a href="https://www.breakfreefromplastic.org/ru/2025/06/23/what-is-sachet-economy/" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-solid fa-newspaper text-amber-400 text-xs"></i>
-                            <span>1. Что такое пакетированная экономика?</span>
+                            <span class="truncate">1. Пакетированная экономика</span>
                         </a>
                         <a href="https://tengrinews.kz/article/kazaxstan-ne-alkogolnaia-strana-kulturolog-logike-trezvogo-4021/" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
-                            <i class="fa-solid fa-newspaper text-amber-400 text-xs"></i>
-                            <span>2. Казахстан — не алкогольная страна (Культурология)</span>
+                            <i class="fa-solid fa-wine-glass text-rose-400 text-xs"></i>
+                            <span class="truncate">2. Логика трезвого РК</span>
                         </a>
                         <a href="https://ru.euronews.com/2023/03/28/the-worlds-richest-country-made-public-transport-free-heres-what-happened-next" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
-                            <i class="fa-solid fa-bus text-amber-400 text-xs"></i>
-                            <span>3. Бесплатный транспорт в Люксембурге</span>
+                            <i class="fa-solid fa-bus text-sky-400 text-xs"></i>
+                            <span class="truncate">3. Транспорт Люксембурга</span>
                         </a>
                     </div>
 
-                    <div class="text-[8.5px] text-slate-400 mt-0.5 italic">Кликните для перехода</div>
+                    <div class="text-[8px] text-slate-400 mt-0.5 italic">Кликните для перехода</div>
                 </div>
             </div>
         </div>
 
-        <!-- 6. Видеоматериалы (3D Перевертыш) -->
+        <!-- 7. Видеоматериалы (3D Перевертыш) -->
         <div class="flip-card-container" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
                 <!-- Лицевая сторона -->
@@ -378,37 +389,37 @@
                 <div class="flip-card-back">
                     <div>
                         <div class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mb-0.5">Видеолекции</div>
-                        <h4 class="text-[11px] font-extrabold text-white mb-1 border-b border-slate-700 pb-0.5">Тема 9: Видеоматериалы</h4>
+                        <h4 class="text-[10.5px] font-extrabold text-white mb-1 border-b border-slate-700 pb-0.5">Тема 9: Видеоматериалы</h4>
                     </div>
                     
                     <div class="item-list">
                         <a href="https://www.youtube.com/watch?v=Lp9cvR6LNrE" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
-                            <span>1. Общественные блага</span>
+                            <span class="truncate">1. Общественные блага</span>
                         </a>
                         <a href="https://www.youtube.com/watch?v=Itgtg8-Q2ys" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
-                            <span>2. Внешние эффекты</span>
+                            <span class="truncate">2. Внешние эффекты</span>
                         </a>
                         <a href="https://www.youtube.com/watch?v=XiSVECjcFLU" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
-                            <span>3. Асимметрия информации</span>
+                            <span class="truncate">3. Асимметрия информации</span>
                         </a>
                         <a href="https://www.youtube.com/watch?v=wJSOooBchD4" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
-                            <span>4. Теорема Коуза</span>
+                            <span class="truncate">4. Теорема Коуза</span>
                         </a>
                         <a href="https://www.youtube.com/watch?v=NGNg_-besmY" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
-                            <span>5. Трагедия общин</span>
+                            <span class="truncate">5. Трагедия общин</span>
                         </a>
                         <a href="https://www.youtube.com/watch?v=OvsLvg_uL7s" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="item-link">
                             <i class="fa-brands fa-youtube text-red-500 text-xs"></i>
-                            <span>6. Фиаско государства</span>
+                            <span class="truncate">6. Фиаско государства</span>
                         </a>
                     </div>
 
-                    <div class="text-[8.5px] text-slate-400 mt-0.5 italic">Кликните по ссылке для просмотра</div>
+                    <div class="text-[8px] text-slate-400 mt-0.5 italic">Кликните по ссылке для просмотра</div>
                 </div>
             </div>
         </div>
