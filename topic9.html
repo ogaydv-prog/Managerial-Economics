@@ -89,7 +89,7 @@
             margin: 0 auto;
         }
         
-        /* Сетка под 7 карточек */
+        /* Сетка под 7 карточек в один ряд на десктопе */
         .grid-container { 
             display: grid; 
             grid-template-columns: repeat(7, 185px); 
@@ -97,7 +97,7 @@
             max-width: 1450px; 
             width: 100%; 
             justify-content: center; 
-            align-items: start;
+            align-items: stretch;
             padding-bottom: 30px; 
         }
         
@@ -115,42 +115,50 @@
             } 
         } 
         
-        /* Карточки подстраиваются строго по естественной высоте картинки */
+        /* Стандартные карточки-ссылки */
         .card { 
-            display: block; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-decoration: none; 
+            border-radius: 16px; 
             width: 100%; 
-            height: auto; 
-            padding: 0; 
-            margin: 0;
-            background: transparent; 
-            border: none;
-            box-shadow: none;
+            height: 310px; 
+            padding: 5px;
+            overflow: hidden;
+            background: #ffffff; 
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
             cursor: pointer;
-            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        border-color 0.35s ease, 
+                        box-shadow 0.35s ease;
         }
         
         .card img { 
             width: 100%; 
-            height: auto; 
+            height: 100%; 
+            object-fit: contain; 
+            object-position: center;
             display: block; 
-            border: none;
-            margin: 0;
-            padding: 0;
-            background: transparent;
+            border-radius: 12px;
+            background-color: #f8fafc;
+            transition: all 0.35s ease; 
         }
         
         .card:hover { 
             transform: translateY(-8px) scale(1.03); 
+            border-color: #2563eb; 
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2); 
         }
 
-        /* 3D Перевертыши с адаптивной высотой */
+        /* 3D Интерактивные Перевертыши (Видео и Статьи) */
         .flip-card-container {
             width: 100%;
-            aspect-ratio: 185 / 310;
+            height: 310px;
             perspective: 1000px;
             cursor: pointer;
-            background: transparent;
         }
 
         .flip-card-inner {
@@ -173,30 +181,32 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
+            border-radius: 16px;
             overflow: hidden;
         }
 
         .flip-card-front {
-            background: transparent; 
-            border: none;
-            padding: 0;
-            box-shadow: none;
-            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #ffffff; 
+            border: 2px solid #cbd5e1;
+            padding: 5px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        border-color 0.35s ease, 
+                        box-shadow 0.35s ease;
         }
 
         .flip-card-container:hover .flip-card-front {
-            transform: translateY(-8px) scale(1.03);
+            border-color: #2563eb;
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2);
         }
 
         .flip-card-front img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
-            display: block;
-            border: none;
-            margin: 0;
-            padding: 0;
-            background: transparent;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 12px;
+            background-color: #f8fafc;
         }
 
         .flip-card-back {
@@ -204,8 +214,7 @@
             color: white;
             transform: rotateY(180deg);
             border: 2px solid #3b82f6;
-            border-radius: 16px;
-            padding: 12px 10px;
+            padding: 10px 8px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -256,7 +265,7 @@
             line-height: 1.5;
         }
 
-        /* Адаптивность для мобильных устройств */
+        /* Адаптивность для смартфонов */
         @media (max-width: 768px) {
             body { padding: 15px 10px; }
             .top-left-logo {
@@ -284,7 +293,8 @@
             }
             .card, .flip-card-container {
                 width: 160px !important;
-                padding: 0 !important;
+                height: 270px !important;
+                padding: 4px;
             }
             .flip-card-back { padding: 8px 6px; }
             .item-list { gap: 4px; margin-top: 2px; max-height: 180px; }
