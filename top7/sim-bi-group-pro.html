@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBA Master Case | BI Group Deep Analytics Hub v4</title>
+    <title>MBA Master Case | BI Group Deep Analytics & Macro Hub v5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Библиотека для экспорта ответов в PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
         .tab-btn.active { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border-color: #38bdf8; box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4); }
@@ -105,7 +108,6 @@
     <header class="bg-slate-900/90 border-b border-slate-800 py-3.5 px-6 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3.5">
-                <!-- Встроенный обновленный логотип BI Group -->
                 <div id="logo-place" class="h-11 px-3 bg-white border border-slate-200 rounded-xl flex items-center justify-center shadow-md shadow-sky-500/10 shrink-0 overflow-hidden">
                     <img src="https://ogaydv-prog.github.io/Managerial-Economics/top7/bi-logo.png" 
                          alt="BI Group Logo" 
@@ -116,12 +118,12 @@
                         <span class="text-[10px] font-bold uppercase tracking-widest text-sky-400">MBA Executive Deep Analytics | AlmaU GSB</span>
                         <span class="text-[9px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">KPMG & KASE Audited Model 2026</span>
                     </div>
-                    <h1 class="text-lg sm:text-xl font-black text-white">BI Group: Глубокая Аналитика & Сценарии Управления</h1>
+                    <h1 class="text-lg sm:text-xl font-black text-white">BI Group: Стратегия, Макроэкономика & Bigville</h1>
                 </div>
             </div>
             <div class="flex items-center gap-3">
                 <span class="text-xs font-semibold text-slate-300 bg-slate-950 px-3.5 py-1.5 rounded-xl border border-slate-800 flex items-center gap-2">
-                    <span class="h-2 w-2 rounded-full bg-sky-400 animate-pulse"></span> KASE: BIGD | Multi-Factor Analysis
+                    <span class="h-2 w-2 rounded-full bg-sky-400 animate-pulse"></span> KASE: BIGD | Multi-Currency & Macro
                 </span>
             </div>
         </div>
@@ -130,11 +132,17 @@
     <!-- Navigation Tabs -->
     <div class="bg-slate-900/80 border-b border-slate-800 backdrop-blur-md sticky top-[69px] z-40">
         <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-2 py-2">
-            <button onclick="switchTab('audit2025')" id="tab-audit2025" class="tab-btn active px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+            <button onclick="switchTab('macro')" id="tab-macro" class="tab-btn active px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+                <i class="fa-solid fa-globe"></i> 0. Макроконтекст & Проектное Финансирование
+            </button>
+            <button onclick="switchTab('audit2025')" id="tab-audit2025" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
                 <i class="fa-solid fa-chart-line"></i> 1. МСФО 2024–2025 (Глубокий разбор)
             </button>
             <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
                 <i class="fa-solid fa-earth-americas"></i> 2. Заземление & Страновой CAPEX
+            </button>
+            <button onclick="switchTab('bigville')" id="tab-bigville" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-sky-500/40 text-sky-300 hover:bg-sky-950/30 whitespace-nowrap">
+                <i class="fa-solid fa-city"></i> 2.1 Экосистема Bigville
             </button>
             <button onclick="switchTab('kase2026')" id="tab-kase2026" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
                 <i class="fa-solid fa-diagram-project"></i> 3. KASE H1 2026 (Радар & Леверидж)
@@ -143,7 +151,7 @@
                 <i class="fa-solid fa-sliders"></i> 4. Симулятор Цен (Area & EV)
             </button>
             <button onclick="switchTab('case')" id="tab-case" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
-                <i class="fa-solid fa-users-gear"></i> 5. Кейсы MBA (Ввод)
+                <i class="fa-solid fa-users-gear"></i> 5. Кейсы MBA (5 Задач)
             </button>
             <button onclick="switchTab('solution')" id="tab-solution" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-rose-500/30 text-rose-400 hover:bg-rose-950/30 whitespace-nowrap">
                 <i class="fa-solid fa-key"></i> 6. Разгадка Преподавателя
@@ -154,8 +162,64 @@
     <!-- Main Content -->
     <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-grow">
 
+        <!-- TAB 0: MACROECONOMIC CONTEXT & INTRODUCTION -->
+        <div id="content-macro" class="tab-content space-y-6 block">
+            <div class="custom-card p-6 rounded-2xl border-l-4 border-l-sky-500 space-y-3">
+                <h2 class="text-base font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-building-columns text-sky-400"></i>
+                    Макроэкономическая Среда и Влияние на Проектное Финансирование Девелоперов
+                </h2>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Девелоперский бизнес крайне чувствителен к денежно-кредитной политике регулятора и ставкам привлечения капитала. Высокая базовая ставка Нацбанка РК (14.25%–15.25%) напрямую увеличивает стоимость проектных кредитов для коммерческих застройщиков, делая классическое банковское финансирование дорогостоящим элементом структуры $WACC$.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="kpi-card p-5 rounded-2xl space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-sky-400 uppercase">Базовая Ставка НБ РК</span>
+                        <i class="fa-solid fa-percent text-sky-400 text-xs"></i>
+                    </div>
+                    <p class="text-2xl font-black text-white">14.25% – 15.25%</p>
+                    <p class="text-[11px] text-slate-300">Стоимость коммерческого кредита для девелопера достигает <strong class="text-amber-300">18.5%–20.5%</strong>, заставляя оптимизировать финансовый леверидж.</p>
+                </div>
+
+                <div class="kpi-card p-5 rounded-2xl space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-emerald-400 uppercase">Эскроу & Авансы</span>
+                        <i class="fa-solid fa-shield-halved text-emerald-400 text-xs"></i>
+                    </div>
+                    <p class="text-2xl font-black text-emerald-400">82% Обязательств</p>
+                    <p class="text-[11px] text-slate-300">Защита от высоких ставок: 1 737.6 млрд ₸ обязательств — это <strong class="text-emerald-300">беспроцентный капитал дольщиков</strong>.</p>
+                </div>
+
+                <div class="kpi-card p-5 rounded-2xl space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-rose-400 uppercase">Инфляция СМР</span>
+                        <i class="fa-solid fa-arrow-trend-up text-rose-400 text-xs"></i>
+                    </div>
+                    <p class="text-2xl font-black text-white">+14.0% YoY</p>
+                    <p class="text-[11px] text-slate-300">Удорожание стройматериалов и логистики требует жесткого контроля себестоимости ($COGS$).</p>
+                </div>
+            </div>
+
+            <div class="custom-card p-5 rounded-2xl space-y-3">
+                <h4 class="font-bold text-xs text-sky-400 uppercase">Прямые каналы влияния макросреды на модель BI Group:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300">
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+                        <strong class="text-white block">• Механизм раскрытия Эскроу-счетов:</strong>
+                        <p>Средства покупателей заморожены на банковских счетах до ввода объекта в эксплуатацию. Задержка строительства даже на 2 месяца резко повышает финансовые расходы по проектным займам.</p>
+                    </div>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+                        <strong class="text-white block">• Охлаждение Ипотечного рынка:</strong>
+                        <p>Ужесточение лимитов программ «Наурыз» и «Отау» увеличивает эластичность спроса по цене ($E_d > 1$). Требуются программы внутренней рассрочки и субсидирования ставок.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- TAB 1: ADVANCED AUDIT 2024-2025 -->
-        <div id="content-audit2025" class="tab-content space-y-6 block">
+        <div id="content-audit2025" class="tab-content space-y-6 hidden">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="kpi-card p-4 rounded-2xl">
                     <span class="text-[10px] font-bold text-emerald-400 uppercase">Выручка МСФО 2025</span>
@@ -367,16 +431,49 @@
             </div>
         </div>
 
-        <!-- TAB 3: KASE H1 2026 (6 FLIP CARDS WITH DEEP ANALYTICS) -->
+        <!-- TAB 2.1: BIGVILLE ECOSYSTEM -->
+        <div id="content-bigville" class="tab-content space-y-6 hidden">
+            <div class="custom-card p-6 rounded-2xl border-l-4 border-l-sky-400 space-y-3">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-base font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-city text-sky-400"></i>
+                        Аналитическая Справка: Экосистема «Bigville» (Город в городе)
+                    </h2>
+                    <span class="text-[10px] bg-sky-500/20 text-sky-300 border border-sky-500/30 px-2.5 py-1 rounded-full font-bold">Флагманская модель</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Концепция <strong>Bigville</strong> — это комплексная застройка территории от 3 гектаров с единой продуманной инфраструктурой (школы BINOM, частные сады, игропарки PlayHub, общественные парки и бульвары), формирующая самодостаточную экосистему для жителей.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="custom-card p-5 rounded-2xl space-y-2">
+                    <h4 class="font-bold text-xs text-sky-400 uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Социальный Якорь</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">Строительство инновационных школ <strong>BINOM</strong> (в рамках ГЧП) и <strong>Quantum</strong> непосредственно внутри микрорайона создает гарантированный семейный спрос, поднимает ценность локации и ускоряет темпы продаж первичного жилья на <strong class="text-sky-300">35%</strong>.</p>
+                </div>
+                <div class="custom-card p-5 rounded-2xl space-y-2">
+                    <h4 class="font-bold text-xs text-emerald-400 uppercase"><i class="fa-solid fa-mobile-screen mr-1"></i> BIG App Экосистема</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">Сквозная цифровая платформа объединяет управление жилым фондом, умный дом, внутренний маркетплейс локальных услуг и комьюнити-сервисы. Это не только повышает лояльность клиентов (NPS > 82%), но и генерирует дополнительную маржу сервисных подразделений.</p>
+                </div>
+                <div class="custom-card p-5 rounded-2xl space-y-2">
+                    <h4 class="font-bold text-xs text-amber-400 uppercase"><i class="fa-solid fa-scale-balanced mr-1"></i> Экономика масштаба</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">Централизованная прокладка магистральных сетей, единый генплан и сквозные закупки стройматериалов обеспечивают мощный снижающий эффект на себестоимость: удельный $COGS$ падает на <strong class="text-amber-300">12%–14% на м²</strong> по сравнению с точечной застройкой.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: KASE H1 2026 (WITH MULTI-CURRENCY & ALL 6 FLIP CARDS) -->
         <div id="content-kase2026" class="tab-content space-y-6 hidden">
-            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex justify-between items-center">
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
                     <h3 class="text-sm font-bold text-white">Интерактивный Мониторинг KASE H1 2026</h3>
-                    <p class="text-xs text-slate-400">Официальная отчетность биржи KASE на 01.07.2026 с аналитическими разворотами карточек</p>
+                    <p class="text-xs text-slate-400">Официальная отчетность биржи KASE на 01.07.2026. *В скобках указаны исторические курсы отчета 2025.</p>
                 </div>
+                <!-- Трехвалютный переключатель KZT / USD / UZS -->
                 <div class="flex items-center bg-slate-950 border border-slate-800 p-1 rounded-xl">
                     <button onclick="setCurrency('kzt')" id="btn-kzt" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-sky-600 text-white">₸ KZT</button>
                     <button onclick="setCurrency('usd')" id="btn-usd" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">$ USD</button>
+                    <button onclick="setCurrency('uzs')" id="btn-uzs" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">сум UZS</button>
                 </div>
             </div>
 
@@ -385,7 +482,7 @@
                 <div class="kpi-card p-4 rounded-2xl">
                     <span class="text-[10px] font-bold text-sky-400 uppercase">Совокупные Активы</span>
                     <p class="text-xl font-black text-white mt-1" id="kpi-assets">2 353.9 млрд ₸</p>
-                    <span class="text-[10px] text-emerald-400 font-bold">+6.6% Рост за квартал</span>
+                    <span class="text-[10px] text-slate-400" id="rate-note-assets">Курс: 1$ = 502.57 ₸ (МСФО 2025)</span>
                 </div>
                 <div class="kpi-card p-4 rounded-2xl">
                     <span class="text-[10px] font-bold text-rose-400 uppercase">Обязательства (D/E = 9.0x)</span>
@@ -678,88 +775,106 @@
             </div>
         </div>
 
-        <!-- TAB 5: MBA CASES -->
+        <!-- TAB 5: MBA CASES (5 TASKS WITH PDF EXPORT) -->
         <div id="content-case" class="tab-content space-y-6 hidden">
-            <div class="flex space-x-2 border-b border-slate-800 pb-3 overflow-x-auto">
-                <button onclick="switchTask('task-1')" id="subtab-task-1" class="subtab-btn active px-4 py-2 rounded-xl text-xs font-bold transition border border-transparent whitespace-nowrap">
-                    <i class="fa-solid fa-1 mr-1"></i> Задача 1: Региональный дисбаланс
-                </button>
-                <button onclick="switchTask('task-2')" id="subtab-task-2" class="subtab-btn px-4 py-2 rounded-xl text-xs font-bold transition border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
-                    <i class="fa-solid fa-2 mr-1"></i> Задача 2: Долговой Леверидж D/E
-                </button>
-                <button onclick="switchTask('task-3')" id="subtab-task-3" class="subtab-btn px-4 py-2 rounded-xl text-xs font-bold transition border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
-                    <i class="fa-solid fa-3 mr-1"></i> Задача 3: Охлаждение ипотеки
-                </button>
-                <button onclick="switchTask('task-4')" id="subtab-task-4" class="subtab-btn px-4 py-2 rounded-xl text-xs font-bold transition border border-transparent text-slate-400 hover:text-white whitespace-nowrap">
-                    <i class="fa-solid fa-4 mr-1"></i> Задача 4: Экспансия в Узбекистан
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-slate-800 pb-3">
+                <div class="flex space-x-2 overflow-x-auto w-full sm:w-auto">
+                    <button onclick="switchTask('task-1')" id="subtab-task-1" class="subtab-btn active px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">1. Дисбаланс</button>
+                    <button onclick="switchTask('task-2')" id="subtab-task-2" class="subtab-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 whitespace-nowrap">2. Леверидж</button>
+                    <button onclick="switchTask('task-3')" id="subtab-task-3" class="subtab-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 whitespace-nowrap">3. Ипотека</button>
+                    <button onclick="switchTask('task-4')" id="subtab-task-4" class="subtab-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 whitespace-nowrap">4. Узбекистан</button>
+                    <button onclick="switchTask('task-5')" id="subtab-task-5" class="subtab-btn px-3 py-1.5 rounded-xl text-xs font-bold text-sky-400 whitespace-nowrap">5. Экосистема Bigville</button>
+                </div>
+                <!-- Кнопка экспорта ответов в PDF -->
+                <button onclick="exportAnswersToPDF()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-file-pdf"></i> Экспорт решений группы в PDF
                 </button>
             </div>
 
-            <div id="task-1" class="task-content space-y-4 block">
-                <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-sky-500">
-                    <h3 class="text-base font-bold text-white">Задача №1: Региональная концентрация маржи (Астана vs Алматы)</h3>
-                    <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
-                        <p><strong>Контекст аудита МСФО:</strong> Согласно отчёту KPMG за 2025 год, г. Астана сгенерировала 167.8 млрд ₸ валовой прибыли (65.7%), тогда как г. Алматы дал лишь 51.3 млрд ₸ (20.1%).</p>
-                        <p><strong>Экономический разбор:</strong> В Алматы высокая стоимость земельных участков, сложная сейсмическая регуляторика и ограничение этажности снижают маржинальность девелопмента, в то время как Астана масштабируется через формат Bigville.</p>
+            <!-- Внутренний контейнер для генерации PDF -->
+            <div id="pdf-container" class="space-y-4">
+                <div id="task-1" class="task-content space-y-4 block">
+                    <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-sky-500">
+                        <h3 class="text-base font-bold text-white">Задача №1: Региональная концентрация маржи (Астана vs Алматы)</h3>
+                        <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p><strong>Контекст аудита МСФО:</strong> Согласно отчёту KPMG за 2025 год, г. Астана сгенерировала 167.8 млрд ₸ валовой прибыли (65.7%), тогда как г. Алматы дал лишь 51.3 млрд ₸ (20.1%).</p>
+                            <p><strong>Экономический разбор:</strong> В Алматы высокая стоимость земельных участков, сложная сейсмическая регуляторика и ограничение этажности снижают маржинальность девелопмента, в то время как Астана масштабируется через формат Bigville.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-sky-400 font-bold">
+                            Вопрос к группе: Сформулируйте 3 стратегических решения для выравнивания маржинальности алматинского кластера без риска перегрева цен.
+                        </div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-sky-400 font-bold">
-                        Вопрос к группе: Сформулируйте 3 стратегических решения для выравнивания маржинальности алматинского кластера без риска перегрева цен.
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
+                        <textarea id="ans-task-1" rows="4" placeholder="Введите ход рассуждений и стратегии..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 font-mono"></textarea>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
-                    <textarea id="ans-task-1" rows="4" placeholder="Введите ход рассуждений и стратегии..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 font-mono"></textarea>
-                </div>
-            </div>
 
-            <div id="task-2" class="task-content space-y-4 hidden">
-                <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-amber-500">
-                    <h3 class="text-base font-bold text-white">Задача №2: Управление высоким финансовым левериджем (D/E = 9.0x)</h3>
-                    <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
-                        <p><strong>Контекст отчётности KASE:</strong> На 01.07.2026 совокупные обязательства BI Development составляют 2 119 млрд ₸ при собственном капитале 234.9 млрд ₸. Соотношение Oбязательств к Капиталу достигает 9.0x.</p>
-                        <p><strong>Экономический разбор:</strong> В девелопменте большую часть обязательств составляют эскроу-счета, авансы покупателей и средства дольщиков. Однако при задержке ввода или падении продаж возникает риск кассового разрыва.</p>
+                <div id="task-2" class="task-content space-y-4 hidden">
+                    <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-amber-500">
+                        <h3 class="text-base font-bold text-white">Задача №2: Управление высоким финансовым левериджем (D/E = 9.0x)</h3>
+                        <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p><strong>Контекст отчётности KASE:</strong> На 01.07.2026 совокупные обязательства BI Development составляют 2 119 млрд ₸ при собственном капитале 234.9 млрд ₸. Соотношение Oбязательств к Капиталу достигает 9.0x.</p>
+                            <p><strong>Экономический разбор:</strong> В девелопменте большую часть обязательств составляют эскроу-счета, авансы покупателей и средства дольщиков. Однако при задержке ввода или падении продаж возникает риск кассового разрыва.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-amber-400 font-bold">
+                            Вопрос к группе: Проанализируйте ликвидность Группы и предложите стресс-сценарий реструктуризации долга при падении продаж на 25%.
+                        </div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-amber-400 font-bold">
-                        Вопрос к группе: Проанализируйте ликвидность Группы и предложите стресс-сценарий реструктуризации долга при падении продаж на 25%.
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
+                        <textarea id="ans-task-2" rows="4" placeholder="Введите стресс-сценарий..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"></textarea>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
-                    <textarea id="ans-task-2" rows="4" placeholder="Введите стресс-сценарий..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"></textarea>
-                </div>
-            </div>
 
-            <div id="task-3" class="task-content space-y-4 hidden">
-                <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-emerald-500">
-                    <h3 class="text-base font-bold text-white">Задача №3: Затоваренность и стратегии рассрочки при Ed > 1</h3>
-                    <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
-                        <p><strong>Контекст рынка:</strong> Ужесточение условий льготных ипотечных программ (Наурыз/Отау) и высокие рыночные ставки привели к увеличению срока экспозиции квартир комфорт-класса.</p>
-                        <p><strong>Экономический разбор:</strong> Спрос на жилье комфорт-класса highly эластичен по цене и условиям первоначального взноса. Прямое снижение цен разрушает бренд, а отсутствие гибкости останавливает стройку.</p>
+                <div id="task-3" class="task-content space-y-4 hidden">
+                    <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-emerald-500">
+                        <h3 class="text-base font-bold text-white">Задача №3: Затоваренность и стратегии рассрочки при Ed > 1</h3>
+                        <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p><strong>Контекст рынка:</strong> Ужесточение условий льготных ипотечных программ (Наурыз/Отау) и высокие рыночные ставки привели к увеличению срока экспозиции квартир комфорт-класса.</p>
+                            <p><strong>Экономический разбор:</strong> Спрос на жилье комфорт-класса highly эластичен по цене и условиям первоначального взноса. Прямое снижение цен разрушает бренд, а отсутствие гибкости останавливает стройку.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-emerald-400 font-bold">
+                            Вопрос к группе: Разработайте программу внутренней рассрочки BI Group (Trade-in / Длительная рассрочка), сохраняющую целевую EBITDA margin.
+                        </div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-emerald-400 font-bold">
-                        Вопрос к группе: Разработайте программу внутренней рассрочки BI Group (Trade-in / Длительная рассрочка), сохраняющую целевую EBITDA margin.
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
+                        <textarea id="ans-task-3" rows="4" placeholder="Разработайте программу рассрочки..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-mono"></textarea>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
-                    <textarea id="ans-task-3" rows="4" placeholder="Разработайте программу рассрочки..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-mono"></textarea>
-                </div>
-            </div>
 
-            <div id="task-4" class="task-content space-y-4 hidden">
-                <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-rose-500">
-                    <h3 class="text-base font-bold text-white">Задача №4: Оценка M&A сделок международной экспансии (Узбекистан)</h3>
-                    <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
-                        <p><strong>Контекст аудита МСФО 3:</strong> В 2025 году компания закрыла поэтапную сделку по приобретению 100% активов в Ташкенте.</p>
-                        <p><strong>Экономический разбор:</strong> Международная экспансия снижает зависимость от ипотечного рынка РК, но добавляет валютные риски (узбекский сум) и особенности местного комплаенса.</p>
+                <div id="task-4" class="task-content space-y-4 hidden">
+                    <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-rose-500">
+                        <h3 class="text-base font-bold text-white">Задача №4: Оценка M&A сделок международной экспансии (Узбекистан)</h3>
+                        <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p><strong>Контекст аудита МСФО 3:</strong> В 2025 году компания закрыла поэтапную сделку по приобретению 100% активов в Ташкенте.</p>
+                            <p><strong>Экономический разбор:</strong> Международная экспансия снижает зависимость от ипотечного рынка РК, но добавляет валютные риски (узбекский сум) и особенности местного комплаенса.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-rose-400 font-bold">
+                            Вопрос к группе: Оцените ROI зарубежной экспансии и риски интеграции бизнес-модели BI Group на рынке Ташкента.
+                        </div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-rose-400 font-bold">
-                        Вопрос к группе: Оцените ROI зарубежной экспансии и риски интеграции бизнес-модели BI Group на рынке Ташкента.
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
+                        <textarea id="ans-task-4" rows="4" placeholder="Оцените риски M&A..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 font-mono"></textarea>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
-                    <textarea id="ans-task-4" rows="4" placeholder="Оцените риски M&A..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500 font-mono"></textarea>
+
+                <div id="task-5" class="task-content space-y-4 hidden">
+                    <div class="custom-card p-6 rounded-2xl space-y-3 border-l-4 border-l-sky-400">
+                        <h3 class="text-base font-bold text-white">Задача №5: Экономика Экосистемы «Bigville» & Социальный CAPEX</h3>
+                        <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p><strong>Контекст:</strong> Инвестиции в строительство школ BINOM и парков PlayHub снижают оперативную маржу проекта на первых этапах, но дают удорожание цены м² последующих очередей на 18%–22%.</p>
+                           <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-sky-400 font-bold">
+    Вопрос к группе: Застройщики часто считают школы и парки «доп. расходами». Объясните, как инфраструктура Bigville генерирует скрытую прибыль. С какими 2 рисками столкнется компания, если полностью переложит эти затраты в цену м²?
+</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">Введите решение вашей группы:</label>
+                        <textarea id="ans-task-5" rows="4" placeholder="Введите экономический расчет ROI Bigville..." class="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 font-mono"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -770,7 +885,7 @@
                 <div class="h-12 w-12 bg-sky-500/10 text-sky-400 rounded-full flex items-center justify-center text-xl mx-auto border border-sky-500/20">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white">Разгадка Преподавателя</h3>
+                <h3 class="text-lg font-bold text-white">Примерный ответ</h3>
                 <p class="text-xs text-slate-400">Введите пароль доступа для демонстрации эталонных ответов.</p>
                 <div class="flex gap-2">
                     <input type="password" id="solution-pass-input" placeholder="Пароль..." class="flex-grow p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
@@ -812,6 +927,16 @@
                             Сделка M&A в Ташкенте 2025 года стратегически оправдана: маржинальность первичного рынка Ташкента превышает 30%, а высокий демографический прирост создает устойчивый спрос.
                         </p>
                     </div>
+
+                    <div class="custom-card p-5 rounded-2xl border-l-4 border-l-sky-400 space-y-2">
+    <h4 class="font-bold text-sm text-sky-400">Эталонный ответ — Задача 5: Экосистема Bigville</h4>
+    <p class="text-xs text-slate-300 leading-relaxed">
+        <strong class="text-white">1. Источники прибыли:</strong> Школы BINOM и парки — это «социальный якорь». Они ускоряют темпы продаж (скорость cash-flow) и дают премию к цене +18–22% на 2–3 очередях строительства, компенсируя начальный CAPEX.<br>
+        <strong class="text-white">2. Главные риски («НО»):</strong> 
+        а) <i>Риск урезания спроса:</i> Полная перекладка CAPEX в цену м² выбивает объект из категории «Комфорт» в «Бизнес», сужая аудиторию покупателей.<br>
+        б) <i>Кассовый разрыв:</i> Инфраструктуру нужно строить на этапе 1-й очереди (высокие расходы), а премия к цене реализуется только в последующих очередях.
+    </p>
+</div>
                 </div>
             </div>
         </div>
@@ -824,7 +949,8 @@
 
     <script>
         let currentCurrency = 'kzt';
-        const USD_RATE = 475.0;
+        const USD_RATE_2025 = 502.57; // Курс МСФО 2025
+        const UZS_RATE_2025 = 4.18;   // 100 UZS = 4.18 KZT (МСФО 2025)
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
@@ -871,27 +997,56 @@
             currentCurrency = curr;
             const bKzt = document.getElementById('btn-kzt');
             const bUsd = document.getElementById('btn-usd');
+            const bUzs = document.getElementById('btn-uzs');
+
+            bKzt.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
+            bUsd.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
+            bUzs.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
 
             if (curr === 'usd') {
                 bUsd.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-sky-600 text-white';
-                bKzt.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
-                
-                document.getElementById('kpi-assets').textContent = '$' + (2353.9 / USD_RATE * 1000).toFixed(2) + ' млн';
-                document.getElementById('kpi-liab').textContent = '$' + (2119.0 / USD_RATE * 1000).toFixed(2) + ' млн';
-                document.getElementById('kpi-equity').textContent = '$' + (234.9 / USD_RATE * 1000).toFixed(2) + ' млн';
-                document.getElementById('kpi-rev').textContent = '$' + (340.86 / USD_RATE * 1000).toFixed(2) + ' млн';
-                document.getElementById('kpi-profit').textContent = '$' + (55.4 / USD_RATE * 1000).toFixed(2) + ' млн';
+                document.getElementById('kpi-assets').textContent = '$' + (2353.9 / USD_RATE_2025 * 1000).toFixed(2) + ' млн';
+                document.getElementById('kpi-liab').textContent = '$' + (2119.0 / USD_RATE_2025 * 1000).toFixed(2) + ' млн';
+                document.getElementById('kpi-equity').textContent = '$' + (234.9 / USD_RATE_2025 * 1000).toFixed(2) + ' млн';
+                document.getElementById('kpi-rev').textContent = '$' + (340.86 / USD_RATE_2025 * 1000).toFixed(2) + ' млн';
+                document.getElementById('kpi-profit').textContent = '$' + (55.4 / USD_RATE_2025 * 1000).toFixed(2) + ' млн';
+                document.getElementById('rate-note-assets').textContent = 'Базовый курс отчетности: 1$ = 502.57 KZT';
+            } else if (curr === 'uzs') {
+                bUzs.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-sky-600 text-white';
+                const mult = (1000 / UZS_RATE_2025 * 100);
+                document.getElementById('kpi-assets').textContent = (2353.9 * mult / 1000).toFixed(1) + ' млрд сум';
+                document.getElementById('kpi-liab').textContent = (2119.0 * mult / 1000).toFixed(1) + ' млрд сум';
+                document.getElementById('kpi-equity').textContent = (234.9 * mult / 1000).toFixed(1) + ' млрд сум';
+                document.getElementById('kpi-rev').textContent = (340.86 * mult / 1000).toFixed(1) + ' млрд сум';
+                document.getElementById('kpi-profit').textContent = (55.4 * mult / 1000).toFixed(1) + ' млрд сум';
+                document.getElementById('rate-note-assets').textContent = 'Базовый курс отчетности: 100 UZS = 4.18 KZT';
             } else {
                 bKzt.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-sky-600 text-white';
-                bUsd.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
-
                 document.getElementById('kpi-assets').textContent = '2 353.9 млрд ₸';
                 document.getElementById('kpi-liab').textContent = '2 119.0 млрд ₸';
                 document.getElementById('kpi-equity').textContent = '234.9 млрд ₸';
                 document.getElementById('kpi-rev').textContent = '340.86 млрд ₸';
                 document.getElementById('kpi-profit').textContent = '55.4 млрд ₸';
+                document.getElementById('rate-note-assets').textContent = 'Национальная валюта РК (KZT)';
             }
             if (debtStructureChart) updateKaseChartsCurrency();
+        }
+
+        function exportAnswersToPDF() {
+            document.querySelectorAll('.task-content').forEach(c => c.classList.remove('hidden'));
+            
+            const element = document.getElementById('pdf-container');
+            const opt = {
+                margin:       [10, 10, 10, 10],
+                filename:     'BI_Group_MBA_Case_Answers.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, backgroundColor: '#030712' },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                switchTask('task-1');
+            });
         }
 
         // Global Chart Handles
@@ -901,7 +1056,6 @@
         let simTrTcChart = null, simBepChart = null, simProfitChart = null, simCapChart = null;
 
         function initAuditCharts() {
-            // 1. Waterfall Chart P&L 2025
             const ctx1 = document.getElementById('waterfallChart').getContext('2d');
             waterfallChart = new Chart(ctx1, {
                 type: 'bar',
@@ -917,7 +1071,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b' }, grid: { display: false } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 2. Radar Chart - Регионы
             const ctx2 = document.getElementById('regionRadarChart').getContext('2d');
             regionRadarChart = new Chart(ctx2, {
                 type: 'radar',
@@ -932,7 +1085,6 @@
                 options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false }, grid: { color: '#334155' }, angleLines: { color: '#334155' }, pointLabels: { color: '#94a3b8', font: { size: 9 } } } }, plugins: { legend: { labels: { color: '#94a3b8', font: { size: 9 } } } } }
             });
 
-            // 3. EBITDA vs OCF
             const ctx3 = document.getElementById('ebitdaOcfChart').getContext('2d');
             ebitdaOcfChart = new Chart(ctx3, {
                 type: 'line',
@@ -946,7 +1098,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } }, scales: { x: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 4. SG&A breakdown
             const ctx4 = document.getElementById('sgaChart').getContext('2d');
             sgaChart = new Chart(ctx4, {
                 type: 'doughnut',
@@ -959,7 +1110,6 @@
         }
 
         function initPortfolioCharts() {
-            // 1. Land Bank
             const ctx1 = document.getElementById('landBankChart').getContext('2d');
             landBankChart = new Chart(ctx1, {
                 type: 'pie',
@@ -970,7 +1120,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 9 } } } } }
             });
 
-            // 2. CAPEX
             const ctx2 = document.getElementById('capexChart').getContext('2d');
             capexChart = new Chart(ctx2, {
                 type: 'bar',
@@ -981,7 +1130,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b' }, grid: { display: false } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 3. Area completion
             const ctx3 = document.getElementById('completionAreaChart').getContext('2d');
             completionAreaChart = new Chart(ctx3, {
                 type: 'line',
@@ -992,7 +1140,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 4. Margin Geo
             const ctx4 = document.getElementById('marginGeoChart').getContext('2d');
             marginGeoChart = new Chart(ctx4, {
                 type: 'bar',
@@ -1005,7 +1152,6 @@
         }
 
         function initKaseCharts() {
-            // 1. Radar Ratios
             const ctx1 = document.getElementById('kaseRadarChart').getContext('2d');
             kaseRadarChart = new Chart(ctx1, {
                 type: 'radar',
@@ -1016,7 +1162,6 @@
                 options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false }, grid: { color: '#334155' }, angleLines: { color: '#334155' }, pointLabels: { color: '#94a3b8', font: { size: 8 } } } }, plugins: { legend: { display: false } } }
             });
 
-            // 2. Debt Structure
             const ctx2 = document.getElementById('debtStructureChart').getContext('2d');
             debtStructureChart = new Chart(ctx2, {
                 type: 'bar',
@@ -1030,7 +1175,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8', font: { size: 8 } } } }, scales: { x: { ticks: { color: '#64748b' }, grid: { display: false } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 3. Asset Turnover
             const ctx3 = document.getElementById('turnoverChart').getContext('2d');
             turnoverChart = new Chart(ctx3, {
                 type: 'line',
@@ -1041,7 +1185,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 4. Quarter chart
             const ctx4 = document.getElementById('kaseQuarterChart').getContext('2d');
             kaseQuarterChart = new Chart(ctx4, {
                 type: 'bar',
@@ -1055,7 +1198,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8', font: { size: 8 } } } }, scales: { x: { ticks: { color: '#64748b' }, grid: { display: false } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 5. Equity ratio
             const ctx5 = document.getElementById('equityRatioChart').getContext('2d');
             equityRatioChart = new Chart(ctx5, {
                 type: 'line',
@@ -1066,7 +1208,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } } }
             });
 
-            // 6. ICR
             const ctx6 = document.getElementById('icrChart').getContext('2d');
             icrChart = new Chart(ctx6, {
                 type: 'bar',
@@ -1079,7 +1220,7 @@
         }
 
         function updateKaseChartsCurrency() {
-            const mult = currentCurrency === 'usd' ? (1000 / USD_RATE) : 1;
+            const mult = currentCurrency === 'usd' ? (1000 / USD_RATE_2025) : (currentCurrency === 'uzs' ? (1000 / UZS_RATE_2025 * 100 / 1000) : 1);
             debtStructureChart.data.datasets[0].data = [1638.9 * mult, 1737.6 * mult];
             debtStructureChart.data.datasets[1].data = [359.8 * mult, 381.4 * mult];
             debtStructureChart.update();
