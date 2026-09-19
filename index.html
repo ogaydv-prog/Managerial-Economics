@@ -46,11 +46,11 @@
             margin-bottom: 35px;
         }
 
-        /* Крупный, глубокий темно-синий заголовок */
+        /* Крупный заголовок AlmaU */
         h1 {
-            font-size: 38px !important;         /* РАЗМЕР ШРИФТА */
-            font-weight: 900 !important;        /* МАКСИМАЛЬНАЯ ЖИРНОСТЬ */
-            color: #001e50 !important;          /* НАСЫЩЕННЫЙ ТЕМНО-СИНИЙ ЦВЕТ ALMAU */
+            font-size: 38px !important;
+            font-weight: 900 !important;
+            color: #001e50 !important;
             margin-bottom: 8px;
             margin-top: 10px;
             letter-spacing: 0.5px;
@@ -79,23 +79,23 @@
             padding-bottom: 40px;
         }
 
-        /* Карточка строго обтягивает контур картинки без отступов */
-      .card {
-    display: inline-block;
-    text-decoration: none;
-    background: transparent;
-    border-radius: 16px;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    width: 220px;  /* <--- УВЕЛИЧИЛИ ШИРИНУ */
-    height: 240px; /* <--- УМЕНЬШИЛИ ВЫСОТУ */
-    position: relative;
-}
+        /* Карточка единого размера */
+        .card {
+            display: inline-block;
+            text-decoration: none;
+            background: transparent;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 220px;
+            height: 240px;
+            position: relative;
+        }
 
-        /* Рамка и скругление сидят прямо на самой картинке */
+        /* Картинка карточки */
         .card img {
             width: 100%;
             height: 100%;
-            object-fit: fill; /* Заполняет всю площадь карточки ровно по контуру */
+            object-fit: fill;
             display: block;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
@@ -103,7 +103,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Подсветка темно-синей рамкой AlmaU и поднятие при наведении */
+        /* Эффект наведения */
         .card:hover {
             transform: translateY(-8px) scale(1.03);
         }
@@ -122,12 +122,12 @@
             text-align: center;
             line-height: 1.6;
         }
+
         @media (max-width: 768px) {
             body {
                 padding: 15px 10px;
             }
 
-            /* Возвращаем логотип в общий поток и центрируем */
             .top-left-logo {
                 position: relative;
                 top: 0;
@@ -143,7 +143,6 @@
                 padding: 0 10px;
             }
 
-            /* Адаптируем заголовок: уменьшаем шрифт и убираем жесткие отступы */
             h1 {
                 font-size: 22px !important;
                 letter-spacing: 0;
@@ -154,14 +153,13 @@
                 font-size: 13px;
             }
 
-            /* Карточки аккуратно подстраиваются по ширине экрана */
             .grid-container {
                 gap: 12px;
                 padding-bottom: 20px;
             }
 
             .card {
-                width: 160px;  /* Пропорционально уменьшаем карточки для узких экранов */
+                width: 160px;
                 height: 175px;
             }
         }
@@ -184,34 +182,34 @@
 
     <main class="grid-container">
         <!-- 1. Аннотация -->
-       <a href="syllabus.html" class="card" title="Силлабус курса (Аннотация)">
-    <img src="pictures/main/pic-annotation.png" onerror="this.onerror=null; this.src='pictures/pic-annotation.png';" alt="Аннотация">
-</a>
+        <a href="syllabus.html" class="card" title="Силлабус курса (Аннотация)">
+            <img src="pictures/main/pic-annotation.png" onerror="this.onerror=null; this.src='pictures/pic-annotation.png';" alt="Аннотация">
+        </a>
 
         <!-- 2. Тема 1 -->
         <a href="topic1.html" class="card" title="Тема 1: Фундаментальные принципы">
-    <img src="pictures/main/pic-topic1.png" alt="Тема 1">
-</a>
+            <img src="pictures/main/pic-topic1.png" alt="Тема 1">
+        </a>
 
         <!-- 3. Тема 2 -->
-       <a href="topic2.html" class="card" title="Тема 2: Рыночные силы">
-    <img src="pictures/main/pic-topic2.png" alt="Тема 2">
-</a>
+        <a href="topic2.html" class="card" title="Тема 2: Рыночные силы">
+            <img src="pictures/main/pic-topic2.png" alt="Тема 2">
+        </a>
 
         <!-- 4. Тема 3 -->
-<a href="topic3.html" class="card" title="Тема 3: Эластичность спроса и предложения">
-    <img src="pictures/main/pic-topic3.png" onerror="this.onerror=null; this.src='top3/pic-topic3.png';" alt="Тема 3">
-</a>
+        <a href="topic3.html" class="card" title="Тема 3: Эластичность спроса и предложения">
+            <img src="pictures/main/pic-topic3.png" onerror="this.onerror=null; this.src='top3/pic-topic3.png';" alt="Тема 3">
+        </a>
 
         <!-- 5. Тема 4 -->
         <a href="topic4.html" class="card" title="Тема 4: Теория производства и издержек">
-    <img src="pictures/main/pic-topic4.png" onerror="this.onerror=null; this.src='top4/pic-topic4.png';" alt="Тема 4">
-</a>
+            <img src="pictures/main/pic-topic4.png" onerror="this.onerror=null; this.src='top4/pic-topic4.png';" alt="Тема 4">
+        </a>
 
         <!-- 6. Тема 5 -->
         <a href="topic5.html" class="card" title="Тема 5: Рыночные структуры и совершенная конкуренция">
-    <img src="pictures/main/pic-topic5.png" onerror="this.onerror=null; this.src='top5/pic-topic5.png';" alt="Тема 5">
-</a>
+            <img src="pictures/main/pic-topic5.png" onerror="this.onerror=null; this.src='top5/pic-topic5.png';" alt="Тема 5">
+        </a>
 
         <!-- 7. Тема 6 -->
         <a href="topic6.html" class="card" title="Тема 6: Монополия, Монополистическая конкуренция и Сетевые структуры">
@@ -219,33 +217,24 @@
         </a>
 
         <!-- 8. Тема 7 -->
-      <a href="topic7.html" class="card" title="Тема 7: Олигополия и стратегическое взаимодействие">
-    <img src="top7/pic-topic7.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic7.png';" alt="Тема 7: Олигополия">
-</a>
+        <a href="topic7.html" class="card" title="Тема 7: Олигополия и стратегическое взаимодействие">
+            <img src="top7/pic-topic7.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic7.png';" alt="Тема 7: Олигополия">
+        </a>
 
         <!-- 9. Тема 8 -->
         <a href="topic8.html" class="card" title="Тема 8: Теория игр и стратегическое поведение">
-    <img src="top8/pic-topic8.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic8.png';" alt="Тема 8">
-</a>
+            <img src="top8/pic-topic8.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic8.png';" alt="Тема 8">
+        </a>
 
         <!-- 10. Тема 9 -->
-    <a href="topic9.html" class="topic-card">
-    <div class="topic-card-header">
-        <span class="topic-number">ТЕМА 09</span>
-        <i class="fa-solid fa-scale-balanced topic-icon"></i>
-    </div>
-    <h3 class="topic-title">Государственное регулирование экономики</h3>
-    <p class="topic-description">
-         Общественные блага и регулирование естественных монополий.
-    </p>
-    <div class="topic-footer">
-        <span>Открыть материалы</span>
-        <i class="fa-solid fa-arrow-right"></i>
-    </div>
-</a>
+        <a href="topic9.html" class="card" title="Тема 9: Государственное регулирование и фиаско рынка">
+            <img src="top9/pic-topic9.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic9.png';" alt="Тема 9">
+        </a>
 
         <!-- 11. Тема 10 -->
-      <a href="topic10.html" class="card" title="Тема 10: Стратегическое ценообразование и продвинутые бизнес-модели"><img src="top10/pic-topic10.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic10.png';" alt="Тема 10"></a>
+        <a href="topic10.html" class="card" title="Тема 10: Стратегическое ценообразование и продвинутые бизнес-модели">
+            <img src="top10/pic-topic10.png" onerror="this.onerror=null; this.src='pictures/main/pic-topic10.png';" alt="Тема 10">
+        </a>
 
         <!-- 12. Тема 11 -->
         <a href="#topic11" class="card" title="Тема 11">
@@ -258,10 +247,9 @@
         </a>
 
         <!-- 14. Оценки -->
-        <!-- 14. Оценки -->
-<a href="grade_B26-M.html" class="card" title="Система оценивания MBA-В26-М">
-    <img src="pictures/main/pic-grade.png" onerror="this.onerror=null; this.src='pictures/pic-grade.png';" alt="Оценки">
-</a>
+        <a href="grade_B26-M.html" class="card" title="Система оценивания MBA-В26-М">
+            <img src="pictures/main/pic-grade.png" onerror="this.onerror=null; this.src='pictures/pic-grade.png';" alt="Оценки">
+        </a>
     </main>
 
     <footer>
