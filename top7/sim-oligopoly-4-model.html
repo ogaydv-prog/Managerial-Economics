@@ -9,8 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-    
-        /* Делаем страницу на всю высоту и растягиваем контент */
+        
         body { 
             background-color: #0a0a0a; 
             color: #e2e8f0; 
@@ -23,14 +22,12 @@
             overflow-y: auto;
         }
         
-        /* Увеличиваем высоту блоков с графиками */
         .chart-container { height: 380px !important; width: 100%; }
-
         .glass { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); }
         .tab-btn { transition: all 0.3s; border: 1px solid rgba(255,255,255,0.05); background: rgba(30, 41, 59, 0.4); }
         .tab-btn.active { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); color: #fff; box-shadow: 0 0 15px rgba(212, 175, 55, 0.15); }
 
-        /* ВИНТАЖНЫЕ ПОЛЗУНКИ (Стиль старой аппаратуры) */
+        /* ВИНТАЖНЫЕ ПОЛЗУНКИ */
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
@@ -38,11 +35,8 @@
             margin: 15px 0;
         }
         
-        input[type=range]:focus {
-            outline: none;
-        }
+        input[type=range]:focus { outline: none; }
 
-        /* Темная механическая прорезь */
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
             height: 8px;
@@ -53,7 +47,6 @@
             cursor: pointer;
         }
 
-        /* Латунный/Золотой регулятор */
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 24px;
@@ -66,7 +59,7 @@
                 inset 0 2px 2px rgba(255,255,255,0.5),
                 inset 0 -2px 4px rgba(0,0,0,0.4);
             cursor: pointer;
-            margin-top: -9px; /* (Track Height / 2) - (Thumb Height / 2) */
+            margin-top: -9px;
             position: relative;
             transition: transform 0.1s;
         }
@@ -181,11 +174,11 @@
                     <div class="bg-black/60 p-2 rounded mb-3 text-[11px] border border-slate-700">
                         <div class="flex justify-between">
                             <span class="text-slate-400">Ответ Ведомого (Brooks):</span>
-                            <span class="font-bold text-sky-400">Q₂ = <span id="stack-val-q2">22.5</span></span>
+                            <span class="font-bold text-sky-400">Q₂ = <span id="stack-val-q2">22.5 тыс. пар</span></span>
                         </div>
                         <div class="flex justify-between mt-1">
-                            <span class="text-slate-400">Рыночная цена обуви:</span>
-                            <span class="font-bold text-yellow-400"><span id="stack-val-p">0</span> ₸</span>
+                            <span class="text-slate-400">Рыночная цена обуви в РК:</span>
+                            <span class="font-bold text-yellow-400"><span id="stack-val-p">130 000</span> ₸</span>
                         </div>
                     </div>
                     
@@ -257,7 +250,7 @@
             <div class="glass rounded-xl p-4 lg:col-span-3 flex flex-col">
                 <h2 class="text-xs font-bold mb-1 text-amber-400 flex justify-between">
                     <span>Равновесие на изломе спроса</span>
-                    <span class="text-slate-400 font-normal text-[10px]">Сети АЗС</span>
+                    <span class="text-slate-400 font-normal text-[10px]">Сети АЗС (РК)</span>
                 </h2>
                 <div class="chart-container relative w-full"><canvas id="chart-sweezy"></canvas></div>
                 <div class="mt-4 bg-slate-900/50 p-3 rounded text-xs border border-cyan-500/20">
@@ -269,15 +262,15 @@
                     <div class="mb-4">
                         <div class="flex justify-between text-xs mb-0.5">
                             <span class="text-cyan-300">Оптовые издержки АЗС (MC):</span>
-                            <span class="font-bold"><span id="sweezy-val-mc">145</span> ₸</span>
+                            <span class="font-bold"><span id="sweezy-val-mc">195</span> ₸</span>
                         </div>
-                        <input type="range" id="sweezy-slider-mc" min="50" max="250" value="145" step="5">
+                        <input type="range" id="sweezy-slider-mc" min="120" max="280" value="195" step="5">
                     </div>
                     
                     <div class="bg-black/60 p-2 rounded mb-3 text-[11px] border border-slate-700 flex justify-around text-center">
                         <div>
                             <div class="text-slate-400 mb-1">Розничная цена (P)</div>
-                            <div id="sweezy-val-p" class="font-bold text-yellow-400 text-sm">205 ₸</div>
+                            <div id="sweezy-val-p" class="font-bold text-yellow-400 text-sm">250 ₸</div>
                         </div>
                         <div>
                             <div class="text-slate-400 mb-1">Объем продаж (Q)</div>
@@ -395,7 +388,7 @@
             }
         }
 
-        // --- STACKELBERG ---
+        // --- STACKELBERG (Обувь On Running vs Brooks под рынок РК) ---
         function initStackelberg() {
             const ctx = document.getElementById('chart-stackelberg').getContext('2d');
             stackChart = new Chart(ctx, {
@@ -409,8 +402,8 @@
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     scales: {
-                        x: { type: 'linear', title: { display: true, text: 'Выпуск On (Q₁)' }, min: 0, max: 90, grid: { color: gridColor } },
-                        y: { title: { display: true, text: 'Выпуск Brooks (Q₂)' }, min: 0, max: 90, grid: { color: gridColor } }
+                        x: { type: 'linear', title: { display: true, text: 'Выпуск On (Q₁, тыс. пар)' }, min: 0, max: 90, grid: { color: gridColor } },
+                        y: { title: { display: true, text: 'Выпуск Brooks (Q₂, тыс. пар)' }, min: 0, max: 90, grid: { color: gridColor } }
                     }
                 }
             });
@@ -421,18 +414,19 @@
             const q1 = parseInt(document.getElementById('stack-slider-q1').value);
             const q2 = Math.max(0, 45 - 0.5 * q1);
             document.getElementById('stack-val-q1').innerText = q1;
-            document.getElementById('stack-val-q2').innerText = q2.toFixed(1);
+            document.getElementById('stack-val-q2').innerText = q2.toFixed(1) + ' тыс. пар';
 
-            let p = Math.max(0, 20000 - 150 * (q1 + q2));
-            document.getElementById('stack-val-p').innerText = Math.round(p);
+            // Базовая цена 130 000 ₸ в РК при равновесии, со скидками может проседать до ~50 000 ₸
+            let p = Math.max(0, 220000 - 1333.33 * (q1 + q2));
+            document.getElementById('stack-val-p').innerText = Math.round(p).toLocaleString('ru-RU');
             
-            const mc = 2000;
-            const tr1 = p * q1 * 100;
-            const tc1 = mc * q1 * 100;
+            const mc = 40000; // Себестоимость пары
+            const tr1 = p * q1 * 1000;
+            const tc1 = mc * q1 * 1000;
             const pi1 = Math.max(0, tr1 - tc1);
 
-            const tr2 = p * q2 * 100;
-            const tc2 = mc * q2 * 100;
+            const tr2 = p * q2 * 1000;
+            const tc2 = mc * q2 * 1000;
             const pi2 = Math.max(0, tr2 - tc2);
 
             document.getElementById('stack-tr1').innerText = formatCurrency(tr1);
@@ -448,7 +442,7 @@
             const panel = document.getElementById('stack-panel');
             panel.className = 'glass rounded-xl p-3 border text-[11px]';
             if(q1 === 45) {
-                panel.innerHTML = `<b>Оптимум лидера:</b> Обратите внимание на разрыв в прибыли. Лидер захватил львиную долю выручки.`;
+                panel.innerHTML = `<b>Оптимум лидера:</b> Обратите внимание на разрыв в прибыли. Лидер захватил львиную долю выручки при цене 130 000 ₸.`;
                 panel.classList.add('border-amber-500', 'bg-amber-950/10');
             } else {
                 panel.innerHTML = `Лидер действует неоптимально, уступая часть финансового пирога конкуренту.`;
@@ -482,7 +476,7 @@
             document.getElementById('bertrand-val-p2').innerText = p2;
 
             const mc = 1500; 
-            const ms = 100; // Размер рынка в тыс. абонентов для корректного масштаба
+            const ms = 100;
             let s1 = 0, s2 = 0; 
             let q1 = 0, q2 = 0;
 
@@ -526,24 +520,24 @@
             }
         }
 
-        // --- SWEEZY ---
+        // --- SWEEZY (Сети АЗС в РК, Базовая цена бензина = 250 ₸) ---
         function initSweezy() {
             const ctx = document.getElementById('chart-sweezy').getContext('2d');
             sweezyChart = new Chart(ctx, {
                 type: 'scatter',
                 data: {
                     datasets: [
-                        { label: 'Спрос (Sweezy)', data: [{x:0, y:245}, {x:40, y:205}, {x:80, y:125}], showLine: true, borderColor: '#22d3ee', backgroundColor: 'transparent', borderWidth: 2.5 },
-                        { label: 'Предельный доход (MR)', data: [{x:0, y:245}, {x:40, y:165}, {x:40, y:125}, {x:71.25, y:0}], showLine: true, borderColor: '#0ea5e9', borderDash: [4,4] },
-                        { label: 'Издержки (MC)', data: [{x:0, y:145}, {x:80, y:145}], showLine: true, borderColor: '#f43f5e', pointRadius: 0 },
-                        { label: 'Текущая точка P', data: [{x: 40, y: 205}], backgroundColor: '#d4af37', pointRadius: 6, z: 10 }
+                        { label: 'Спрос (Sweezy)', data: [{x:0, y:290}, {x:40, y:250}, {x:80, y:170}], showLine: true, borderColor: '#22d3ee', backgroundColor: 'transparent', borderWidth: 2.5 },
+                        { label: 'Предельный доход (MR)', data: [{x:0, y:290}, {x:40, y:220}, {x:40, y:180}, {x:76, y:0}], showLine: true, borderColor: '#0ea5e9', borderDash: [4,4] },
+                        { label: 'Издержки (MC)', data: [{x:0, y:195}, {x:80, y:195}], showLine: true, borderColor: '#f43f5e', pointRadius: 0 },
+                        { label: 'Текущая точка P', data: [{x: 40, y: 250}], backgroundColor: '#d4af37', pointRadius: 6, z: 10 }
                     ]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     scales: {
                         x: { min: 0, max: 80, title: { display: true, text: 'Объем (тыс. л.)' }, grid: { color: gridColor } },
-                        y: { min: 0, max: 260, title: { display: true, text: 'Цена (₸)' }, grid: { color: gridColor } }
+                        y: { min: 0, max: 320, title: { display: true, text: 'Цена (₸)' }, grid: { color: gridColor } }
                     }
                 }
             });
@@ -554,12 +548,12 @@
             const mc = parseInt(document.getElementById('sweezy-slider-mc').value);
             document.getElementById('sweezy-val-mc').innerText = mc;
 
-            let p = 205; let q = 40; let status = "stable";
+            let p = 250; let q = 40; let status = "stable";
 
-            if(mc > 165) {
-                q = (245 - mc) / 2; p = 245 - q; status = "high";
-            } else if(mc < 125) {
-                q = (285 - mc) / 4; p = 285 - 2 * q; status = "low";
+            if(mc > 220) {
+                q = (290 - mc) / 2; p = 290 - q; status = "high";
+            } else if(mc < 180) {
+                q = (330 - mc) / 4; p = 330 - 2 * q; status = "low";
             }
 
             document.getElementById('sweezy-val-p').innerText = `${Math.round(p)} ₸`;
@@ -583,13 +577,13 @@
             const panel = document.getElementById('sweezy-panel');
             panel.className = 'glass rounded-xl p-3 border text-[11px]';
             if(status === "stable") {
-                panel.innerHTML = `<b>Ценовая жесткость:</b> MC «гуляют» внутри разрыва MR. Менять цену невыгодно — потеря объемов (выручки) превысит экономию на издержках.`;
+                panel.innerHTML = `<b>Ценовая жесткость:</b> Оптовые издержки MC гуляют внутри разрыва MR (180–220 ₸). Менять цену невыгодно — потеря объемов (выручки) превысит экономию на издержках.`;
                 panel.classList.add('border-cyan-500', 'bg-cyan-950/10');
             } else if (status === "high") {
-                panel.innerHTML = `<b>Вынужденный рост:</b> Издержки пробили потолок рентабельности. Приходится повышать цены, жертвуя объемами продаж.`;
+                panel.innerHTML = `<b>Вынужденный рост:</b> Оптовые издержки пробили потолок рентабельности (>220 ₸). Приходится повышать цены выше 250 ₸, жертвуя объемами продаж.`;
                 panel.classList.add('border-rose-500');
             } else {
-                panel.innerHTML = `Сверхнизкие издержки толкают цену вниз по неэластичной кривой.`;
+                panel.innerHTML = `Сверхнизкие издержки толкают цену ниже 250 ₸ по неэластичной кривой.`;
                 panel.classList.add('border-amber-500/10');
             }
         }
