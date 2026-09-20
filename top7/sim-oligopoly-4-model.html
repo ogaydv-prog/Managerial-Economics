@@ -20,10 +20,11 @@
             display: flex; 
             flex-direction: column; 
             background-image: radial-gradient(circle at 50% 0%, #1a1a24 0%, #050505 80%);
+            overflow-y: auto;
         }
         
         /* Увеличиваем высоту блоков с графиками */
-        .chart-container { height: 400px !important; width: 100%; }
+        .chart-container { height: 380px !important; width: 100%; }
 
         .glass { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); }
         .tab-btn { transition: all 0.3s; border: 1px solid rgba(255,255,255,0.05); background: rgba(30, 41, 59, 0.4); }
@@ -85,7 +86,7 @@
             <h1 class="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">
                 Стратегические Модели Олигополии
             </h1>
-            <p class="text-slate-400 text-[11px]">MBA Практикум: Анализ стратегических взаимодействий:динамика цен, объемов, выручки и издержек.</p>
+            <p class="text-slate-400 text-[11px]">MBA Практикум: Анализ стратегических взаимодействий: динамика цен, объемов, выручки и издержек.</p>
         </div>
     </header>
 
@@ -168,7 +169,7 @@
                 </h2>
                 <div class="chart-container relative w-full"><canvas id="chart-stackelberg"></canvas></div>
                 <div class="mt-4 bg-slate-900/50 p-3 rounded text-xs border border-amber-500/20">
-                    <span class="font-bold text-amber-300">Инсайт (P&L):</span> В модели Штакельберга -лидер (On Running) сознательно завышает издержки на огромную партию товара. Ведомый видит это, понимает, что рынок перенасыщен (цена упадет), и вынужден снижать свой объем, чтобы спасти маржу. Лидер жертвует частью цены ради колоссальной выручки.
+                    <span class="font-bold text-amber-300">Инсайт (P&L):</span> В модели Штакельберга лидер (On Running) сознательно завышает издержки на огромную партию товара. Ведомый видит это, понимает, что рынок перенасыщен (цена упадет), и вынужден снижать свой объем, чтобы спасти маржу. Лидер жертвует частью цены ради колоссальной выручки.
                 </div>
             </div>
             <div class="lg:col-span-2 flex flex-col gap-3">
@@ -310,10 +311,10 @@
 
         function switchTab(tabName) {
             ['cournot', 'stackelberg', 'bertrand', 'sweezy'].forEach(t => {
-                document.getElementById(`btn-${t}`).classList.remove('active');
-                document.getElementById(`btn-${t}`).classList.add('opacity-60');
-                // Remove special styling for non-active tabs
-                document.getElementById(`btn-${t}`).querySelector('span').classList.remove('text-amber-500');
+                const btn = document.getElementById(`btn-${t}`);
+                btn.classList.remove('active');
+                btn.classList.add('opacity-60');
+                btn.querySelector('span').classList.remove('text-amber-500');
                 document.getElementById(`tab-content-${t}`).classList.add('hidden');
             });
             
@@ -361,8 +362,7 @@
             document.getElementById('cournot-val-q1').innerText = q1;
             document.getElementById('cournot-val-q2').innerText = q2;
 
-            let p = 3000 - 25 * (q1 + q2);
-            p = Math.max(0, p);
+            let p = Math.max(0, 3000 - 25 * (q1 + q2));
             document.getElementById('cournot-val-p').innerText = p;
 
             const mc = 750;
@@ -423,7 +423,7 @@
             document.getElementById('stack-val-q1').innerText = q1;
             document.getElementById('stack-val-q2').innerText = q2.toFixed(1);
 
-            let p = 20000 - 150 * (q1 + q2);
+            let p = Math.max(0, 20000 - 150 * (q1 + q2));
             document.getElementById('stack-val-p').innerText = Math.round(p);
             
             const mc = 2000;
@@ -482,7 +482,7 @@
             document.getElementById('bertrand-val-p2').innerText = p2;
 
             const mc = 1500; 
-            const ms = 100000; // Market size (subscribers)
+            const ms = 100; // Размер рынка в тыс. абонентов для корректного масштаба
             let s1 = 0, s2 = 0; 
             let q1 = 0, q2 = 0;
 
@@ -490,22 +490,22 @@
             else if (p2 < p1) { s1 = 0; s2 = 100; q1 = 0; q2 = ms; }
             else { s1 = 50; s2 = 50; q1 = ms/2; q2 = ms/2; }
 
-            const tr1 = p1 * q1;
-            const tc1 = mc * q1;
+            const tr1 = p1 * q1 * 1000;
+            const tc1 = mc * q1 * 1000;
             const prof1 = Math.max(0, tr1 - tc1);
 
-            const tr2 = p2 * q2;
-            const tc2 = mc * q2;
+            const tr2 = p2 * q2 * 1000;
+            const tc2 = mc * q2 * 1000;
             const prof2 = Math.max(0, tr2 - tc2);
 
             document.getElementById('bertrand-val-share1').innerText = `${s1}%`;
-            document.getElementById('bertrand-q1').innerText = q1.toLocaleString('ru-RU');
+            document.getElementById('bertrand-q1').innerText = (q1 * 1000).toLocaleString('ru-RU');
             document.getElementById('bertrand-tr1').innerText = formatCurrency(tr1);
             document.getElementById('bertrand-tc1').innerText = formatCurrency(tc1);
             document.getElementById('bertrand-profit1').innerText = formatCurrency(prof1);
 
             document.getElementById('bertrand-val-share2').innerText = `${s2}%`;
-            document.getElementById('bertrand-q2').innerText = q2.toLocaleString('ru-RU');
+            document.getElementById('bertrand-q2').innerText = (q2 * 1000).toLocaleString('ru-RU');
             document.getElementById('bertrand-tr2').innerText = formatCurrency(tr2);
             document.getElementById('bertrand-tc2').innerText = formatCurrency(tc2);
             document.getElementById('bertrand-profit2').innerText = formatCurrency(prof2);
@@ -574,7 +574,6 @@
             document.getElementById('sweezy-tc').innerText = formatCurrency(tc);
             document.getElementById('sweezy-pi').innerText = formatCurrency(Math.max(0, pi));
 
-
             if(sweezyChart) {
                 sweezyChart.data.datasets[2].data = [{x:0, y:mc}, {x:80, y:mc}];
                 sweezyChart.data.datasets[3].data = [{x: q, y: p}];
@@ -595,10 +594,10 @@
             }
         }
 
-        window.onload = function() {
+        document.addEventListener("DOMContentLoaded", function() {
             initCournot();
             updateCournot();
-        };
+        });
     </script>
 </body>
 </html>
