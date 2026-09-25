@@ -32,7 +32,31 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
+<!-- МОДАЛЬНОЕ ОКНО ПАРОЛЯ -->
+<div id="passwordModal" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+    <div class="custom-card p-6 max-w-md w-full border-2 border-indigo-500/50 text-center space-y-4">
+        <div class="text-indigo-400 text-3xl"><i class="fas fa-lock"></i></div>
+        <h3 class="text-lg font-bold text-white uppercase tracking-wider">Доступ к Экзамену MBA</h3>
+        <p class="text-xs text-slate-400">Введите пароль доступа, предоставленный преподавателем:</p>
+        <input type="password" id="examPasswordInput" placeholder="Пароль доступа" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-center text-white font-mono font-bold tracking-widest text-sm focus:ring-2 focus:ring-indigo-500 outline-none" onkeypress="if(event.key==='Enter') checkExamPassword()">
+        <button onclick="checkExamPassword()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider transition">
+            Войти в симулятор
+        </button>
+        <span id="passError" class="text-xs text-red-400 hidden block">Неверный пароль доступа!</span>
+    </div>
+</div>
 
+<script>
+    function checkExamPassword() {
+        const pass = document.getElementById('examPasswordInput').value.trim();
+        // ПАРОЛЬ ДОСТУПА
+        if (pass === "MEMBA26M") {
+            document.getElementById('passwordModal').classList.add('hidden');
+        } else {
+            document.getElementById('passError').classList.remove('hidden');
+        }
+    }
+</script>
     <!-- ШАПКА -->
     <header class="border-b border-slate-800 bg-slate-950/90 backdrop-blur-md sticky top-0 z-40">
         <div class="max-w-[1600px] mx-auto px-4 py-3 flex justify-between items-center flex-wrap gap-4">
@@ -1092,9 +1116,45 @@
             });
         }
 
-        function submitExamToGoogleSheets() {
+     function submitExamToGoogleSheets() {
             if (!currentStudent || !selectedVector) { return; }
-            alert(`Уважаемый(ая) ${currentStudent.name}!\n\nВаш письменный экзаменационный проект по вектору "${selectedVector.name}" зафиксирован в экзаменационной ведомости AlmaU.`);
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPLn8umF3wZE0N_GOLUXs0Tgbr2rbNoRjEgSBuDuvg3e2QpGLW9UDmyT5-VnjRVp_6sQ/exec";
+
+            // Сбор данных из полей паспорта и структуры затрат
+            const passportFull = `
+Блок 1 (Цена): ${document.getElementById('p_block1').value}
+Блок 2 (Риски): ${document.getElementById('p_block2').value}
+Блок 3 (Шоки): ${document.getElementById('p_block3').value}
+Блок 4 (Решение): ${document.getElementById('p_block4').value}
+Блок 5 (Ограничения): ${document.getElementById('p_block5').value}
+Затраты: ${document.getElementById('costStructureExplanation').value}
+            `.trim();
+
+            const payload = {
+                studentName: currentStudent.name,
+                projectName: selectedVector.name,
+                price: document.getElementById('g_price').value,
+                eat: document.getElementById('pnl_eat').innerText,
+                passportText: passportFull
+            };
+
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Отправка в ведомость...";
+            btn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                alert(`Уважаемый(ая) ${currentStudent.name}!\n\nВаш экзаменационный проект по вектору "${selectedVector.name}" успешно зафиксирован в экзаменационной ведомости AlmaU.`);
+                btn.innerText = "✓ Успешно отправлено";
+            }).catch(err => {
+                alert("Ошибка отправки. Попробуйте ещё раз.");
+                btn.disabled = false;
+                btn.innerText = "Сдать проект в ведомость";
+            });
         }
     </script>
 </body>
