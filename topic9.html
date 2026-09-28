@@ -89,7 +89,7 @@
             margin: 0 auto;
         }
         
-        /* Сетка под 7 карточек в один ряд на десктопе */
+        /* Сетка под карточки */
         .grid-container { 
             display: grid; 
             grid-template-columns: repeat(7, 185px); 
@@ -153,7 +153,7 @@
             box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35), 0 0 15px rgba(37, 99, 235, 0.2); 
         }
 
-        /* 3D Интерактивные Перевертыши (Видео и Статьи) */
+        /* 3D Интерактивные Перевертыши */
         .flip-card-container {
             width: 100%;
             height: 310px;
@@ -267,38 +267,39 @@
 
         /* Адаптивность для смартфонов */
         @media (max-width: 768px) {
-            body { padding: 15px 10px; }
+            body { padding: 12px 8px; }
             .top-left-logo {
                 position: relative;
                 top: 0; left: 0;
-                height: 48px;
-                margin: 0 auto 10px auto;
+                height: 42px;
+                margin: 0 auto 8px auto;
                 display: block;
             }
             .back-button {
                 position: relative;
                 top: 0; right: 0;
                 display: inline-block;
-                margin: 0 auto 12px auto;
-                padding: 7px 14px;
+                margin: 0 auto 10px auto;
+                padding: 6px 12px;
                 font-size: 11px;
             }
-            header { margin-top: 0; margin-bottom: 20px; padding: 0 5px; }
-            h1 { font-size: 18px !important; letter-spacing: 0; word-wrap: break-word; }
-            .subtitle { font-size: 12px; }
+            header { margin-top: 0; margin-bottom: 16px; padding: 0 5px; }
+            h1 { font-size: 17px !important; letter-spacing: 0; word-wrap: break-word; }
+            .subtitle { font-size: 11px; }
+            
             .grid-container {
-                grid-template-columns: repeat(2, 160px) !important;
-                gap: 12px;
+                grid-template-columns: repeat(2, minmax(135px, 1fr)) !important;
+                gap: 10px;
                 padding-bottom: 15px;
             }
             .card, .flip-card-container {
-                width: 160px !important;
-                height: 270px !important;
-                padding: 4px;
+                width: 100% !important;
+                height: 230px !important;
+                padding: 3px;
             }
-            .flip-card-back { padding: 8px 6px; }
-            .item-list { gap: 4px; margin-top: 2px; max-height: 180px; }
-            .item-link { font-size: 8px; padding: 4px 5px; }
+            .flip-card-back { padding: 6px 4px; }
+            .item-list { gap: 3px; margin-top: 2px; max-height: 150px; }
+            .item-link { font-size: 8px; padding: 3px 4px; }
         }
     </style>
 </head>
@@ -324,9 +325,9 @@
             <img src="top9/pic-preza9.png" onerror="this.onerror=null; this.src='pictures/main/pic-preza9.png';" alt="Презентация 9">
         </a>
 
-        <!-- 2. Практикум и Конспект лекции 9 -->
-        <a href="https://drive.google.com/file/d/1X1cVzRn2eCFgJu-LT4eFp4669Lny6v3c/view?usp=sharing" target="_blank" rel="noopener" class="card" title="Конспект лекции и материалы по Теме 9">
-            <img src="top9/pic-lecture9.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture9.png';" alt="Конспект лекции 9">
+        <!-- 2. ИСПРАВЛЕНО: Интерактивный дашборд gre.html -->
+        <a href="top9/gre.html" class="card" title="Интерактивный дашборд: Государство на рынке">
+            <img src="top9/pic-lecture9.png" onerror="this.onerror=null; this.src='pictures/main/pic-lecture9.png';" alt="Интерактивный дашборд 9">
         </a>
 
         <!-- 3. Симулятор 1: Антимонопольное регулирование -->
