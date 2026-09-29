@@ -585,12 +585,23 @@
             }
         }
 
+        // Загрузка сохранённых данных из браузера
         function loadDatabase() {
-            students = initialGroupStudents;
+            const savedData = localStorage.getItem('almau_gradebook_v26m_students');
+            if (savedData) {
+                try {
+                    students = JSON.parse(savedData);
+                } catch (e) {
+                    students = [...initialGroupStudents];
+                }
+            } else {
+                students = [...initialGroupStudents];
+            }
             students.forEach(student => ensureAttendanceHours(student));
             updateDashboardData();
         }
 
+        // Сохранение текущих данных в память браузера
         function saveDatabase() {
             localStorage.setItem('almau_gradebook_v26m_students', JSON.stringify(students));
         }
